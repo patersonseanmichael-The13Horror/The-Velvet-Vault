@@ -2,6 +2,14 @@ import * as functions from "firebase-functions";
 import { FieldValue, getFirestore } from "firebase-admin/firestore";
 import { assertInt, assertString, requireAuthed } from "./utils";
 import { ensureUserDoc } from "./walletStore";
+import {
+  buildLedgerEntry,
+  ensureWalletState,
+  hasBonusRestriction,
+  nextRolloverProgress,
+  readWalletState,
+  withdrawalCapForState
+} from "./walletState";
 
 type ReserveReq = { roundId: string; amount: number; meta?: unknown };
 type SettleReq = { roundId: string; payout: number; meta?: unknown };
@@ -61,14 +69,17 @@ export const vvReserveBet = functions.https.onCall(async (data: ReserveReq, cont
       });
 
       tx.create(ledgerCol.doc(), {
-        type: "reserve",
-        amount: data.amount,
-        roundId: data.roundId,
-        meta: data.meta ?? null,
-        actorUid: uid,
-        balanceAfter: balance - data.amount,
-        lockedAfter: locked + data.amount,
-        ts: FieldValue.serverTimestamp()
+        ...buildLedgerEntry({
+          uid,
+          type: "bet",
+          amountCents: -data.amount,
+          status: "accepted",
+          roundId: data.roundId,
+          meta: data.meta as Record<string, unknown> | null,
+          balanceAfter: balance - data.amount,
+          lockedAfter: locked + data.amount,
+          actorUid: uid
+        })
       });
 
       return {
@@ -89,6 +100,7 @@ export const vvSettleBet = functions.https.onCall(async (data: SettleReq, contex
 
   const db = getFirestore();
   const userRef = await ensureUserDoc(uid);
+  const walletStateRef = await ensureWalletState(uid);
   const roundRef = userRef.collection("rounds").doc(data.roundId);
   const ledgerCol = userRef.collection("ledger");
 
@@ -102,6 +114,10 @@ export const vvSettleBet = functions.https.onCall(async (data: SettleReq, contex
 
       const balance = Number(user.balance ?? 0);
       const locked = Number(user.locked ?? 0);
+      const walletStateSnap = await tx.get(walletStateRef);
+      const walletState = readWalletState(
+        walletStateSnap.data() as Record<string, unknown> | undefined
+      );
 
       const roundSnap = await tx.get(roundRef);
       if (!roundSnap.exists) {
@@ -137,29 +153,39 @@ export const vvSettleBet = functions.https.onCall(async (data: SettleReq, contex
         updatedAt: FieldValue.serverTimestamp()
       });
 
-      tx.create(ledgerCol.doc(), {
-        type: "settle",
-        amount,
-        payout: data.payout,
-        roundId: data.roundId,
-        meta: data.meta ?? null,
-        actorUid: uid,
-        balanceAfter: balance + data.payout,
-        lockedAfter: locked - amount,
-        ts: FieldValue.serverTimestamp()
-      });
+      const rolloverProgressCents = nextRolloverProgress(walletState, amount);
+      const nextWalletState = {
+        ...walletState,
+        rolloverProgressCents
+      };
+      const bonusRestricted = hasBonusRestriction(nextWalletState);
+
+      tx.set(
+        walletStateRef,
+        {
+          rolloverProgressCents,
+          bonusLockActive: bonusRestricted,
+          bonusWithdrawalCapCents: bonusRestricted ? withdrawalCapForState(nextWalletState) : 0,
+          updatedAt: FieldValue.serverTimestamp()
+        },
+        { merge: true }
+      );
 
       if (data.payout > 0) {
-        tx.create(ledgerCol.doc(), {
-          type: "payout",
-          amount: data.payout,
-          roundId: data.roundId,
-          meta: data.meta ?? null,
-          actorUid: uid,
-          balanceAfter: balance + data.payout,
-          lockedAfter: locked - amount,
-          ts: FieldValue.serverTimestamp()
-        });
+        tx.create(
+          ledgerCol.doc(),
+          buildLedgerEntry({
+            uid,
+            type: "win",
+            amountCents: data.payout,
+            status: "approved",
+            roundId: data.roundId,
+            meta: data.meta as Record<string, unknown> | null,
+            actorUid: uid,
+            balanceAfter: balance + data.payout,
+            lockedAfter: locked - amount
+          })
+        );
       }
 
       return {
@@ -229,16 +255,23 @@ export const vvCancelBet = functions.https.onCall(async (data: CancelReq, contex
         updatedAt: FieldValue.serverTimestamp()
       });
 
-      tx.create(ledgerCol.doc(), {
-        type: "cancel",
-        amount,
-        roundId: data.roundId,
-        reason: data.reason ?? null,
-        actorUid: uid,
-        balanceAfter: balance + amount,
-        lockedAfter: locked - amount,
-        ts: FieldValue.serverTimestamp()
-      });
+      tx.create(
+        ledgerCol.doc(),
+        buildLedgerEntry({
+          uid,
+          type: "cancel",
+          amountCents: 0,
+          status: "cancelled",
+          roundId: data.roundId,
+          reason: data.reason ?? null,
+          meta: {
+            refundCents: amount
+          },
+          actorUid: uid,
+          balanceAfter: balance + amount,
+          lockedAfter: locked - amount
+        })
+      );
 
       return {
         ok: true,

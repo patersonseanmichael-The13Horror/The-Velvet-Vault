@@ -399,15 +399,21 @@
   holdWinClose.addEventListener("click", ()=>closeModal(holdWinModal));
   holdWinModal.addEventListener("click", (e)=>{ if (e.target===holdWinModal) closeModal(holdWinModal); });
 
+  function formatMoney(value){
+    if (window.VaultEngine?.formatAUD) return window.VaultEngine.formatAUD(value);
+    if (window.VaultEngine?.formatGold) return window.VaultEngine.formatGold(value);
+    return `$${(toInt(value) / 100).toFixed(2)}`;
+  }
+
   function syncUI(){
     if (window.VaultEngine && typeof window.VaultEngine.getBalance === "function"){
       const latest = toInt(window.VaultEngine.getBalance());
       if (latest >= 0) balance = latest;
     }
-    balanceEl.textContent = String(Math.floor(balance));
-    betLabel.textContent = String(Math.floor(bet));
+    balanceEl.textContent = formatMoney(balance);
+    betLabel.textContent = formatMoney(bet);
     lineBet = Math.max(1, Math.floor(bet / lines));
-    lineBetLabel.textContent = String(lineBet);
+    lineBetLabel.textContent = formatMoney(lineBet);
     multLabel.textContent = `${lastMult.toFixed(2)}x`;
     autoLabel.textContent = auto ? "ON" : "OFF";
     autoCountEl.textContent = String(autoLeft);
@@ -703,14 +709,14 @@
         }
 
         const symGlyph = symbolById(w.symId).glyph;
-        setResult(`Line ${w.line+1}: ${symGlyph} ×${w.count}  (+${w.pay * lastMult | 0})`);
+        setResult(`Line ${w.line+1}: ${symGlyph} ×${w.count}  (+${formatMoney(w.pay * lastMult | 0)})`);
         await sleep(420);
       }
 
       clearPaylineCycle();
       applyHighlights(res);
       if (!cancelCelebration){
-        setResult(`Win: +${payout} (Lines: ${res.wins.length})${inFreeSpins?` • Free Spins left: ${freeSpinsLeft}`:""}`);
+        setResult(`Win: +${formatMoney(payout)} (Lines: ${res.wins.length})${inFreeSpins?` • Free Spins left: ${freeSpinsLeft}`:""}`);
       }
     } finally {
       celebrating = false;
@@ -938,7 +944,7 @@
     }
     hw.total = total;
     respinsLeftEl.textContent = String(hw.respins);
-    holdWinTotalEl.textContent = String(hw.total);
+    holdWinTotalEl.textContent = formatMoney(hw.total);
   }
 
   function holdWinFilledCount(){
@@ -970,7 +976,7 @@
     if (hw.respins<=0 || holdWinFilledCount()===ROWS*REELS){
       balance += hw.total;
       syncUI();
-      setResult(`Hold & Win complete: +${hw.total}.`);
+      setResult(`Hold & Win complete: +${formatMoney(hw.total)}.`);
       hw = null;
       closeModal(holdWinModal);
     }
@@ -1081,7 +1087,7 @@
 
       const payout = toInt(spin.totalPayout ?? spin.totalWin);
       if (payout > 0){
-        setResult(`Win: +${payout} (Lines: ${Array.isArray(spin.wins) ? spin.wins.length : 0})${inFreeSpins?` • Free Spins left: ${freeSpinsLeft}`:""}`);
+        setResult(`Win: +${formatMoney(payout)} (Lines: ${Array.isArray(spin.wins) ? spin.wins.length : 0})${inFreeSpins?` • Free Spins left: ${freeSpinsLeft}`:""}`);
       } else {
         setResult(inFreeSpins ? `No win • Free Spins left: ${freeSpinsLeft}` : "No win.");
       }
@@ -1111,6 +1117,11 @@
     if (hasAtomicServerSpin()){
       const handled = await doAtomicServerSpin();
       if (handled) return;
+    }
+
+    if (currentSlotServerUrl() && !window.vvAuth?.currentUser){
+      setResult("Please sign in.");
+      return;
     }
 
     if (window.VaultEngine?.mode === "secure"){
@@ -1188,7 +1199,7 @@
         balance += payout;
         syncUI();
         applyHighlights(res);
-        setResult(`Win: +${payout} (Lines: ${res.wins.length})${inFreeSpins?` • Free Spins left: ${freeSpinsLeft}`:""}`);
+        setResult(`Win: +${formatMoney(payout)} (Lines: ${res.wins.length})${inFreeSpins?` • Free Spins left: ${freeSpinsLeft}`:""}`);
         if (!hw && res.wins.length <= 4){
           await ladderCelebrate(grid, res, payout);
         }

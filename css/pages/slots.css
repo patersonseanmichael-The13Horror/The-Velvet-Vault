@@ -3,6 +3,10 @@
 */
 @import url("../slots.css");
 
+:root{
+  --vv-bg: url("../../images/bg/vip-noir-bg.webp");
+}
+
 /* Image symbols inside slot cells */
 .reel-cell {
   position: relative;
@@ -29,16 +33,19 @@
   display: grid !important;
   grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
   gap: 12px !important;
-  align-items: stretch !important;
+  align-items: start !important;
+  overflow: hidden !important;
 }
 
 /* each reel column holds 3 symbols down */
 .reelCol{
   display: grid !important;
-  grid-template-rows: repeat(3, minmax(0, 1fr)) !important;
+  grid-template-rows: repeat(3, 92px) !important;
   gap: 10px !important;
   padding: 10px !important;
   min-height: 0 !important;
+  overflow: hidden !important;
+  contain: paint !important;
 }
 
 /* symbol cell sizing */
@@ -48,6 +55,8 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  overflow: hidden !important;
+  position: relative !important;
 }
 
 /* Mobile scaling while keeping 5 reels visible */
@@ -82,6 +91,9 @@ main.page.slotsPage{
 
 .slotsShell{
   height: auto !important;
+  position: relative !important;
+  overflow: hidden !important;
+  contain: layout paint style !important;
 }
 
 .reelsWrap{
@@ -89,6 +101,11 @@ main.page.slotsPage{
   height: auto !important;
   padding: 12px !important;
   gap: 12px !important;
+}
+
+.vvModal, .modal {
+  position: fixed;
+  z-index: 2000;
 }
 
 :root{

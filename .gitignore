@@ -28,11 +28,14 @@ VelvetVault_FixPack_Audit/
 output/
 *.zip
 *.7z
-.vercel
+.venv/
+.vercel/
 .vscode/
+*.json
 
 # Local admin SDK credentials
 server/serviceAccountKey.json
+the-velvet-vault-*.json
 
 # Local slot-engine tuning artifacts
 packages/slot-engine/cluster_sim.csv

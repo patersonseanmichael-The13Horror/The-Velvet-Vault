@@ -25,7 +25,10 @@
 <body data-chapter="games">
   <div id="vvBrandGlow" aria-hidden="true"></div>
   <div class="vv-bg" aria-hidden="true">
-    <div class="vv-bg__layer layer-a"></div>
+    <div class="vv-bg__layer layer-a vv-bg__vip-image"></div>
+    <div class="vv-bg__ambient"></div>
+    <div class="vv-bg__shimmer"></div>
+    <div class="vv-bg__particles"></div>
     <div class="vv-bg__tint"></div>
     <div class="vv-bg__vignette"></div>
     <div class="vv-grain"></div>
@@ -39,7 +42,6 @@
       </div>
       <div class="vv-bar"><div data-vv-bar></div></div>
       <div class="vv-badge__links">
-        <a class="vv-miniLink" href="members.html" data-unlock-key="vip">VIP Floor</a>
         <a class="vv-miniLink" href="terms.html" data-unlock-key="terms">House Rules</a>
       </div>
     </div>
@@ -52,10 +54,9 @@
         <h1 class="vv-chapter__title">Slots — The Neon Chorus</h1>
         <p class="vv-chapter__desc">Lights sing. Reels whisper. Luck shows up when it feels admired.</p>
       </div>
-      <div class="vv-chapter__actions">
-        <a class="btn primary" href="members.html">Back to Lobby</a>
-        <a class="btn" href="roulette.html">Back to Roulette</a>
-      </div>
+      <nav class="vv-nav">
+        <a href="slots.html" class="active">Slots</a>
+      </nav>
     </div>
   </section>
 <meta name="vv-protected" content="true">
@@ -124,8 +125,8 @@
           </div>
 
           <div class="hud">
-            <div class="pill">Bet: <b id="betLabel">150</b> GOLD</div>
-            <div class="pill">Line Bet: <b id="lineBetLabel">50</b> GOLD</div>
+            <div class="pill">Bet: <b id="betLabel">$1.50</b></div>
+            <div class="pill">Line Bet: <b id="lineBetLabel">$0.50</b></div>
             <div class="pill">Last Mult: <b id="multLabel">—</b></div>
             <div class="pill">Auto: <b id="autoLabel">OFF</b></div>
           </div>
@@ -197,7 +198,6 @@
           <h2>Payouts</h2>
           <small>Wins are calculated per payline and summed. Bonus triggers on <b>exactly two ★</b> in a line.</small>
         </div>
-        <a class="chip" href="ledger.html">View Ledger</a>
       </div>
 
       <div class="cardBody">

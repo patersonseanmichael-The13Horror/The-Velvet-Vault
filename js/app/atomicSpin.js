@@ -39,7 +39,7 @@
 
     const currentUser = auth?.currentUser;
     if (!currentUser || typeof currentUser.getIdToken !== "function") {
-      throw new Error("Missing Firebase session.");
+      throw new Error("Please sign in.");
     }
 
     const finalRoundId = String(roundId || nextRoundId()).trim();

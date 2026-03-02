@@ -1,185 +1,250 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Velvet Vault - Members Lobby</title>
-  <meta name="description" content="Velvet Vault Members Lobby"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Velvet Vault — Members</title>
 
-  <link rel="stylesheet" href="css/vv.tokens.css">
-  <link rel="stylesheet" href="css/vv.base.css">
-  <link rel="stylesheet" href="css/vv.components.css">
-  <link rel="stylesheet" href="css/velvet.css">
-  <link rel="stylesheet" href="css/rebirth.css">
-  <link rel="stylesheet" href="css/casino-floor.css">
-  <link rel="stylesheet" href="css/pages/members.css">
-  <link rel="stylesheet" href="css/story.css">
-  <link rel="stylesheet" href="css/phase4.css">
-  <link rel="stylesheet" href="css/phase6-effects.css">
+  <meta name="vv-protected" content="true" />
+
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/pages/slots.css" />
+  <link rel="stylesheet" href="css/pages/members.css" />
+
+  <script src="js/runtime-config.js"></script>
+</head>
+
+<body class="vvTheme">
+  <div id="vvBrandGlow" aria-hidden="true"></div>
+  <script src="js/vv-bg-particles.js" defer></script>
+
+  <div id="vvAppShell" class="vvShell">
+    <header class="vvTopbar">
+      <div class="vvTopbarLeft">
+        <a class="vvLogoLink" href="slots.html" aria-label="Velvet Vault">
+          <span class="vvLogo">VELVET VAULT</span>
+          <span class="vvTag">VIP Members</span>
+        </a>
+      </div>
+
+      <nav class="vvNav">
+        <a class="vvNavItem" href="slots.html">Play Slots</a>
+        <button id="btnOpenWallet" class="vvNavItem vvNavButton" type="button">Wallet</button>
+        <a class="vvNavItem" href="promotions.html">Promotions</a>
+        <button id="btnLogout" class="vvNavItem vvNavDanger" type="button">Logout</button>
+      </nav>
+
+      <div class="vvTopbarRight">
+        <div class="vvMiniBalance">
+          <span class="vvMiniBalanceLabel">Balance</span>
+          <span id="vvMiniBalanceValue" class="vvMiniBalanceValue">$0.00</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="vvTicker" aria-label="Live feed">
+      <div class="vvTickerInner">
+        <div id="vvTickerTrack" class="vvTickerTrack"></div>
+      </div>
+    </section>
+
+    <main class="vvMembersMain">
+      <section class="vvHero">
+        <div class="vvHeroCard">
+          <h1 class="vvHeroTitle">Welcome back.</h1>
+          <p class="vvHeroSub">
+            Your VIP room is ready. Keep it clean, keep it classy — and let the reels do the talking.
+          </p>
+
+          <div class="vvHeroActions">
+            <a class="vvPrimary" href="slots.html">Enter Slots</a>
+            <button id="btnOpenWallet2" class="vvSecondary" type="button">Open Wallet</button>
+            <a class="vvTertiary" href="promotions.html">View Promotions</a>
+          </div>
+        </div>
+
+        <aside class="vvSideStats" aria-label="Account info">
+          <div class="vvStatCard">
+            <div class="vvStatLabel">Cash Balance</div>
+            <div id="vvCashBalance" class="vvStatValue">$0.00</div>
+          </div>
+          <div class="vvStatCard">
+            <div class="vvStatLabel">Bonus Balance</div>
+            <div id="vvBonusBalance" class="vvStatValue">$0.00</div>
+          </div>
+          <div class="vvStatCard">
+            <div class="vvStatLabel">Rollover</div>
+            <div id="vvRollover" class="vvStatValue">0%</div>
+            <div id="vvRolloverDetail" class="vvStatSub">$0.00 / $0.00</div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="vvPanelRow">
+        <div class="vvPanel">
+          <h2 class="vvPanelTitle">Quick Actions</h2>
+          <div class="vvPanelGrid">
+            <button id="qaDeposit" class="vvCardButton" type="button">Deposit</button>
+            <button id="qaWithdraw" class="vvCardButton" type="button">Withdraw</button>
+            <button id="qaHistory" class="vvCardButton" type="button">Wallet History</button>
+          </div>
+        </div>
+
+        <div class="vvPanel">
+          <h2 class="vvPanelTitle">House Notes</h2>
+          <ul class="vvList">
+            <li>All balances are in <strong>$AUD</strong>.</li>
+            <li>Cash balance changes only on deposit, withdrawal, bets and wins.</li>
+            <li>Bonus rules apply separately where stated.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="vvFooter">
+      <span>© Velvet Vault</span>
+      <span class="vvFooterDot">•</span>
+      <a href="terms.html">Terms</a>
+    </footer>
+  </div>
+
+  <div id="vvWalletModal" class="vvModal" aria-hidden="true">
+    <div class="vvModalBackdrop" data-close="1"></div>
+
+    <div class="vvModalSheet" role="dialog" aria-modal="true" aria-label="Wallet">
+      <div class="vvModalHeader">
+        <div class="vvModalTitle">Wallet</div>
+        <button class="vvIconBtn" id="btnCloseWallet" type="button" aria-label="Close">✕</button>
+      </div>
+
+      <div id="vvWalletViewHome" class="vvWalletView">
+        <div class="vvWalletBalances">
+          <div class="vvBalanceCard">
+            <div class="vvBalanceLabel">Cash Balance</div>
+            <div id="vvWalletCash" class="vvBalanceValue">$0.00</div>
+          </div>
+          <div class="vvBalanceCard">
+            <div class="vvBalanceLabel">Bonus Balance</div>
+            <div id="vvWalletBonus" class="vvBalanceValue">$0.00</div>
+          </div>
+        </div>
+
+        <div class="vvRolloverBox">
+          <div class="vvRolloverTop">
+            <span>Rollover</span>
+            <span id="vvWalletRolloverPct">0%</span>
+          </div>
+          <div class="vvProgress">
+            <div id="vvWalletRolloverBar" class="vvProgressBar" style="width:0%"></div>
+          </div>
+          <div id="vvWalletRolloverNums" class="vvRolloverNums">$0.00 / $0.00</div>
+        </div>
+
+        <div class="vvWalletActions">
+          <button id="btnGoDeposit" class="vvPrimary" type="button">Deposit</button>
+          <button id="btnGoWithdraw" class="vvSecondary" type="button">Withdraw</button>
+          <button id="btnGoHistory" class="vvTertiary" type="button">Wallet History</button>
+        </div>
+      </div>
+
+      <div id="vvWalletViewDeposit" class="vvWalletView" hidden>
+        <div class="vvSubHeader">
+          <button class="vvBackBtn" id="btnBackFromDeposit" type="button">← Back</button>
+          <div class="vvSubTitle">Deposit</div>
+        </div>
+
+        <div class="vvAmountGrid" aria-label="Deposit amount">
+          <button class="vvChip" data-deposit="500">$5</button>
+          <button class="vvChip" data-deposit="1000">$10</button>
+          <button class="vvChip" data-deposit="2000">$20</button>
+          <button class="vvChip" data-deposit="5000">$50</button>
+          <button class="vvChip" data-deposit="10000">$100</button>
+          <button class="vvChip" data-deposit="25000">$250</button>
+          <button class="vvChip" data-deposit="50000">$500</button>
+          <button class="vvChip" data-deposit="100000">$1000</button>
+        </div>
+
+        <div class="vvPayIdBox">
+          <div class="vvPayIdTitle">PayID</div>
+          <div class="vvPayIdLine">
+            <span class="vvPayIdLabel">Send to:</span>
+            <span id="vvPayIdValue" class="vvPayIdValue">YOUR_PAYID_HERE</span>
+            <button id="btnCopyPayId" class="vvMiniBtn" type="button">Copy</button>
+          </div>
+          <div class="vvPayIdHint">
+            Upload your payment screenshot, then submit.
+          </div>
+        </div>
+
+        <div class="vvUploadBox">
+          <label class="vvUploadLabel" for="vvDepositProof">Upload screenshot</label>
+          <input id="vvDepositProof" type="file" accept="image/*" />
+          <div id="vvDepositProofStatus" class="vvUploadStatus">No file selected</div>
+        </div>
+
+        <button id="btnSubmitDeposit" class="vvPrimary vvFull" type="button" disabled>
+          Submit Deposit Request
+        </button>
+
+        <div id="vvDepositMsg" class="vvMsg" aria-live="polite"></div>
+      </div>
+
+      <div id="vvWalletViewWithdraw" class="vvWalletView" hidden>
+        <div class="vvSubHeader">
+          <button class="vvBackBtn" id="btnBackFromWithdraw" type="button">← Back</button>
+          <div class="vvSubTitle">Withdraw</div>
+        </div>
+
+        <div class="vvWithdrawRules">
+          <div><strong>Maximum withdrawal:</strong> $200,000.00 (cash-only).</div>
+          <div><strong>If bonus active:</strong> maximum withdrawal is $3,000.00.</div>
+        </div>
+
+        <div class="vvField">
+          <label>Amount (AUD)</label>
+          <input id="vvWithdrawAmount" inputmode="decimal" placeholder="$0.00" />
+        </div>
+
+        <div class="vvField">
+          <label>PayID / Account (enter)</label>
+          <input id="vvWithdrawPayid1" placeholder="PayID or account identifier" />
+        </div>
+        <div class="vvField">
+          <label>PayID / Account (confirm)</label>
+          <input id="vvWithdrawPayid2" placeholder="Confirm PayID or account identifier" />
+        </div>
+
+        <div class="vvField">
+          <label>Account Name (enter)</label>
+          <input id="vvWithdrawName1" placeholder="Account name" />
+        </div>
+        <div class="vvField">
+          <label>Account Name (confirm)</label>
+          <input id="vvWithdrawName2" placeholder="Confirm account name" />
+        </div>
+
+        <button id="btnSubmitWithdraw" class="vvSecondary vvFull" type="button" disabled>
+          Submit Withdrawal Request
+        </button>
+
+        <div id="vvWithdrawMsg" class="vvMsg" aria-live="polite"></div>
+      </div>
+
+      <div id="vvWalletViewHistory" class="vvWalletView" hidden>
+        <div class="vvSubHeader">
+          <button class="vvBackBtn" id="btnBackFromHistory" type="button">← Back</button>
+          <div class="vvSubTitle">Wallet History</div>
+        </div>
+
+        <div id="vvHistoryList" class="vvHistoryList" aria-label="Wallet history"></div>
+      </div>
+    </div>
+  </div>
+
   <script type="module" src="js/firebase-init.js"></script>
   <script type="module" src="js/guard.js"></script>
   <script type="module" src="js/wallet.js"></script>
-</head>
-<body class="members-page" data-chapter="vip">
-  <div class="vv-bg" aria-hidden="true">
-    <div class="vv-bg__layer layer-a"></div>
-    <div class="vv-bg__tint"></div>
-    <div class="vv-bg__vignette"></div>
-    <div class="vv-grain"></div>
-  </div>
-  <meta name="vv-protected" content="true">
-  <div class="grain" aria-hidden="true"></div>
-
-  <!-- Phase 3: Mobile drawer (only activates on small screens) -->
-  <div data-drawer-backdrop></div>
-  <nav class="mobile-drawer" data-drawer aria-label="Mobile navigation">
-    <a href="members.html" class="active">Lobby</a>
-    <a href="ledger.html">Ledger</a>
-    <a href="roulette.html">Roulette</a>
-    <a href="blackjack.html">Blackjack</a>
-    <a href="poker.html">Poker</a>
-    <a href="slots-lobby.html">Slots</a>
-    <a href="index.html">Home</a>
-  </nav>
-
-  <header id="vv-topbar"></header>
-
-  <main>
-    <!-- Phase 3: VIP Hero (safe, additive) -->
-    <section class="vipHero" aria-label="VIP Lobby">
-      <h1 class="vipTitle">Velvet Vault — VIP Floor</h1>
-      <p class="vipSub">
-        Welcome back. Your next win is a choice: spin, deal, or go full high-roller.
-        Keep it smooth. Keep it velvet.
-      </p>
-      <div class="vipRow">
-        <div class="vipActions">
-          <a class="btn primary" href="roulette.html">Play Roulette</a>
-          <a class="btn" href="blackjack.html">Play Blackjack</a>
-          <a class="btn" href="ledger.html">View Ledger</a>
-        </div>
-        <div class="vipBadge" title="Wallet balance">
-          Balance <strong id="walletBal">—</strong>
-        </div>
-      </div>
-    </section>
-
-    <section class="casinoFloor">
-      <div class="floorHeader">
-        <div>
-          <h2 class="floorTitle">Velvet Vault Casino Floor</h2>
-          <p class="floorSub">Neon lounge • VIP tables • Machine hall</p>
-        </div>
-        <div class="jackpot">
-          <span>JACKPOT</span>
-          <b id="vvJackpot">—</b>
-        </div>
-      </div>
-
-      <div class="floorGrid">
-        <a class="floorCard" href="roulette.html">
-          <div class="cardGlow"></div>
-          <div class="cardTag">Table</div>
-          <div class="cardName">Roulette</div>
-          <p class="cardDesc">Ultra realistic spin + neon win flash.</p>
-        </a>
-
-        <a class="floorCard" href="blackjack.html">
-          <div class="cardGlow"></div>
-          <div class="cardTag">Table</div>
-          <div class="cardName">Blackjack VIP</div>
-          <p class="cardDesc">Dealer glow • chip flow • fast actions.</p>
-        </a>
-
-        <a class="floorCard" href="poker.html">
-          <div class="cardGlow"></div>
-          <div class="cardTag">Lounge</div>
-          <div class="cardName">Poker</div>
-          <p class="cardDesc">Dealing animation • AI seats.</p>
-        </a>
-
-        <a class="floorCard" href="slots-lobby.html">
-          <div class="cardGlow"></div>
-          <div class="cardTag">Machines</div>
-          <div class="cardName">Slots Hall</div>
-          <p class="cardDesc">10 machines • unique skins • wallet-safe.</p>
-        </a>
-
-        <a class="floorCard" href="slots.html?m=machine-10#machine=machine-10">
-          <div class="cardGlow"></div>
-          <div class="cardTag">High Risk</div>
-          <div class="cardName">HyperSpin X</div>
-          <p class="cardDesc">Aggressive volatility • VIP energy.</p>
-        </a>
-      </div>
-
-      <div class="floorFooterRow">
-        <div class="winFeed">
-          <p class="winFeedTitle">Live Wins</p>
-          <div id="vvWinFeed"></div>
-        </div>
-
-        <div class="manualPanel">
-          <h3>Manual Review Submission</h3>
-
-          <form id="vvManualForm" class="manualGrid">
-            <div class="manualRow">
-              <label>Name</label>
-              <input value="Michael Sean" readonly>
-            </div>
-            <div class="manualRow">
-              <label>PayID</label>
-              <input value="ledgertheivory@gmail.com" readonly>
-            </div>
-            <div class="manualRow">
-              <label>Reference</label>
-              <input value="2009855" readonly>
-            </div>
-            <div class="manualRow">
-              <label>Description</label>
-              <textarea readonly>Items Purchased Ebay</textarea>
-            </div>
-            <div class="manualRow">
-              <label>Submit Screenshot</label>
-              <input id="vvScreenshot" type="file" accept="image/*">
-            </div>
-
-            <div class="manualBtns">
-              <button class="vvBtn green" type="submit">Submit</button>
-            </div>
-
-            <p class="manualMsg" id="vvManualMsg"></p>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <button id="vvHelperOpen" class="vvBtn" style="display:none; position:fixed; right:14px; bottom:14px; z-index:9998;">
-    Help
-  </button>
-
-  <div class="vvHelper" id="vvHelper">
-    <div class="vvHelperHeader">
-      <b>Helper</b>
-      <button class="vvHelperClose" id="vvHelperClose" aria-label="Close">×</button>
-    </div>
-    <div class="vvHelperBody" id="vvHelperBody"></div>
-  </div>
-
-  <div id="vvFooterLogo" style="display:none"></div>
-
-<script src="js/casino-floor.js"></script>
-<script src="js/manual-payment.js"></script>
-<script src="js/helper.js"></script>
-<script src="js/rebirth-ui.js"></script>
-<script src="js/story-engine.js"></script>
-<script src="js/story-progress.js"></script>
-<script src="js/phase6-effects.js"></script>
-<footer id="vv-footer"></footer>
-<script type="module" src="js/ui/topbar.js"></script>
-<script type="module" src="js/ui/footer.js"></script>
-<script src="js/nav.js"></script>
-
+  <script type="module" src="js/auth-store.js"></script>
+  <script type="module" src="js/members.js"></script>
 </body>
 </html>

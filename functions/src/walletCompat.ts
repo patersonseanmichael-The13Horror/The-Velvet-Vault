@@ -2,6 +2,14 @@ import * as functions from "firebase-functions";
 import { FieldValue, getFirestore } from "firebase-admin/firestore";
 import { assertInt, assertString, requireAuthed } from "./utils";
 import { ensureUserDoc, optionalString } from "./walletStore";
+import {
+  buildLedgerEntry,
+  ensureWalletState,
+  hasBonusRestriction,
+  nextRolloverProgress,
+  readWalletState,
+  withdrawalCapForState
+} from "./walletState";
 
 type BalanceReq = Record<string, never>;
 type DebitReq = { amount: number; game?: string; roundId?: string; note?: string };
@@ -26,11 +34,21 @@ export const vvGetBalanceCallable = functions.https.onCall(
   async (_data: BalanceReq, context) => {
     const uid = requireAuthed(context);
     const userRef = await ensureUserDoc(uid);
-    const snap = await userRef.get();
+    const walletStateRef = await ensureWalletState(uid);
+    const [snap, walletStateSnap] = await Promise.all([userRef.get(), walletStateRef.get()]);
+    const walletState = readWalletState(
+      walletStateSnap.data() as Record<string, unknown> | undefined
+    );
     return {
       ok: true,
       balance: Number(snap.data()?.balance ?? 0),
-      locked: Number(snap.data()?.locked ?? 0)
+      locked: Number(snap.data()?.locked ?? 0),
+      bonusCents: walletState.bonusCents,
+      rolloverTargetCents: walletState.rolloverTargetCents,
+      rolloverProgressCents: walletState.rolloverProgressCents,
+      bonusWithdrawalCapCents: hasBonusRestriction(walletState)
+        ? withdrawalCapForState(walletState)
+        : 0
     };
   }
 );
@@ -46,12 +64,17 @@ export const vvDebit = functions.https.onCall(async (data: DebitReq, context) =>
 
   const db = getFirestore();
   const userRef = await ensureUserDoc(uid);
+  const walletStateRef = await ensureWalletState(uid);
   const ledgerRef = userRef.collection("ledger").doc();
   const lockRef = roundId ? db.doc(`debitLocks/${uid}_${roundId}`) : null;
 
   return db.runTransaction(async (tx) => {
     const userSnap = await tx.get(userRef);
+    const walletStateSnap = await tx.get(walletStateRef);
     const user = userSnap.data() || {};
+    const walletState = readWalletState(
+      walletStateSnap.data() as Record<string, unknown> | undefined
+    );
     const balance = Number(user.balance ?? 0);
 
     if (balance < amount) {
@@ -75,17 +98,37 @@ export const vvDebit = functions.https.onCall(async (data: DebitReq, context) =>
       balance: nextBalance,
       updatedAt: FieldValue.serverTimestamp()
     });
+    const rolloverProgressCents = nextRolloverProgress(walletState, amount);
+    const nextWalletState = {
+      ...walletState,
+      rolloverProgressCents
+    };
+    const bonusRestricted = hasBonusRestriction(nextWalletState);
+    tx.set(
+      walletStateRef,
+      {
+        rolloverProgressCents,
+        bonusLockActive: bonusRestricted,
+        bonusWithdrawalCapCents: bonusRestricted ? withdrawalCapForState(nextWalletState) : 0,
+        updatedAt: FieldValue.serverTimestamp()
+      },
+      { merge: true }
+    );
 
-    tx.create(ledgerRef, {
-      type: "debit",
-      amount,
-      game,
-      roundId,
-      note,
-      balanceAfter: nextBalance,
-      actorUid: uid,
-      createdAt: FieldValue.serverTimestamp()
-    });
+    tx.create(
+      ledgerRef,
+      buildLedgerEntry({
+        uid,
+        type: "bet",
+        amountCents: -amount,
+        note,
+        game,
+        roundId,
+        balanceAfter: nextBalance,
+        actorUid: uid,
+        status: "approved"
+      })
+    );
 
     return {
       ok: true,
@@ -135,16 +178,20 @@ export const vvCredit = functions.https.onCall(async (data: CreditReq, context) 
       balance: nextBalance,
       updatedAt: FieldValue.serverTimestamp()
     });
-    tx.create(ledgerRef, {
-      type: "credit",
-      amount,
-      game,
-      roundId,
-      note,
-      balanceAfter: nextBalance,
-      actorUid: uid,
-      createdAt: FieldValue.serverTimestamp()
-    });
+    tx.create(
+      ledgerRef,
+      buildLedgerEntry({
+        uid,
+        type: "win",
+        amountCents: amount,
+        note,
+        game,
+        roundId,
+        balanceAfter: nextBalance,
+        actorUid: uid,
+        status: "approved"
+      })
+    );
 
     return {
       ok: true,
@@ -185,16 +232,22 @@ export const vvDeposit = functions.https.onCall(async (data: TransferReq, contex
       balance: nextBalance,
       updatedAt: FieldValue.serverTimestamp()
     });
-    tx.create(ledgerRef, {
-      type: "deposit",
-      amount,
-      note,
-      source: optionalString(data?.source, 120),
-      destination: optionalString(data?.destination, 120),
-      balanceAfter: nextBalance,
-      actorUid: uid,
-      createdAt: FieldValue.serverTimestamp()
-    });
+    tx.create(
+      ledgerRef,
+      buildLedgerEntry({
+        uid,
+        type: "deposit",
+        amountCents: amount,
+        note,
+        balanceAfter: nextBalance,
+        actorUid: uid,
+        status: "approved",
+        meta: {
+          source: optionalString(data?.source, 120),
+          destination: optionalString(data?.destination, 120)
+        }
+      })
+    );
 
     return { ok: true, balance: nextBalance };
   });
@@ -210,16 +263,28 @@ export const vvWithdraw = functions.https.onCall(async (data: TransferReq, conte
 
   const db = getFirestore();
   const userRef = await ensureUserDoc(uid);
+  const walletStateRef = await ensureWalletState(uid);
   const ledgerRef = userRef.collection("ledger").doc();
   const lockRef = idempotencyKey ? db.doc(`withdrawLocks/${uid}_${idempotencyKey}`) : null;
 
   return db.runTransaction(async (tx) => {
     const userSnap = await tx.get(userRef);
+    const walletStateSnap = await tx.get(walletStateRef);
     const user = userSnap.data() || {};
+    const walletState = readWalletState(
+      walletStateSnap.data() as Record<string, unknown> | undefined
+    );
     const balance = Number(user.balance ?? 0);
+    const capCents = withdrawalCapForState(walletState);
 
     if (balance < amount) {
       throw new functions.https.HttpsError("failed-precondition", "Insufficient funds");
+    }
+    if (amount > capCents) {
+      throw new functions.https.HttpsError(
+        "failed-precondition",
+        `Withdrawal cap is ${capCents}`
+      );
     }
 
     if (lockRef) {
@@ -235,16 +300,22 @@ export const vvWithdraw = functions.https.onCall(async (data: TransferReq, conte
       balance: nextBalance,
       updatedAt: FieldValue.serverTimestamp()
     });
-    tx.create(ledgerRef, {
-      type: "withdraw",
-      amount,
-      note,
-      source: optionalString(data?.source, 120),
-      destination: optionalString(data?.destination, 120),
-      balanceAfter: nextBalance,
-      actorUid: uid,
-      createdAt: FieldValue.serverTimestamp()
-    });
+    tx.create(
+      ledgerRef,
+      buildLedgerEntry({
+        uid,
+        type: "withdrawal_paid",
+        amountCents: -amount,
+        note,
+        balanceAfter: nextBalance,
+        actorUid: uid,
+        status: "approved",
+        meta: {
+          source: optionalString(data?.source, 120),
+          destination: optionalString(data?.destination, 120)
+        }
+      })
+    );
 
     return { ok: true, balance: nextBalance };
   });

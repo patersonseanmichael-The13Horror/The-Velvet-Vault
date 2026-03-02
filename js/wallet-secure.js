@@ -23,6 +23,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-functions.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+import { formatAUD as sharedFormatAUD, toCents } from "./app/currency.js";
 
 const app = window.vvApp;
 const auth = window.vvAuth;
@@ -48,9 +49,7 @@ function parseNote(note) {
 }
 
 function safeInt(x) {
-  const n = Number(x);
-  if (!Number.isFinite(n)) return 0;
-  return Math.floor(n);
+  return toCents(x);
 }
 
 function safeStr(v, max = 120) {
@@ -61,7 +60,14 @@ function safeStr(v, max = 120) {
 let state = {
   user: null,
   balance: 0,
-  ready: false
+  ready: false,
+  wallet: {
+    bonusCents: 0,
+    rolloverTargetCents: 0,
+    rolloverProgressCents: 0,
+    bonusWithdrawalCapCents: 0,
+    lastRebateAt: null
+  }
 };
 
 let ledgerCache = [];
@@ -91,9 +97,12 @@ function getCache() {
   } catch { return null; }
 }
 
+function formatAUD(n) {
+  return sharedFormatAUD(n);
+}
+
 function formatGold(n) {
-  const v = safeInt(n);
-  return v.toLocaleString() + " GOLD";
+  return formatAUD(n);
 }
 
 // Firebase wiring
@@ -105,14 +114,18 @@ const vvCredit = httpsCallable(fx, "vvCredit");
 const vvReserveBet = httpsCallable(fx, "vvReserveBet");
 const vvSettleBet = httpsCallable(fx, "vvSettleBet");
 const vvCancelBet = httpsCallable(fx, "vvCancelBet");
+const vvCreateDepositRequest = httpsCallable(fx, "vvCreateDepositRequest");
+const vvCreateWithdrawalRequest = httpsCallable(fx, "vvCreateWithdrawalRequest");
 const vvSpin = httpsCallable(fx, "vvSpin");
 
 let unsubUser = null;
 let unsubLedger = null;
+let unsubWalletState = null;
 
 function attachUser(uid) {
   if (unsubUser) { try { unsubUser(); } catch {} }
   if (unsubLedger) { try { unsubLedger(); } catch {} }
+  if (unsubWalletState) { try { unsubWalletState(); } catch {} }
 
   const ref = doc(db, "users", uid);
   unsubUser = onSnapshot(ref, (snap) => {
@@ -128,6 +141,27 @@ function attachUser(uid) {
     notify();
   });
 
+  const walletRef = doc(db, "users", uid, "wallet", "state");
+  unsubWalletState = onSnapshot(walletRef, (snap) => {
+    const data = snap.data() || {};
+    state.wallet = {
+      bonusCents: safeInt(data.bonusCents),
+      rolloverTargetCents: safeInt(data.rolloverTargetCents),
+      rolloverProgressCents: safeInt(data.rolloverProgressCents),
+      bonusWithdrawalCapCents: safeInt(data.bonusWithdrawalCapCents),
+      lastRebateAt: data.lastRebateAt?.toMillis ? data.lastRebateAt.toMillis() : null
+    };
+    notify();
+  }, () => {
+    state.wallet = {
+      bonusCents: 0,
+      rolloverTargetCents: 0,
+      rolloverProgressCents: 0,
+      bonusWithdrawalCapCents: 0,
+      lastRebateAt: null
+    };
+  });
+
   const ledgerQuery = query(
     collection(db, "users", uid, "ledger"),
     orderBy("createdAt", "desc"),
@@ -137,13 +171,20 @@ function attachUser(uid) {
     ledgerCache = snap.docs.map((d) => {
       const data = d.data() || {};
       return {
-        ts: data.createdAt?.toMillis ? data.createdAt.toMillis() : Date.now(),
+        ts: data.createdAt?.toMillis
+          ? data.createdAt.toMillis()
+          : data.ts?.toMillis
+            ? data.ts.toMillis()
+            : Date.now(),
         type: data.type || "",
         amount: safeInt(data.amount),
+        amountCents: Number.isFinite(Number(data.amountCents)) ? Number(data.amountCents) : safeInt(data.amount),
         note: data.note || "",
         game: data.game || "",
         roundId: data.roundId || "",
-        balanceAfter: safeInt(data.balanceAfter ?? state.balance)
+        balanceAfter: safeInt(data.balanceAfter ?? state.balance),
+        status: data.status || "",
+        meta: data.meta && typeof data.meta === "object" ? data.meta : null
       };
     });
     notify();
@@ -157,8 +198,17 @@ function detachUser() {
   unsubUser = null;
   if (unsubLedger) { try { unsubLedger(); } catch {} }
   unsubLedger = null;
+  if (unsubWalletState) { try { unsubWalletState(); } catch {} }
+  unsubWalletState = null;
   state.user = null;
   state.ready = false;
+  state.wallet = {
+    bonusCents: 0,
+    rolloverTargetCents: 0,
+    rolloverProgressCents: 0,
+    bonusWithdrawalCapCents: 0,
+    lastRebateAt: null
+  };
 
   const c = getCache();
   state.balance = c ? safeInt(c.balance) : 0;
@@ -179,6 +229,13 @@ onAuthStateChanged(auth, async (user) => {
     const res = await vvGetBalanceCallable();
     const bal = safeInt(res.data?.balance || 0);
     state.balance = bal;
+    state.wallet = {
+      bonusCents: safeInt(res.data?.bonusCents || 0),
+      rolloverTargetCents: safeInt(res.data?.rolloverTargetCents || 0),
+      rolloverProgressCents: safeInt(res.data?.rolloverProgressCents || 0),
+      bonusWithdrawalCapCents: safeInt(res.data?.bonusWithdrawalCapCents || 0),
+      lastRebateAt: null
+    };
     setCache(bal);
     notify();
   } catch {}
@@ -336,6 +393,44 @@ function getLedger() {
   return Array.isArray(ledgerCache) ? ledgerCache : [];
 }
 
+function getWalletMeta() {
+  return { ...state.wallet };
+}
+
+async function createDepositRequest(request) {
+  if (!state.user) {
+    throw new Error("Not authenticated.");
+  }
+
+  const amountCents = safeInt(request?.amountCents);
+  const proofImageUrl = safeStr(request?.proofImageUrl || "", 1500);
+  const proofStoragePath = safeStr(request?.proofStoragePath || "", 300);
+
+  const res = await vvCreateDepositRequest({
+    amountCents,
+    proofImageUrl,
+    proofStoragePath
+  });
+  return res.data || { ok: true };
+}
+
+async function createWithdrawalRequest(request) {
+  if (!state.user) {
+    throw new Error("Not authenticated.");
+  }
+
+  const amountCents = safeInt(request?.amountCents);
+  const payoutDetails = request?.payoutDetails && typeof request.payoutDetails === "object"
+    ? request.payoutDetails
+    : {};
+
+  const res = await vvCreateWithdrawalRequest({
+    amountCents,
+    payoutDetails
+  });
+  return res.data || { ok: true };
+}
+
 function subscribe(fn) {
   if (typeof fn !== "function") return () => {};
   subs.add(fn);
@@ -361,8 +456,12 @@ window.VaultEngine = {
     return true;
   },
   subscribe,
+  formatAUD,
   formatGold,
   getLedger,
+  getWalletMeta,
+  createDepositRequest,
+  createWithdrawalRequest,
   reserveBet,
   settleBet,
   cancelBet,

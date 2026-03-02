@@ -1,3 +1,5 @@
+import { formatAUD as sharedFormatAUD, toCents } from "./app/currency.js";
+
 const LS_KEY = "vv_wallet_balance_v1";
 const LEGACY_KEYS = ["vv_wallet_balance", "vault_wallet_balance", "walletBalance"];
 const LEDGER_KEY = "vv_wallet_ledger_v1";
@@ -19,13 +21,15 @@ const localRounds = new Map();
 })();
 
 function toInt(value) {
-  const parsed = Number(value);
-  if (!Number.isFinite(parsed)) return 0;
-  return Math.max(0, Math.floor(parsed));
+  return toCents(value);
+}
+
+export function formatAUD(value) {
+  return sharedFormatAUD(value);
 }
 
 export function formatGold(value) {
-  return `${toInt(value).toLocaleString()} GOLD`;
+  return formatAUD(value);
 }
 
 function readWallet() {
@@ -232,8 +236,21 @@ function initLocalWallet() {
       debit,
       credit,
       subscribe,
+      formatAUD,
       formatGold,
       getLedger: () => readLedger(),
+      getWalletMeta: () => ({
+        bonusCents: 0,
+        rolloverTargetCents: 0,
+        rolloverProgressCents: 0,
+        bonusWithdrawalCapCents: 0
+      }),
+      createDepositRequest: async () => {
+        throw new Error("Deposit requests require Firebase.");
+      },
+      createWithdrawalRequest: async () => {
+        throw new Error("Withdrawal requests require Firebase.");
+      },
       reserveBet,
       settleBet,
       cancelBet

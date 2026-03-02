@@ -1,11 +1,8 @@
 const links = [
   { href: "index.html", label: "Home" },
-  { href: "members.html", label: "Lobby" },
+  { href: "members.html", label: "Members" },
   { href: "slots.html", label: "Slots" },
-  { href: "roulette.html", label: "Roulette" },
-  { href: "blackjack.html", label: "Blackjack" },
-  { href: "poker.html", label: "Poker" },
-  { href: "ledger.html", label: "Ledger" }
+  { href: "promotions.html", label: "Promotions" }
 ];
 
 function currentName(){
@@ -34,7 +31,7 @@ export function renderTopbar(){
           </div>
           <div>
             <div style="font-family:var(--vv-font-display); letter-spacing:0.10em; font-weight:700;">Velvet Vault</div>
-            <small style="color:var(--vv-muted); letter-spacing:0.06em;">Neon Members Club</small>
+            <small style="color:var(--vv-muted); letter-spacing:0.06em;">VIP Noir Slots Club</small>
           </div>
         </div>
         <button class="vv-nav_toggle" type="button" aria-label="Toggle menu" id="vvNavToggle">Menu</button>
