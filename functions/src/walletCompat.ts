@@ -41,6 +41,7 @@ export const vvGetBalanceCallable = functions.https.onCall(
     );
     return {
       ok: true,
+      cashCents: Number(snap.data()?.balance ?? 0),
       balance: Number(snap.data()?.balance ?? 0),
       locked: Number(snap.data()?.locked ?? 0),
       bonusCents: walletState.bonusCents,
@@ -107,6 +108,7 @@ export const vvDebit = functions.https.onCall(async (data: DebitReq, context) =>
     tx.set(
       walletStateRef,
       {
+        cashCents: nextBalance,
         rolloverProgressCents,
         bonusLockActive: bonusRestricted,
         bonusWithdrawalCapCents: bonusRestricted ? withdrawalCapForState(nextWalletState) : 0,
@@ -149,13 +151,18 @@ export const vvCredit = functions.https.onCall(async (data: CreditReq, context) 
 
   const db = getFirestore();
   const userRef = await ensureUserDoc(uid);
+  const walletStateRef = await ensureWalletState(uid);
   const ledgerRef = userRef.collection("ledger").doc();
   const lockRef = db.doc(`payoutLocks/${uid}_${roundId}`);
 
   return db.runTransaction(async (tx) => {
     const lockSnap = await tx.get(lockRef);
     const userSnap = await tx.get(userRef);
+    const walletStateSnap = await tx.get(walletStateRef);
     const user = userSnap.data() || {};
+    const walletState = readWalletState(
+      walletStateSnap.data() as Record<string, unknown> | undefined
+    );
     const balance = Number(user.balance ?? 0);
 
     if (lockSnap.exists) {
@@ -178,6 +185,18 @@ export const vvCredit = functions.https.onCall(async (data: CreditReq, context) 
       balance: nextBalance,
       updatedAt: FieldValue.serverTimestamp()
     });
+    tx.set(
+      walletStateRef,
+      {
+        cashCents: nextBalance,
+        bonusLockActive: hasBonusRestriction(walletState),
+        bonusWithdrawalCapCents: hasBonusRestriction(walletState)
+          ? withdrawalCapForState(walletState)
+          : 0,
+        updatedAt: FieldValue.serverTimestamp()
+      },
+      { merge: true }
+    );
     tx.create(
       ledgerRef,
       buildLedgerEntry({
@@ -211,12 +230,17 @@ export const vvDeposit = functions.https.onCall(async (data: TransferReq, contex
 
   const db = getFirestore();
   const userRef = await ensureUserDoc(uid);
+  const walletStateRef = await ensureWalletState(uid);
   const ledgerRef = userRef.collection("ledger").doc();
   const lockRef = idempotencyKey ? db.doc(`depositLocks/${uid}_${idempotencyKey}`) : null;
 
   return db.runTransaction(async (tx) => {
     const userSnap = await tx.get(userRef);
+    const walletStateSnap = await tx.get(walletStateRef);
     const user = userSnap.data() || {};
+    const walletState = readWalletState(
+      walletStateSnap.data() as Record<string, unknown> | undefined
+    );
     const balance = Number(user.balance ?? 0);
 
     if (lockRef) {
@@ -232,6 +256,18 @@ export const vvDeposit = functions.https.onCall(async (data: TransferReq, contex
       balance: nextBalance,
       updatedAt: FieldValue.serverTimestamp()
     });
+    tx.set(
+      walletStateRef,
+      {
+        cashCents: nextBalance,
+        bonusLockActive: hasBonusRestriction(walletState),
+        bonusWithdrawalCapCents: hasBonusRestriction(walletState)
+          ? withdrawalCapForState(walletState)
+          : 0,
+        updatedAt: FieldValue.serverTimestamp()
+      },
+      { merge: true }
+    );
     tx.create(
       ledgerRef,
       buildLedgerEntry({
@@ -300,6 +336,18 @@ export const vvWithdraw = functions.https.onCall(async (data: TransferReq, conte
       balance: nextBalance,
       updatedAt: FieldValue.serverTimestamp()
     });
+    tx.set(
+      walletStateRef,
+      {
+        cashCents: nextBalance,
+        bonusLockActive: hasBonusRestriction(walletState),
+        bonusWithdrawalCapCents: hasBonusRestriction(walletState)
+          ? withdrawalCapForState(walletState)
+          : 0,
+        updatedAt: FieldValue.serverTimestamp()
+      },
+      { merge: true }
+    );
     tx.create(
       ledgerRef,
       buildLedgerEntry({

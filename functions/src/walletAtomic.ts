@@ -22,6 +22,7 @@ export const vvReserveBet = functions.https.onCall(async (data: ReserveReq, cont
 
   const db = getFirestore();
   const userRef = await ensureUserDoc(uid);
+  const walletStateRef = await ensureWalletState(uid);
   const roundRef = userRef.collection("rounds").doc(data.roundId);
   const ledgerCol = userRef.collection("ledger");
 
@@ -32,6 +33,10 @@ export const vvReserveBet = functions.https.onCall(async (data: ReserveReq, cont
         throw new functions.https.HttpsError("not-found", "user not found");
       }
       const user = userSnap.data() as Record<string, unknown>;
+      const walletStateSnap = await tx.get(walletStateRef);
+      const walletState = readWalletState(
+        walletStateSnap.data() as Record<string, unknown> | undefined
+      );
 
       if (user.frozen) {
         throw new functions.https.HttpsError("failed-precondition", "Account frozen");
@@ -59,6 +64,24 @@ export const vvReserveBet = functions.https.onCall(async (data: ReserveReq, cont
         locked: locked + data.amount,
         updatedAt: FieldValue.serverTimestamp()
       });
+
+      const rolloverProgressCents = nextRolloverProgress(walletState, data.amount);
+      const nextWalletState = {
+        ...walletState,
+        rolloverProgressCents
+      };
+      const bonusRestricted = hasBonusRestriction(nextWalletState);
+      tx.set(
+        walletStateRef,
+        {
+          cashCents: balance - data.amount,
+          rolloverProgressCents,
+          bonusLockActive: bonusRestricted,
+          bonusWithdrawalCapCents: bonusRestricted ? withdrawalCapForState(nextWalletState) : 0,
+          updatedAt: FieldValue.serverTimestamp()
+        },
+        { merge: true }
+      );
 
       tx.set(roundRef, {
         amount: data.amount,
@@ -153,19 +176,14 @@ export const vvSettleBet = functions.https.onCall(async (data: SettleReq, contex
         updatedAt: FieldValue.serverTimestamp()
       });
 
-      const rolloverProgressCents = nextRolloverProgress(walletState, amount);
-      const nextWalletState = {
-        ...walletState,
-        rolloverProgressCents
-      };
-      const bonusRestricted = hasBonusRestriction(nextWalletState);
-
       tx.set(
         walletStateRef,
         {
-          rolloverProgressCents,
-          bonusLockActive: bonusRestricted,
-          bonusWithdrawalCapCents: bonusRestricted ? withdrawalCapForState(nextWalletState) : 0,
+          cashCents: balance + data.payout,
+          bonusLockActive: hasBonusRestriction(walletState),
+          bonusWithdrawalCapCents: hasBonusRestriction(walletState)
+            ? withdrawalCapForState(walletState)
+            : 0,
           updatedAt: FieldValue.serverTimestamp()
         },
         { merge: true }
@@ -205,6 +223,7 @@ export const vvCancelBet = functions.https.onCall(async (data: CancelReq, contex
 
   const db = getFirestore();
   const userRef = await ensureUserDoc(uid);
+  const walletStateRef = await ensureWalletState(uid);
   const roundRef = userRef.collection("rounds").doc(data.roundId);
   const ledgerCol = userRef.collection("ledger");
 
@@ -215,6 +234,10 @@ export const vvCancelBet = functions.https.onCall(async (data: CancelReq, contex
         return { ok: true, status: "noop", balance: 0, locked: 0 };
       }
       const user = userSnap.data() as Record<string, unknown>;
+      const walletStateSnap = await tx.get(walletStateRef);
+      const walletState = readWalletState(
+        walletStateSnap.data() as Record<string, unknown> | undefined
+      );
 
       const balance = Number(user.balance ?? 0);
       const locked = Number(user.locked ?? 0);
@@ -254,6 +277,19 @@ export const vvCancelBet = functions.https.onCall(async (data: CancelReq, contex
         cancelReason: data.reason ?? null,
         updatedAt: FieldValue.serverTimestamp()
       });
+
+      tx.set(
+        walletStateRef,
+        {
+          cashCents: balance + amount,
+          bonusLockActive: hasBonusRestriction(walletState),
+          bonusWithdrawalCapCents: hasBonusRestriction(walletState)
+            ? withdrawalCapForState(walletState)
+            : 0,
+          updatedAt: FieldValue.serverTimestamp()
+        },
+        { merge: true }
+      );
 
       tx.create(
         ledgerCol.doc(),

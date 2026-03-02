@@ -2,6 +2,7 @@ import { FieldValue, getFirestore, Timestamp } from "firebase-admin/firestore";
 import { getUserRef } from "./walletStore";
 
 export type WalletState = {
+  cashCents: number;
   bonusCents: number;
   rolloverTargetCents: number;
   rolloverProgressCents: number;
@@ -16,7 +17,7 @@ export const ALLOWED_DEPOSIT_AMOUNTS = [500, 1000, 2000, 5000, 10000, 25000, 500
 export const DEFAULT_WITHDRAWAL_CAP_CENTS = 20_000_000;
 export const BONUS_WITHDRAWAL_CAP_CENTS = 300_000;
 export const BONUS_ROLLOVER_MULTIPLIER = 22;
-export const REBATE_ROLLOVER_MULTIPLIER = 22;
+export const REBATE_ROLLOVER_MULTIPLIER = 10;
 
 export function toCents(value: unknown, fallback = 0): number {
   const parsed = Number(value);
@@ -30,32 +31,54 @@ export function getWalletStateRef(uid: string) {
 
 export async function ensureWalletState(uid: string) {
   const ref = getWalletStateRef(uid);
-  const snap = await ref.get();
+  const [snap, userSnap] = await Promise.all([ref.get(), getUserRef(uid).get()]);
+  const userBalanceCents = toCents(userSnap.data()?.balance);
   if (!snap.exists) {
-    await ref.set(defaultWalletStateWrite(), { merge: true });
+    await ref.set(defaultWalletStateWrite({ cashCents: userBalanceCents }), { merge: true });
+    return ref;
+  }
+
+  const data = snap.data() || {};
+  const patch: Partial<Record<string, unknown>> = {};
+  if (typeof data.cashCents !== "number") patch.cashCents = userBalanceCents;
+  if (typeof data.bonusCents !== "number") patch.bonusCents = 0;
+  if (typeof data.rolloverTargetCents !== "number") patch.rolloverTargetCents = 0;
+  if (typeof data.rolloverProgressCents !== "number") patch.rolloverProgressCents = 0;
+  if (typeof data.bonusWithdrawalCapCents !== "number") {
+    patch.bonusWithdrawalCapCents = BONUS_WITHDRAWAL_CAP_CENTS;
+  }
+  if (typeof data.approvedDepositCount !== "number") patch.approvedDepositCount = 0;
+  if (typeof data.bonusLockActive !== "boolean") patch.bonusLockActive = false;
+  if (typeof data.noWinDepositStreak !== "number") patch.noWinDepositStreak = 0;
+  if (Object.keys(patch).length) {
+    patch.updatedAt = FieldValue.serverTimestamp();
+    await ref.set(patch, { merge: true });
   }
   return ref;
 }
 
-export function defaultWalletStateWrite() {
+export function defaultWalletStateWrite(overrides: Partial<Record<string, unknown>> = {}) {
   return {
+    cashCents: 0,
     bonusCents: 0,
     rolloverTargetCents: 0,
     rolloverProgressCents: 0,
-    bonusWithdrawalCapCents: 0,
+    bonusWithdrawalCapCents: BONUS_WITHDRAWAL_CAP_CENTS,
     approvedDepositCount: 0,
     bonusLockActive: false,
     noWinDepositStreak: 0,
-    updatedAt: FieldValue.serverTimestamp()
+    updatedAt: FieldValue.serverTimestamp(),
+    ...overrides
   };
 }
 
 export function readWalletState(data: Record<string, unknown> | undefined): WalletState {
   return {
+    cashCents: toCents(data?.cashCents),
     bonusCents: toCents(data?.bonusCents),
     rolloverTargetCents: toCents(data?.rolloverTargetCents),
     rolloverProgressCents: toCents(data?.rolloverProgressCents),
-    bonusWithdrawalCapCents: toCents(data?.bonusWithdrawalCapCents),
+    bonusWithdrawalCapCents: toCents(data?.bonusWithdrawalCapCents, BONUS_WITHDRAWAL_CAP_CENTS),
     approvedDepositCount: toCents(data?.approvedDepositCount),
     bonusLockActive: Boolean(data?.bonusLockActive),
     noWinDepositStreak: toCents(data?.noWinDepositStreak),

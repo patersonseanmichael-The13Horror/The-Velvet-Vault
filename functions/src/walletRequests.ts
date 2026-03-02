@@ -80,7 +80,7 @@ function assertValidProofUrl(value: string, uid: string) {
 }
 
 function calculateDepositBonus(amountCents: number, approvedDepositCount: number) {
-  if (amountCents > 15_000) {
+  if (amountCents >= 15_000) {
     const multiplier = hiddenTreasureMultiplier();
     return {
       bonusCents: Math.floor(amountCents * multiplier),
@@ -291,6 +291,7 @@ export const adminApproveDepositRequest = functions.https.onCall(
       tx.set(
         walletStateRef,
         {
+          cashCents: nextBalance,
           bonusCents: nextBonus,
           rolloverTargetCents: nextTarget,
           rolloverProgressCents: walletState.rolloverProgressCents,
@@ -419,6 +420,18 @@ export const adminApproveWithdrawalRequest = functions.https.onCall(
         balance: nextBalance,
         updatedAt: FieldValue.serverTimestamp()
       });
+      tx.set(
+        walletStateRef,
+        {
+          cashCents: nextBalance,
+          bonusLockActive: hasBonusRestriction(walletState),
+          bonusWithdrawalCapCents: hasBonusRestriction(walletState)
+            ? withdrawalCapForState(walletState)
+            : 0,
+          updatedAt: FieldValue.serverTimestamp()
+        },
+        { merge: true }
+      );
 
       tx.update(requestRef, {
         status: "approved",
@@ -517,6 +530,7 @@ export const vvApplyDailyRebate = functions.pubsub
         tx.set(
           walletStateRef,
           {
+            cashCents: walletState.cashCents,
             bonusCents: nextBonus,
             rolloverTargetCents: nextTarget,
             bonusWithdrawalCapCents: BONUS_WITHDRAWAL_CAP_CENTS,
