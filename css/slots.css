@@ -772,3 +772,105 @@ body{
   width: 95%;
   height: 95%;
 }
+
+body[data-chapter="games"]{
+  background:
+    linear-gradient(180deg, rgba(7, 4, 14, 0.30), rgba(7, 4, 14, 0.68)),
+    url("../images/bg/vip-noir-bg.webp") center center / cover fixed no-repeat,
+    #07040e;
+}
+
+body[data-chapter="games"] .vv-bg__layer.layer-a{
+  background-image:
+    linear-gradient(180deg, rgba(8, 4, 16, 0.24), rgba(5, 3, 10, 0.76)),
+    var(--vv-bg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: saturate(1.08) contrast(1.04) brightness(0.56);
+}
+
+body[data-chapter="games"] .vv-bg__layer.layer-a::before,
+body[data-chapter="games"] .vv-bg__layer.layer-a::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+body[data-chapter="games"] .vv-bg__layer.layer-a::before{
+  background:
+    radial-gradient(circle at 18% 24%, rgba(255, 0, 170, 0.20), transparent 38%),
+    radial-gradient(circle at 82% 16%, rgba(0, 255, 255, 0.16), transparent 34%),
+    radial-gradient(circle at 68% 72%, rgba(255, 208, 122, 0.10), transparent 28%);
+  filter: blur(24px);
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  animation: vvSlotsVipGlow 12s ease-in-out infinite alternate;
+}
+
+body[data-chapter="games"] .vv-bg__layer.layer-a::after{
+  inset: 0;
+  background:
+    linear-gradient(
+      115deg,
+      transparent 24%,
+      rgba(255, 255, 255, 0.00) 38%,
+      rgba(255, 255, 255, 0.14) 46%,
+      rgba(0, 255, 255, 0.06) 52%,
+      rgba(255, 0, 170, 0.10) 58%,
+      transparent 72%
+    ),
+    radial-gradient(circle, rgba(255, 255, 255, 0.18) 0 1px, transparent 1.8px),
+    radial-gradient(circle, rgba(255, 0, 170, 0.16) 0 1.2px, transparent 2px),
+    radial-gradient(circle, rgba(0, 255, 255, 0.14) 0 1px, transparent 1.8px);
+  background-size: auto, 240px 240px, 320px 320px, 280px 280px;
+  background-position: center, 0 0, 44px 80px, 120px 40px;
+  mix-blend-mode: screen;
+  opacity: 0.32;
+  filter: blur(4px);
+  animation: vvSlotsVipSweep 16s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes vvSlotsVipGlow{
+  0%{
+    opacity: 0.72;
+    transform: translate3d(-1%, -1%, 0) scale(1);
+  }
+  50%{
+    opacity: 0.95;
+    transform: translate3d(1%, -1%, 0) scale(1.03);
+  }
+  100%{
+    opacity: 0.8;
+    transform: translate3d(-1%, 1%, 0) scale(1.01);
+  }
+}
+
+@keyframes vvSlotsVipSweep{
+  0%{
+    transform: translate3d(-10%, 0, 0) rotate(-2deg) scale(1.12);
+  }
+  100%{
+    transform: translate3d(10%, -2%, 0) rotate(2deg) scale(1.12);
+  }
+}
+
+@media (max-width: 720px){
+  body[data-chapter="games"] .vv-bg__layer.layer-a::before{
+    filter: blur(18px);
+    opacity: 0.72;
+  }
+
+  body[data-chapter="games"] .vv-bg__layer.layer-a::after{
+    opacity: 0.20;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  body[data-chapter="games"] .vv-bg__layer.layer-a::before,
+  body[data-chapter="games"] .vv-bg__layer.layer-a::after{
+    animation: none;
+  }
+}
