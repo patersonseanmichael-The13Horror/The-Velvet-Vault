@@ -1,7 +1,8 @@
 import * as functions from "firebase-functions";
 import { FieldValue, getFirestore } from "firebase-admin/firestore";
-import { assertInt, assertString, requireAdmin, requireAuthed } from "./utils";
+import { assertInt, assertString, requireAuthed } from "./utils";
 import { ensureUserDoc, getUserRef, optionalString } from "./walletStore";
+import { notifyAdminOfRequest } from "./adminNotifications";
 import {
   ALLOWED_DEPOSIT_AMOUNTS,
   BONUS_ROLLOVER_MULTIPLIER,
@@ -18,6 +19,7 @@ import {
   walletWindowForRebate,
   withdrawalCapForState
 } from "./walletState";
+import { queueLiveFeedEntry, writeSystemLog } from "./monitoring";
 
 type DepositRequestReq = {
   amountCents: number;
@@ -41,6 +43,32 @@ type WithdrawalRequestReq = {
 type ApproveRequestReq = {
   id: string;
 };
+
+async function requireAdminAudited(
+  context: functions.https.CallableContext,
+  action: string
+): Promise<string> {
+  const uid = optionalString(context.auth?.uid, 128);
+  if (!uid) {
+    await writeSystemLog({
+      type: "admin_misuse_attempt",
+      uid: null,
+      message: `Unauthenticated admin access: ${action}`,
+      severity: "critical"
+    });
+    throw new functions.https.HttpsError("unauthenticated", "Authentication required");
+  }
+  if (context.auth?.token?.admin !== true) {
+    await writeSystemLog({
+      type: "admin_misuse_attempt",
+      uid,
+      message: `Non-admin admin access: ${action}`,
+      severity: "critical"
+    });
+    throw new functions.https.HttpsError("permission-denied", "Admin only");
+  }
+  return uid;
+}
 
 function normalizeSignedCents(value: number): number {
   return value >= 0 ? Math.floor(value) : -Math.floor(Math.abs(value));
@@ -111,45 +139,66 @@ function calculateDepositBonus(amountCents: number, approvedDepositCount: number
 export const vvCreateDepositRequest = functions.https.onCall(
   async (data: DepositRequestReq, context) => {
     const uid = requireAuthed(context);
-    assertInt("amountCents", data?.amountCents, { min: 1 });
-    assertAllowedDepositAmount(data.amountCents);
+    try {
+      assertInt("amountCents", data?.amountCents, { min: 1 });
+      assertAllowedDepositAmount(data.amountCents);
 
-    const db = getFirestore();
-    const userRef = await ensureUserDoc(uid);
-    const requestRef = db.collection("depositRequests").doc();
-    const ledgerRef = userRef.collection("ledger").doc();
-    const proofImageUrl = assertValidProofUrl(data?.proofImageUrl || "", uid);
-    const proofStoragePath = optionalString(data?.proofStoragePath, 300);
+      const db = getFirestore();
+      const userRef = await ensureUserDoc(uid);
+      const requestRef = db.collection("depositRequests").doc();
+      const ledgerRef = userRef.collection("ledger").doc();
+      const proofImageUrl = assertValidProofUrl(data?.proofImageUrl || "", uid);
+      const proofStoragePath = optionalString(data?.proofStoragePath, 300);
 
-    await db.runTransaction(async (tx) => {
-      tx.set(requestRef, {
-        uid,
-        amountCents: data.amountCents,
-        proofImageUrl,
-        proofStoragePath: proofStoragePath || null,
-        status: "pending",
-        ledgerEntryId: ledgerRef.id,
-        createdAt: FieldValue.serverTimestamp(),
-        updatedAt: FieldValue.serverTimestamp()
+      await db.runTransaction(async (tx) => {
+        tx.set(requestRef, {
+          uid,
+          amountCents: data.amountCents,
+          proofImageUrl,
+          proofStoragePath: proofStoragePath || null,
+          status: "pending",
+          ledgerEntryId: ledgerRef.id,
+          createdAt: FieldValue.serverTimestamp(),
+          updatedAt: FieldValue.serverTimestamp()
+        });
+
+        tx.create(
+          ledgerRef,
+          buildLedgerEntry({
+            uid,
+            type: "deposit",
+            amountCents: data.amountCents,
+            status: "pending",
+            meta: {
+              proofImageUrl,
+              proofStoragePath: proofStoragePath || null,
+              requestId: requestRef.id
+            }
+          })
+        );
       });
 
-      tx.create(
-        ledgerRef,
-        buildLedgerEntry({
-          uid,
-          type: "deposit",
-          amountCents: data.amountCents,
-          status: "pending",
-          meta: {
-            proofImageUrl,
-            proofStoragePath: proofStoragePath || null,
-            requestId: requestRef.id
-          }
-        })
-      );
-    });
+      await notifyAdminOfRequest({
+        kind: "deposit_request",
+        uid,
+        amountCents: data.amountCents,
+        requestId: requestRef.id,
+        proofImageUrl
+      });
 
-    return { ok: true, id: requestRef.id };
+      return { ok: true, id: requestRef.id };
+    } catch (error) {
+      await writeSystemLog({
+        type: "failed_deposit_attempt",
+        uid,
+        message: error instanceof Error ? error.message : "Deposit request failed",
+        severity: "warn",
+        meta: {
+          amountCents: Number(data?.amountCents ?? 0)
+        }
+      });
+      throw error;
+    }
   }
 );
 
@@ -165,6 +214,13 @@ export const vvCreateWithdrawalRequest = functions.https.onCall(
       payoutDetails.accountName !== payoutDetails.accountNameConfirm ||
       payoutDetails.payoutDestination !== payoutDetails.payoutDestinationConfirm
     ) {
+      await writeSystemLog({
+        type: "failed_withdrawal_attempt",
+        uid,
+        message: "Payout detail confirmation mismatch",
+        severity: "warn",
+        meta: { amountCents: Number(data?.amountCents ?? 0) }
+      });
       throw new functions.https.HttpsError(
         "invalid-argument",
         "Payout detail confirmation fields must match"
@@ -176,68 +232,128 @@ export const vvCreateWithdrawalRequest = functions.https.onCall(
     const walletStateRef = await ensureWalletState(uid);
     const requestRef = db.collection("withdrawalRequests").doc();
     const ledgerRef = userRef.collection("ledger").doc();
+    const [userSnap, walletStateSnap] = await Promise.all([userRef.get(), walletStateRef.get()]);
+    const user = userSnap.data() || {};
+    const state = readWalletState(walletStateSnap.data() as Record<string, unknown> | undefined);
+    const balance = Number(user.balance ?? 0);
+    const capCents = withdrawalCapForState(state);
+    const bonusRestricted = hasBonusRestriction(state);
 
-    return db.runTransaction(async (tx) => {
-      const userSnap = await tx.get(userRef);
-      const walletStateSnap = await tx.get(walletStateRef);
-      const user = userSnap.data() || {};
-      const state = readWalletState(walletStateSnap.data() as Record<string, unknown> | undefined);
-
-      const balance = Number(user.balance ?? 0);
-      const capCents = withdrawalCapForState(state);
-
-      if (data.amountCents > capCents) {
-        throw new functions.https.HttpsError(
-          "failed-precondition",
-          `Withdrawal cap is ${capCents}`
-        );
-      }
-      if (balance < data.amountCents) {
-        throw new functions.https.HttpsError("failed-precondition", "Insufficient cash balance");
-      }
-
-      tx.set(requestRef, {
+    if (data.amountCents > capCents) {
+      await writeSystemLog({
+        type: bonusRestricted ? "invalid_bonus_withdrawal_attempt" : "failed_withdrawal_attempt",
         uid,
-        amountCents: data.amountCents,
-        payoutDetails: {
-          accountName: payoutDetails.accountName,
-          payoutDestination: payoutDetails.payoutDestination,
-          method: payoutDetails.method
-        },
-        status: "pending",
-        withdrawalCapCents: capCents,
-        bonusRestricted: hasBonusRestriction(state),
-        ledgerEntryId: ledgerRef.id,
-        createdAt: FieldValue.serverTimestamp(),
-        updatedAt: FieldValue.serverTimestamp()
+        message: `Withdrawal cap is ${capCents}`,
+        severity: bonusRestricted ? "critical" : "warn",
+        meta: {
+          amountCents: data.amountCents,
+          capCents
+        }
+      });
+      throw new functions.https.HttpsError("failed-precondition", `Withdrawal cap is ${capCents}`);
+    }
+    if (balance < data.amountCents) {
+      await writeSystemLog({
+        type: "failed_withdrawal_attempt",
+        uid,
+        message: "Insufficient cash balance",
+        severity: "warn",
+        meta: {
+          amountCents: data.amountCents,
+          balance
+        }
+      });
+      throw new functions.https.HttpsError("failed-precondition", "Insufficient cash balance");
+    }
+
+    try {
+      const result = await db.runTransaction(async (tx) => {
+        const freshUserSnap = await tx.get(userRef);
+        const freshWalletStateSnap = await tx.get(walletStateRef);
+        const freshUser = freshUserSnap.data() || {};
+        const freshState = readWalletState(
+          freshWalletStateSnap.data() as Record<string, unknown> | undefined
+        );
+        const freshBalance = Number(freshUser.balance ?? 0);
+        const freshCapCents = withdrawalCapForState(freshState);
+
+        if (data.amountCents > freshCapCents) {
+          throw new functions.https.HttpsError(
+            "failed-precondition",
+            `Withdrawal cap is ${freshCapCents}`
+          );
+        }
+        if (freshBalance < data.amountCents) {
+          throw new functions.https.HttpsError("failed-precondition", "Insufficient cash balance");
+        }
+
+        tx.set(requestRef, {
+          uid,
+          amountCents: data.amountCents,
+          payoutDetails: {
+            accountName: payoutDetails.accountName,
+            payoutDestination: payoutDetails.payoutDestination,
+            method: payoutDetails.method
+          },
+          status: "pending",
+          withdrawalCapCents: freshCapCents,
+          bonusRestricted: hasBonusRestriction(freshState),
+          ledgerEntryId: ledgerRef.id,
+          createdAt: FieldValue.serverTimestamp(),
+          updatedAt: FieldValue.serverTimestamp()
+        });
+
+        tx.create(
+          ledgerRef,
+          buildLedgerEntry({
+            uid,
+            type: "withdrawal_request",
+            amountCents: normalizeSignedCents(-data.amountCents),
+            status: "pending",
+            meta: {
+              requestId: requestRef.id,
+              payoutMethod: payoutDetails.method
+            }
+          })
+        );
+
+        return {
+          ok: true,
+          id: requestRef.id,
+          capCents: freshCapCents
+        };
       });
 
-      tx.create(
-        ledgerRef,
-        buildLedgerEntry({
-          uid,
-          type: "withdrawal_request",
-          amountCents: normalizeSignedCents(-data.amountCents),
-          status: "pending",
-          meta: {
-            requestId: requestRef.id,
-            payoutMethod: payoutDetails.method
-          }
-        })
-      );
+      await notifyAdminOfRequest({
+        kind: "withdrawal_request",
+        uid,
+        amountCents: data.amountCents,
+        requestId: requestRef.id,
+        payid: payoutDetails.payoutDestination,
+        payoutMethod: payoutDetails.method
+      });
 
-      return {
-        ok: true,
-        id: requestRef.id,
-        capCents
-      };
-    });
+      return result;
+    } catch (error) {
+      await writeSystemLog({
+        type: hasBonusRestriction(state)
+          ? "invalid_bonus_withdrawal_attempt"
+          : "failed_withdrawal_attempt",
+        uid,
+        message: error instanceof Error ? error.message : "Withdrawal request failed",
+        severity: hasBonusRestriction(state) ? "critical" : "warn",
+        meta: {
+          amountCents: data.amountCents
+        }
+      });
+      throw error;
+    }
   }
 );
 
 export const adminApproveDepositRequest = functions.https.onCall(
   async (data: ApproveRequestReq, context) => {
-    const actorUid = requireAdmin(context);
+    const actorUid = await requireAdminAudited(context, "adminApproveDepositRequest");
     assertString("id", data?.id);
 
     const db = getFirestore();
@@ -352,6 +468,13 @@ export const adminApproveDepositRequest = functions.https.onCall(
         );
       }
 
+      queueLiveFeedEntry(tx, {
+        uid,
+        type: "deposit",
+        amountCents,
+        requestId: freshRequestSnap.id
+      });
+
       return {
         ok: true,
         balance: nextBalance,
@@ -363,7 +486,7 @@ export const adminApproveDepositRequest = functions.https.onCall(
 
 export const adminApproveWithdrawalRequest = functions.https.onCall(
   async (data: ApproveRequestReq, context) => {
-    const actorUid = requireAdmin(context);
+    const actorUid = await requireAdminAudited(context, "adminApproveWithdrawalRequest");
     assertString("id", data?.id);
 
     const db = getFirestore();
@@ -467,6 +590,13 @@ export const adminApproveWithdrawalRequest = functions.https.onCall(
           actorUid
         })
       );
+
+      queueLiveFeedEntry(tx, {
+        uid,
+        type: "withdrawal_paid",
+        amountCents,
+        requestId: freshRequestSnap.id
+      });
 
       return {
         ok: true,

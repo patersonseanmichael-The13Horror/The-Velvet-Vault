@@ -32,6 +32,7 @@ const ROUND_TTL_MS = 10 * 60 * 1000;
 const USER_RATE_WINDOW_MS = 15 * 1000;
 const USER_RATE_MAX = 20;
 const recentRounds = new Map();
+const recentSpinSessions = new Map();
 const userRequestLog = new Map();
 const spinLimiter = rateLimit({
   windowMs: 15 * 1000,
@@ -126,6 +127,20 @@ function rememberRound(uid, roundId) {
   return true;
 }
 
+function rememberSpinSession(spinSessionId) {
+  if (recentSpinSessions.has(spinSessionId)) {
+    return false;
+  }
+  recentSpinSessions.set(spinSessionId, Date.now());
+  if (recentSpinSessions.size > 200) {
+    const oldest = recentSpinSessions.keys().next();
+    if (!oldest.done) {
+      recentSpinSessions.delete(oldest.value);
+    }
+  }
+  return true;
+}
+
 function isRateLimitedForUser(uid) {
   const now = Date.now();
   const active = (userRequestLog.get(uid) || []).filter((ts) => now - ts < USER_RATE_WINDOW_MS);
@@ -162,6 +177,7 @@ app.post("/spin", requireAuth, async (req, res) => {
 
     const machineId = safeString(req.body?.machineId || req.body?.configId || "noir_paylines_5x3", 80);
     const roundId = safeString(req.body?.roundId || "", 120);
+    const spinSessionId = safeString(req.body?.spinSessionId || "", 160);
     const stake = parseInteger(requestedBetAmount);
     const denom = parseInteger(req.body?.denom ?? 1);
     const clientSeed = safeString(req.body?.clientSeed || "", 160);
@@ -169,6 +185,9 @@ app.post("/spin", requireAuth, async (req, res) => {
 
     if (!roundId) {
       return sendError(res, 400, "roundId required");
+    }
+    if (!spinSessionId) {
+      return sendError(res, 400, "spinSessionId required");
     }
     if (!Number.isInteger(stake) || stake < 1) {
       return sendError(res, 400, "stake must be a positive integer");
@@ -184,6 +203,9 @@ app.post("/spin", requireAuth, async (req, res) => {
     if (!rememberRound(uid, roundId)) {
       return sendError(res, 409, "roundId already used");
     }
+    if (!rememberSpinSession(spinSessionId)) {
+      return sendError(res, 409, "spinSessionId already used");
+    }
     const spin = runSpin(config, {
       bet: stake,
       denom,
@@ -196,6 +218,7 @@ app.post("/spin", requireAuth, async (req, res) => {
       type: "slot_spin",
       uid,
       roundId,
+      spinSessionId,
       machineId: config.id,
       stake,
       totalWin: spin.result.totalWin
