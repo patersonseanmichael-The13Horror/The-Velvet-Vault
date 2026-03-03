@@ -4,61 +4,65 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Velvet Vault — Terms</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/velvet.css">
-  <link rel="stylesheet" href="css/rebirth.css">
-  <link rel="stylesheet" href="css/story.css">
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/pages/legal.css" />
 </head>
-<body data-chapter="terms">
-  <div class="vv-bg" aria-hidden="true">
-    <div class="vv-bg__layer layer-a"></div>
-    <div class="vv-bg__tint"></div>
-    <div class="vv-bg__vignette"></div>
-    <div class="vv-grain"></div>
-  </div>
+<body class="vvTheme">
+  <div id="vv-topbar"></div>
+  <main class="vvLegalShell">
+    <section class="vvLegalHero">
+      <div class="vvLegalKicker">Velvet Vault</div>
+      <h1 class="vvLegalTitle">Terms of Entry</h1>
+      <p class="vvLegalLead">
+        Velvet Vault is a slots-only members product. Account access, wallet requests, and gameplay outcomes are governed by the live rules below and the authoritative Firebase wallet layer.
+      </p>
+    </section>
 
-  <header>
-    <div class="topbar container">
-      <div class="brand">
-        <div class="sigil" aria-hidden="true"></div>
-        <div class="t">
-          <h1>VELVET VAULT</h1>
-          <small>Rules of Entry</small>
-        </div>
-      </div>
-      <div class="actions">
-        <a class="chipLink" href="index.html">Home</a>
-        <a class="chipLink" href="members.html">Lobby</a>
-        <a class="chipLink active" href="terms.html">Terms</a>
-      </div>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <section class="card" style="width:min(920px, calc(100% - 28px));">
-      <div class="cardInner left">
-        <div class="cardTag">Velvet Vault</div>
-        <h2 style="margin:10px 0 6px;">Terms & Story Rules</h2>
-        <p style="margin:0 0 14px;">
-          This page is your “lore-safe” Terms placeholder. Replace with your real policy text.
-        </p>
-        <ul style="margin:0; padding-left:18px; color: rgba(243,239,255,0.72); line-height:1.6;">
-          <li>Demo-only / entertainment usage (adjust for your project).</li>
-          <li>No real money. No real gambling claims. (Adjust to your legal needs.)</li>
-          <li>Account, wallet, and ledger behavior should follow your backend rules.</li>
-          <li>Privacy + cookies: add your policies as needed.</li>
+    <section class="vvLegalGrid">
+      <article class="vvLegalCard">
+        <h2>Account Use</h2>
+        <ul>
+          <li>You are responsible for maintaining control of your login credentials and UID.</li>
+          <li>Access may be suspended if account details, payout details, or payment proof appear inconsistent or fraudulent.</li>
+          <li>Members must provide accurate profile information during signup.</li>
         </ul>
-        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="btn primary" href="index.html">Return Home</a>
-          <a class="btn" href="members.html">Enter Lobby</a>
+      </article>
+
+      <article class="vvLegalCard">
+        <h2>Wallet Rules</h2>
+        <ul>
+          <li>Cash balance changes only through deposits, withdrawal approvals, reserve/debit, settle/credit, or cancellation flows.</li>
+          <li>Bonus balance and rollover rules are enforced separately from cash balance.</li>
+          <li>Pending requests remain subject to manual review.</li>
+        </ul>
+      </article>
+
+      <article class="vvLegalCard">
+        <h2>Slots Only</h2>
+        <ul>
+          <li>Velvet Vault currently offers slots only.</li>
+          <li>No blackjack, poker, or roulette gameplay is part of the active product.</li>
+          <li>Machine access flows through the Slots Lobby and current game pages only.</li>
+        </ul>
+      </article>
+
+      <article class="vvLegalCard">
+        <h2>Member Conduct</h2>
+        <ul>
+          <li>Do not abuse payments, withdrawals, account creation, or spin replay flows.</li>
+          <li>Admin and monitoring systems log misuse, duplicate requests, and abuse attempts.</li>
+          <li>Use the responsible gambling resources if play stops feeling controlled.</li>
+        </ul>
+        <div class="vvLegalActions">
+          <a class="vv-btn" href="members.html">Members</a>
+          <a class="vv-btn" href="slots-lobby.html">Slots Lobby</a>
         </div>
-      </div>
+      </article>
     </section>
   </main>
-
+  <footer id="vv-footer"></footer>
   <script src="js/story-engine.js"></script>
+  <script type="module" src="js/ui/topbar.js"></script>
+  <script type="module" src="js/ui/footer.js"></script>
 </body>
 </html>
-

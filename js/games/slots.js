@@ -4,7 +4,10 @@
     "spinBtn","betUp","betDown","maxBtn","autoBtn","stopBtn","autoCount",
     "machineSelect","paytableBtn","paytableModal","paytableClose","paytableTitle","paytableBody",
     "holdWinModal","holdWinClose","holdWinGrid","holdWinSpin","respinsLeft","holdWinTotal",
-    "paylines",
+    "paylines","machineLogo","machineCabinetName","machineCabinetTag","machineThemeLabel","machineFeatureLabel",
+    "vvWinFrame","vvWinFrameTier","vvWinFrameAmount","vvWinFrameDismiss","vvWinFrameDetail",
+    "vvFeatureFrame","vvFeatureFrameTitle","vvFeatureFrameDismiss","vvFeatureFrameDetail","vvFeatureFrameStage",
+    "vvMotionBlurLayer","vvAnticipationGlow","vvReelBurstLayer",
     "col1","col2","col3","col4","col5",
     "c1r1","c1r2","c1r3","c2r1","c2r2","c2r3","c3r1","c3r2","c3r3","c4r1","c4r2","c4r3","c5r1","c5r2","c5r3"
   ];
@@ -40,6 +43,11 @@
   const holdWinSpin = document.getElementById("holdWinSpin");
   const respinsLeftEl = document.getElementById("respinsLeft");
   const holdWinTotalEl = document.getElementById("holdWinTotal");
+  const machineLogoEl = document.getElementById("machineLogo");
+  const machineCabinetNameEl = document.getElementById("machineCabinetName");
+  const machineCabinetTagEl = document.getElementById("machineCabinetTag");
+  const machineThemeLabelEl = document.getElementById("machineThemeLabel");
+  const machineFeatureLabelEl = document.getElementById("machineFeatureLabel");
 
   const cols = [
     document.getElementById("col1"),
@@ -58,6 +66,20 @@
 
   const paylinesWrap = document.getElementById("paylines");
   const reelsWrap = document.querySelector(".reelsWrap");
+  const winFrameEl = document.getElementById("vvWinFrame");
+  const winFrameTierEl = document.getElementById("vvWinFrameTier");
+  const winFrameAmountEl = document.getElementById("vvWinFrameAmount");
+  const winFrameDetailEl = document.getElementById("vvWinFrameDetail");
+  const winFrameDismissEl = document.getElementById("vvWinFrameDismiss");
+  const featureFrameEl = document.getElementById("vvFeatureFrame");
+  const featureFrameTitleEl = document.getElementById("vvFeatureFrameTitle");
+  const featureFrameDetailEl = document.getElementById("vvFeatureFrameDetail");
+  const featureFrameStageEl = document.getElementById("vvFeatureFrameStage");
+  const featureFrameDismissEl = document.getElementById("vvFeatureFrameDismiss");
+  const motionBlurLayerEl = document.getElementById("vvMotionBlurLayer");
+  const anticipationGlowEl = document.getElementById("vvAnticipationGlow");
+  const reelBurstLayerEl = document.getElementById("vvReelBurstLayer");
+  const paytableKickerEl = document.getElementById("paytableKicker");
 
   // Normalize DOM to guarantee 5x3 visible cabinet.
   // Fixes the "~~~/~~" layout issue (wrong rows/wrapping).
@@ -326,6 +348,119 @@
     makeMachine_ClockworkVault(),
   ];
 
+  const FRAME_ASSETS = {
+    cabinet: "images/slots/frames/cabinet-noir.svg",
+    win: {
+      big: "images/slots/frames/win-big.svg",
+      super: "images/slots/frames/win-super.svg",
+      huge: "images/slots/frames/win-huge.svg",
+      extravagant: "images/slots/frames/win-extravagant.svg"
+    },
+    feature: {
+      holdWin: "images/slots/frames/feature-hold-win.svg",
+      freeSpins: "images/slots/frames/feature-free-spins.svg"
+    }
+  };
+
+  const VISUAL_SYMBOL_KEYS = ["low_a", "low_k", "low_q", "low_j", "mid_ring", "mid_watch"];
+  const MACHINE_THEME_META = {
+    velvet_noir: {
+      logo: "images/slots/velvet_noir/logo.svg",
+      themeLabel: "VIP Noir",
+      featureLabel: "Hold & Win / Free Spins",
+      accent: "#ff4f93",
+      accentSoft: "#93ffe4"
+    },
+    cyber_sakura: {
+      logo: "images/slots/cyber_sakura/logo.svg",
+      themeLabel: "Neon Bloom",
+      featureLabel: "Wild Burst / Free Spins",
+      accent: "#ff7ce4",
+      accentSoft: "#8ffff5"
+    },
+    neon_pharaoh: {
+      logo: "images/slots/neon_pharaoh/logo.svg",
+      themeLabel: "Desert Pulse",
+      featureLabel: "Coin Vault / Free Spins",
+      accent: "#ffc857",
+      accentSoft: "#fff1ad"
+    },
+    emerald_heist: {
+      logo: "images/slots/emerald_heist/logo.svg",
+      themeLabel: "Vault Break",
+      featureLabel: "Heist Hold / Free Spins",
+      accent: "#62ffb2",
+      accentSoft: "#d7fff0"
+    },
+    crimson_crown: {
+      logo: "images/slots/crimson_crown/logo.svg",
+      themeLabel: "Royal Risk",
+      featureLabel: "Crown Hold / Free Spins",
+      accent: "#ff5e6c",
+      accentSoft: "#ffd8cf"
+    },
+    abyssal_pearls: {
+      logo: "images/slots/abyssal_pearls/logo.svg",
+      themeLabel: "Deep Luxe",
+      featureLabel: "Pearl Hold / Free Spins",
+      accent: "#65d9ff",
+      accentSoft: "#cfffff"
+    },
+    clockwork_vault: {
+      logo: "images/slots/clockwork_vault/logo.svg",
+      themeLabel: "Steel Velvet",
+      featureLabel: "Clockwork Hold / Free Spins",
+      accent: "#cdb6ff",
+      accentSoft: "#fff0bf"
+    }
+  };
+
+  function buildVisualProfile(machineKey, regularIds){
+    const meta = MACHINE_THEME_META[machineKey] || MACHINE_THEME_META.velvet_noir;
+    const basePath = `images/slots/symbols/${machineKey}`;
+    const symbolMap = {
+      SCAT: { src: `${basePath}/scatter.svg`, label: "Free Spins Crest", tier: "special" },
+      COIN: { src: `${basePath}/coin.svg`, label: "Hold & Win Coin", tier: "special" },
+      WILD: { src: `${basePath}/wild.svg`, label: "Wild Vault Key", tier: "special" }
+    };
+
+    regularIds.forEach((id, index) => {
+      const key = VISUAL_SYMBOL_KEYS[index] || VISUAL_SYMBOL_KEYS[VISUAL_SYMBOL_KEYS.length - 1];
+      symbolMap[id] = {
+        src: `${basePath}/${key}.svg`,
+        label: key.replace("_", " ").toUpperCase(),
+        tier: index < 4 ? "low" : "mid"
+      };
+    });
+
+    const premiumIds = regularIds.slice(-2);
+    if (premiumIds[0]) {
+      symbolMap[premiumIds[0]] = {
+        src: `${basePath}/high_mask.svg`,
+        label: "NOIR MASK",
+        tier: "high"
+      };
+    }
+    if (premiumIds[1]) {
+      symbolMap[premiumIds[1]] = {
+        src: `${basePath}/high_crest.svg`,
+        label: "VAULT CREST",
+        tier: "high"
+      };
+    }
+
+    return {
+      ...meta,
+      symbolMap,
+      highSymbols: new Set(premiumIds)
+    };
+  }
+
+  MACHINES.forEach((entry) => {
+    const regularIds = entry.symbols.filter((sym) => sym.type === "REG").map((sym) => sym.id);
+    entry.visual = buildVisualProfile(entry.key, regularIds);
+  });
+
   const SLOT_CONFIG_BY_MACHINE = {
     velvet_noir: "noir_paylines_5x3",
     cyber_sakura: "neon_ways_5x3",
@@ -342,6 +477,18 @@
     return Math.floor(v);
   };
 
+  function readMachineParam(){
+    const params = new URLSearchParams(window.location.search);
+    return params.get("machine") || params.get("m") || "";
+  }
+
+  function syncMachineParam(key){
+    const url = new URL(window.location.href);
+    url.searchParams.set("machine", key);
+    url.searchParams.delete("m");
+    window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+  }
+
   // --- Game state ---
   let balance = Number(balanceEl.textContent || "5000") || 5000;
   let bet = 150;
@@ -351,6 +498,7 @@
   let auto = false;
   let autoLeft = 0;
   let busy = false;
+  let spinInProgress = false;
   let stopRequested = false;
   let celebrating = false;
   let cancelCelebration = false;
@@ -361,7 +509,9 @@
   let serverFeatureState = null;
   let serverFeatureStateMachineId = "";
 
-  let machine = MACHINES[0];
+  let machine = MACHINES.find((entry) => entry.key === readMachineParam()) || MACHINES[0];
+  const preloadedAssets = new Map();
+  let preloadToken = 0;
 
   // Build dropdown
   (function initPicker(){
@@ -373,21 +523,40 @@
       machineSelect.appendChild(opt);
     }
     machineSelect.value = machine.key;
-    machineSelect.addEventListener("change", ()=>{
+    machineSelect.addEventListener("change", async ()=>{
       const m = MACHINES.find(x=>x.key===machineSelect.value) || MACHINES[0];
       machine = m;
+      assetsReady = false;
+      syncMachineParam(machine.key);
       serverFeatureState = null;
       serverFeatureStateMachineId = "";
       applyMachineSkin();
+      syncControls();
+      setResult(`Loading ${machine.name} cabinet art...`);
+      await preloadVisualAssets(machine);
       clearHighlights();
       renderRandomGrid();
       setResult(`Machine set: ${machine.name}.`);
+      syncControls();
     });
+    syncMachineParam(machine.key);
   })();
 
   // Paytable modal
-  function openModal(el){ el.classList.add("open"); el.setAttribute("aria-hidden","false"); }
-  function closeModal(el){ el.classList.remove("open"); el.setAttribute("aria-hidden","true"); }
+  function syncModalBodyState(){
+    const anyOpen = document.querySelector(".vvModal.open");
+    document.body.classList.toggle("vv-modal-open", Boolean(anyOpen));
+  }
+  function openModal(el){
+    el.classList.add("open");
+    el.setAttribute("aria-hidden","false");
+    syncModalBodyState();
+  }
+  function closeModal(el){
+    el.classList.remove("open");
+    el.setAttribute("aria-hidden","true");
+    syncModalBodyState();
+  }
   paytableBtn.addEventListener("click", ()=>{
     paytableTitle.textContent = machine.name;
     paytableBody.innerHTML = renderPaytableHTML(machine);
@@ -405,6 +574,289 @@
     return `$${(toInt(value) / 100).toFixed(2)}`;
   }
 
+  function preloadImage(src){
+    if (!src) return Promise.resolve(false);
+    if (preloadedAssets.has(src)) return preloadedAssets.get(src);
+    const promise = new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = src;
+    });
+    preloadedAssets.set(src, promise);
+    return promise;
+  }
+
+  async function preloadVisualAssets(targetMachine){
+    const token = ++preloadToken;
+    const machineAssets = new Set([
+      FRAME_ASSETS.cabinet,
+      FRAME_ASSETS.feature.holdWin,
+      FRAME_ASSETS.feature.freeSpins,
+      FRAME_ASSETS.win.big,
+      FRAME_ASSETS.win.super,
+      FRAME_ASSETS.win.huge,
+      FRAME_ASSETS.win.extravagant,
+      targetMachine.visual?.logo,
+      ...Object.values(targetMachine.visual?.symbolMap || {}).map((entry) => entry?.src)
+    ].filter(Boolean));
+    await Promise.all(Array.from(machineAssets).map((src) => preloadImage(src)));
+    if (token !== preloadToken) return;
+    assetsReady = true;
+  }
+
+  function setBodyVar(name, value){
+    document.body.style.setProperty(name, value);
+  }
+
+  function triggerSoundHook(name, detail = {}){
+    window.dispatchEvent(new CustomEvent("vv-slot-sfx", { detail: { name, ...detail } }));
+  }
+
+  function normalizeSymbolId(id){
+    const value = String(id || "");
+    if (!value) return value;
+    if (value === "SCAT" || value === "SCATTER") return machine.ids.scatter;
+    if (value === "COIN") return machine.ids.coin;
+    if (value === "WILD") return machine.ids.wild;
+    return value;
+  }
+
+  function symbolVisual(id){
+    const normalizedId = normalizeSymbolId(id);
+    const normalized = normalizedId === machine.ids.scatter ? "SCAT" : normalizedId;
+    return machine.visual?.symbolMap?.[normalized] || null;
+  }
+
+  function ensureCellVisual(el){
+    if (!el) return null;
+    let plate = el.querySelector(".symPlate");
+    if (!plate){
+      el.innerHTML = `
+        <div class="symPlate">
+          <div class="symHalo" aria-hidden="true"></div>
+          <img class="symImg" alt="" loading="eager" decoding="async" />
+          <span class="symTxt" aria-hidden="true"></span>
+          <span class="symCaption" aria-hidden="true"></span>
+        </div>
+      `;
+      plate = el.querySelector(".symPlate");
+    }
+    return {
+      plate,
+      img: plate.querySelector(".symImg"),
+      txt: plate.querySelector(".symTxt"),
+      caption: plate.querySelector(".symCaption")
+    };
+  }
+
+  function paintCell(el, id){
+    if (!el) return;
+    const normalizedId = normalizeSymbolId(id);
+    const s = symbolById(normalizedId);
+    const visual = symbolVisual(normalizedId);
+    const refs = ensureCellVisual(el);
+    el.dataset.symbolId = normalizedId;
+    el.dataset.symbolTier = visual?.tier || "";
+    el.classList.toggle("scatter", normalizedId===machine.ids.scatter);
+    el.classList.toggle("coin", normalizedId===machine.ids.coin);
+    el.classList.toggle("wild", normalizedId===machine.ids.wild);
+    if (refs?.img){
+      if (visual?.src && refs.img.dataset.src !== visual.src){
+        refs.img.src = visual.src;
+        refs.img.dataset.src = visual.src;
+      }
+      refs.img.alt = visual?.label || s.id || normalizedId;
+      refs.img.hidden = !visual?.src;
+    }
+    if (refs?.txt){
+      refs.txt.textContent = s.glyph !== "?" ? s.glyph : normalizedId.slice(0, 1);
+      refs.txt.hidden = Boolean(visual?.src);
+    }
+    if (refs?.caption){
+      refs.caption.textContent = visual?.label || s.id || normalizedId;
+    }
+  }
+
+  let winFrameTimer = null;
+  let featureFrameTimer = null;
+  let winCountTimer = null;
+  let assetsReady = false;
+  let winTierClassTimer = null;
+  let featureClassTimer = null;
+
+  function clearWinTierClasses(){
+    document.body.classList.remove("vv-win-big", "vv-win-super", "vv-win-huge", "vv-win-extravagant");
+    if (winTierClassTimer) clearTimeout(winTierClassTimer);
+    winTierClassTimer = null;
+  }
+
+  function clearFeatureClasses(){
+    document.body.classList.remove("vv-feature-holdwin", "vv-feature-freespins");
+    if (featureClassTimer) clearTimeout(featureClassTimer);
+    featureClassTimer = null;
+  }
+
+  function setWinTierClass(winCents){
+    clearWinTierClasses();
+    const amount = Math.max(0, toInt(winCents));
+    let nextClass = "";
+    if (amount >= 10_000) nextClass = "vv-win-extravagant";
+    else if (amount >= 5_000) nextClass = "vv-win-huge";
+    else if (amount >= 2_500) nextClass = "vv-win-super";
+    else if (amount >= 1_000) nextClass = "vv-win-big";
+    if (!nextClass) return;
+    document.body.classList.add(nextClass);
+    winTierClassTimer = setTimeout(() => {
+      document.body.classList.remove(nextClass);
+      winTierClassTimer = null;
+    }, 2700);
+  }
+
+  function setFeatureClass(kind){
+    clearFeatureClasses();
+    const nextClass = kind === "holdwin" ? "vv-feature-holdwin" : kind === "freespins" ? "vv-feature-freespins" : "";
+    if (!nextClass) return;
+    document.body.classList.add(nextClass);
+    featureClassTimer = setTimeout(() => {
+      document.body.classList.remove(nextClass);
+      featureClassTimer = null;
+    }, 2300);
+  }
+
+  function winTierForAmount(amount){
+    const payout = Math.max(0, toInt(amount));
+    if (payout >= 10_000) return { key: "extravagant", label: "Extravagant Win", detail: "High velvet tier unlocked.", particles: 52 };
+    if (payout >= 5_000) return { key: "huge", label: "Huge Win", detail: "The cabinet blooms with heat.", particles: 40 };
+    if (payout >= 2_500) return { key: "super", label: "Super Win", detail: "Neon pressure is building.", particles: 30 };
+    if (payout >= 1_000) return { key: "big", label: "Big Win", detail: "The floor answers back.", particles: 22 };
+    return null;
+  }
+
+  function openTimedOverlay(el, timerRefName, duration){
+    if (!el) return;
+    if (timerRefName === "win" && winFrameTimer) clearTimeout(winFrameTimer);
+    if (timerRefName === "feature" && featureFrameTimer) clearTimeout(featureFrameTimer);
+
+    el.classList.add("is-open");
+    el.setAttribute("aria-hidden", "false");
+
+    const timer = setTimeout(() => {
+      closeOverlayNow(el, timerRefName);
+    }, duration);
+
+    if (timerRefName === "win") winFrameTimer = timer;
+    if (timerRefName === "feature") featureFrameTimer = timer;
+  }
+
+  function closeOverlayNow(el, timerRefName){
+    if (!el) return;
+    if (timerRefName === "win" && winFrameTimer) clearTimeout(winFrameTimer);
+    if (timerRefName === "feature" && featureFrameTimer) clearTimeout(featureFrameTimer);
+    el.classList.remove("is-open");
+    el.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("vv-overlay-open");
+  }
+
+  function animateOverlayCount(amount){
+    if (!winFrameAmountEl) return;
+    if (winCountTimer) cancelAnimationFrame(winCountTimer);
+    const start = performance.now();
+    const duration = 1250;
+
+    function frame(now){
+      const p = clamp((now - start) / duration, 0, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      winFrameAmountEl.textContent = formatMoney(Math.floor(amount * eased));
+      if (p < 1){
+        winCountTimer = requestAnimationFrame(frame);
+      }
+    }
+
+    winCountTimer = requestAnimationFrame(frame);
+  }
+
+  function showWinFrame(amount){
+    const tier = winTierForAmount(amount);
+    if (!tier || !winFrameEl || !winFrameTierEl || !winFrameAmountEl) return;
+    winFrameEl.classList.remove("vvOverlayFrame--big", "vvOverlayFrame--super", "vvOverlayFrame--huge", "vvOverlayFrame--extravagant");
+    winFrameEl.classList.add(`vvOverlayFrame--${tier.key}`);
+    winFrameEl.style.setProperty("--vv-frame-art", `url("${FRAME_ASSETS.win[tier.key]}")`);
+    winFrameTierEl.textContent = tier.label;
+    if (winFrameDetailEl) winFrameDetailEl.textContent = tier.detail;
+    winFrameAmountEl.textContent = formatMoney(0);
+    document.body.classList.add("vv-overlay-open");
+    openTimedOverlay(winFrameEl, "win", 2500);
+    animateOverlayCount(amount);
+    emitReelBurst(tier.particles);
+    triggerSoundHook(`win-${tier.key}`, { amount });
+  }
+
+  function showFeatureFrame(kind, detail = {}){
+    if (!featureFrameEl || !featureFrameTitleEl) return;
+    featureFrameEl.classList.remove("vvOverlayFrame--hold", "vvOverlayFrame--free");
+    featureFrameStageEl.innerHTML = "";
+    document.body.classList.add("vv-overlay-open");
+
+    if (kind === "hold-win"){
+      setFeatureClass("holdwin");
+      featureFrameEl.classList.add("vvOverlayFrame--hold");
+      featureFrameEl.style.setProperty("--vv-frame-art", `url("${FRAME_ASSETS.feature.holdWin}")`);
+      featureFrameTitleEl.textContent = "HOLD & WIN";
+      if (featureFrameDetailEl) featureFrameDetailEl.textContent = "Six coins lock in with a velvet vault-chime.";
+      for (let i = 0; i < 6; i += 1){
+        const coin = document.createElement("span");
+        coin.className = "vvFeatureCoin";
+        coin.style.animationDelay = `${i * 110}ms`;
+        featureFrameStageEl.appendChild(coin);
+      }
+      triggerSoundHook("feature-hold-win", detail);
+    } else if (kind === "free-spins-summary"){
+      setFeatureClass("freespins");
+      featureFrameEl.classList.add("vvOverlayFrame--free");
+      featureFrameEl.style.setProperty("--vv-frame-art", `url("${FRAME_ASSETS.feature.freeSpins}")`);
+      featureFrameTitleEl.textContent = "FREE SPINS COMPLETE";
+      if (featureFrameDetailEl) featureFrameDetailEl.textContent = `Session collected ${formatMoney(detail.totalWin || 0)}.`;
+      const chip = document.createElement("span");
+      chip.className = "vvFeatureChip vvFeatureChip--summary";
+      chip.textContent = formatMoney(detail.totalWin || 0);
+      featureFrameStageEl.appendChild(chip);
+      triggerSoundHook("feature-free-spins-summary", detail);
+    } else {
+      setFeatureClass("freespins");
+      featureFrameEl.classList.add("vvOverlayFrame--free");
+      featureFrameEl.style.setProperty("--vv-frame-art", `url("${FRAME_ASSETS.feature.freeSpins}")`);
+      featureFrameTitleEl.textContent = `FREE SPINS x${detail.count || 8}`;
+      if (featureFrameDetailEl) featureFrameDetailEl.textContent = "The cabinet floods purple and the reel glow rises.";
+      for (let i = 0; i < 8; i += 1){
+        const chip = document.createElement("span");
+        chip.className = "vvFeatureChip";
+        chip.textContent = `${i + 1}`;
+        chip.style.animationDelay = `${i * 70}ms`;
+        featureFrameStageEl.appendChild(chip);
+      }
+      triggerSoundHook("feature-free-spins", detail);
+    }
+
+    openTimedOverlay(featureFrameEl, "feature", 2400);
+  }
+
+  function emitReelBurst(intensity = 20){
+    if (!reelBurstLayerEl) return;
+    reelBurstLayerEl.innerHTML = "";
+    const particleCount = intensity;
+    for (let i = 0; i < particleCount; i += 1){
+      const particle = document.createElement("span");
+      particle.className = "vvBurstParticle";
+      particle.style.setProperty("--vv-x", `${18 + Math.random() * 64}%`);
+      particle.style.setProperty("--vv-y", `${18 + Math.random() * 54}%`);
+      particle.style.setProperty("--vv-dx", `${(Math.random() - 0.5) * 240}px`);
+      particle.style.setProperty("--vv-dy", `${-40 - Math.random() * 180}px`);
+      reelBurstLayerEl.appendChild(particle);
+      particle.addEventListener("animationend", () => particle.remove(), { once: true });
+    }
+  }
+
   function syncUI(){
     if (window.VaultEngine && typeof window.VaultEngine.getBalance === "function"){
       const latest = toInt(window.VaultEngine.getBalance());
@@ -419,8 +871,8 @@
     autoCountEl.textContent = String(autoLeft);
   }
   function syncControls(){
-    const canSpin = !busy && !celebrating;
-    const canAdjustBet = !busy && !celebrating && !auto;
+    const canSpin = assetsReady && !busy && !celebrating && !spinInProgress;
+    const canAdjustBet = assetsReady && !busy && !celebrating && !auto;
     const canStop = busy && auto && !stopRequested;
 
     spinBtn.disabled = !canSpin;
@@ -429,7 +881,7 @@
     maxBtn.disabled = !canAdjustBet;
     machineSelect.disabled = !canAdjustBet;
 
-    autoBtn.disabled = busy || celebrating;
+    autoBtn.disabled = !assetsReady || busy || celebrating;
     stopBtn.disabled = !canStop;
   }
   function setResult(msg){ resultEl.textContent = msg; }
@@ -468,14 +920,10 @@
     if (!Array.isArray(grid)) return;
     for (let r=0;r<REELS;r++){
       for (let row=0;row<ROWS;row++){
-        const id = String(grid[row]?.[r] || "");
-        const s = symbolById(id);
+        const id = normalizeSymbolId(grid[row]?.[r] || "");
         const el = cells[r]?.[row];
         if (!el) continue;
-        el.textContent = s.glyph !== "?" ? s.glyph : (id ? id.slice(0, 2) : "?");
-        el.classList.toggle("scatter", id===machine.ids.scatter || id==="SCATTER" || id==="SCAT");
-        el.classList.toggle("coin", id===machine.ids.coin || id==="COIN");
-        el.classList.toggle("wild", id===machine.ids.wild || id==="WILD");
+        paintCell(el, id);
       }
     }
   }
@@ -547,7 +995,8 @@
   }
 
   function symbolById(id){
-    return machine.symbols.find(s=>s.id===id) || { id, glyph:"?" };
+    const normalizedId = normalizeSymbolId(id);
+    return machine.symbols.find(s=>s.id===normalizedId) || { id: normalizedId, glyph:"?" };
   }
 
   function windowForReel(r){
@@ -577,13 +1026,9 @@
     for (let r=0;r<REELS;r++){
       for (let row=0;row<ROWS;row++){
         const id = grid[row][r];
-        const s = symbolById(id);
         const el = cells[r]?.[row];
         if (!el) continue;
-        el.textContent = s.glyph;
-        el.classList.toggle("scatter", id===machine.ids.scatter);
-        el.classList.toggle("coin", id===machine.ids.coin);
-        el.classList.toggle("wild", id===machine.ids.wild);
+        paintCell(el, id);
       }
     }
   }
@@ -799,6 +1244,10 @@
   async function spinReels(){
     stopRequested = false;
     clearReelClasses();
+    reelsWrap?.classList.add("is-spinning");
+    motionBlurLayerEl?.classList.add("is-active");
+    anticipationGlowEl?.classList.remove("is-active");
+    cols.forEach((col) => col.classList.add("spinning"));
 
     let finals = [];
     for (let r=0;r<REELS;r++){
@@ -809,27 +1258,26 @@
 
     let anticipate = false;
     {
-      const pred = Array.from({length:ROWS}, ()=>Array(REELS).fill("X"));
-      for (let r=0;r<REELS;r++){
-        const st = reelState[r];
+      const firstTwoHigh = [0, 1].every((reelIndex) => {
+        const st = reelState[reelIndex];
         const strip = st.strip;
-        const top = (r<=2 ? finals[r] : st.pos);
-        for (let i=0;i<ROWS;i++){
-          pred[i][r] = strip[(top+i) % strip.length];
+        const top = finals[reelIndex];
+        for (let i=0; i<ROWS; i += 1){
+          if (machine.visual?.highSymbols?.has(strip[(top + i) % strip.length])) return true;
         }
-      }
-      const early = detectEarlyScatters(pred, 2);
-      if (early >= 2) anticipate = true;
+        return false;
+      });
+      if (firstTwoHigh) anticipate = true;
     }
 
     const start = performance.now();
     const baseStop = REALISM.spinUpMs + REALISM.steadyMs + REALISM.decelMs;
     const stagger = REALISM.baseStaggerMs;
-    const endTimes = finals.map((_,r)=> start + baseStop + r*stagger + (anticipate && r>=3 ? REALISM.anticipationExtraMs : 0));
+    const endTimes = finals.map((_,r)=> start + baseStop + r*stagger + (anticipate && r===2 ? REALISM.anticipationExtraMs : 0));
 
     if (anticipate){
-      setReelClass(3, "anticipation", true);
-      setReelClass(4, "anticipation", true);
+      setReelClass(2, "anticipation", true);
+      anticipationGlowEl?.classList.add("is-active");
     }
 
     const maxAdv = [9, 10, 11, 12, 13];
@@ -873,8 +1321,15 @@
           }
         }
         renderGrid();
-        if (done) resolve();
-        else requestAnimationFrame(step);
+        if (done){
+          reelsWrap?.classList.remove("is-spinning");
+          motionBlurLayerEl?.classList.remove("is-active");
+          anticipationGlowEl?.classList.remove("is-active");
+          cols.forEach((col) => col.classList.remove("spinning"));
+          resolve();
+        } else {
+          requestAnimationFrame(step);
+        }
       }
       requestAnimationFrame(step);
     });
@@ -887,6 +1342,7 @@
       freeSpinsLeft += fs;
       inFreeSpins = true;
       freeSpinMult = 1.25;
+      showFeatureFrame("free-spins", { count: fs });
       setResult(`Free Spins! +${fs} (Total ${freeSpinsLeft}).`);
     }
   }
@@ -906,6 +1362,7 @@
       }
     }
     renderHoldWin();
+    showFeatureFrame("hold-win");
     openModal(holdWinModal);
   }
 
@@ -976,6 +1433,7 @@
     if (hw.respins<=0 || holdWinFilledCount()===ROWS*REELS){
       balance += hw.total;
       syncUI();
+      showWinFrame(hw.total);
       setResult(`Hold & Win complete: +${formatMoney(hw.total)}.`);
       hw = null;
       closeModal(holdWinModal);
@@ -1033,12 +1491,14 @@
         denom: 1,
         machineId: currentServerConfigId(),
         roundId,
+        spinSessionId: makeClientSeed(),
         clientSeed: makeClientSeed()
       };
       if (serverFeatureState && serverFeatureStateMachineId === spinRequest.machineId){
         spinRequest.state = serverFeatureState;
       }
 
+      const wasInFreeSpins = inFreeSpins;
       let payload = null;
       try {
         if (freeSpinsLeft <= 0 && balance < bet){
@@ -1054,6 +1514,7 @@
           machineId: spinRequest.machineId,
           stakeCents: spinRequest.stake,
           roundId: spinRequest.roundId,
+          spinSessionId: spinRequest.spinSessionId,
           clientSeed: spinRequest.clientSeed,
           featureState: spinRequest.state || null,
           freeSpin: freeSpinsLeft > 0
@@ -1087,9 +1548,14 @@
 
       const payout = toInt(spin.totalPayout ?? spin.totalWin);
       if (payout > 0){
+        setWinTierClass(payout);
+        showWinFrame(payout);
         setResult(`Win: +${formatMoney(payout)} (Lines: ${Array.isArray(spin.wins) ? spin.wins.length : 0})${inFreeSpins?` • Free Spins left: ${freeSpinsLeft}`:""}`);
       } else {
         setResult(inFreeSpins ? `No win • Free Spins left: ${freeSpinsLeft}` : "No win.");
+      }
+      if (wasInFreeSpins && !inFreeSpins){
+        showFeatureFrame("free-spins-summary", { totalWin: payout });
       }
 
       if (auto && autoLeft>0){
@@ -1114,40 +1580,51 @@
   }
 
   async function doSpin(){
-    if (hasAtomicServerSpin()){
-      const handled = await doAtomicServerSpin();
-      if (handled) return;
-    }
-
-    if (currentSlotServerUrl() && !window.vvAuth?.currentUser){
-      setResult("Please sign in.");
-      return;
-    }
-
-    if (window.VaultEngine?.mode === "secure"){
-      if (!window.VaultEngine.user) {
-        setResult("Connecting to the vault...");
-      } else if (!currentSlotServerUrl()) {
-        setResult("Slot server not configured.");
-      } else {
-        setResult("Atomic wallet unavailable.");
-      }
-      return;
-    }
-
-    if (busy) return;
-    if (celebrating){
-      cancelCelebration = true;
-      celebrating = false;
-      syncControls();
-      return true;
-    }
-    busy = true;
-    stopRequested = false;
-    syncUI();
-    syncControls();
-
     try {
+      if (spinInProgress) return;
+      if (!assetsReady){
+        setResult(`Loading ${machine.name} cabinet art...`);
+        return;
+      }
+      spinInProgress = true;
+      document.body.classList.add("vv-is-spinning");
+      clearWinTierClasses();
+      clearFeatureClasses();
+      spinBtn.disabled = true;
+
+      if (hasAtomicServerSpin()){
+        const handled = await doAtomicServerSpin();
+        if (handled) return;
+      }
+
+      if (currentSlotServerUrl() && !window.vvAuth?.currentUser){
+        setResult("Please sign in.");
+        return;
+      }
+
+      if (window.VaultEngine?.mode === "secure"){
+        if (!window.VaultEngine.user) {
+          setResult("Connecting to the vault...");
+        } else if (!currentSlotServerUrl()) {
+          setResult("Slot server not configured.");
+        } else {
+          setResult("Atomic wallet unavailable.");
+        }
+        return;
+      }
+
+      if (busy) return;
+      if (celebrating){
+        cancelCelebration = true;
+        celebrating = false;
+        syncControls();
+        return true;
+      }
+      busy = true;
+      stopRequested = false;
+      syncUI();
+      syncControls();
+
       clearHighlights();
 
       const cost = bet;
@@ -1199,6 +1676,8 @@
         balance += payout;
         syncUI();
         applyHighlights(res);
+        setWinTierClass(payout);
+        showWinFrame(payout);
         setResult(`Win: +${formatMoney(payout)} (Lines: ${res.wins.length})${inFreeSpins?` • Free Spins left: ${freeSpinsLeft}`:""}`);
         if (!hw && res.wins.length <= 4){
           await ladderCelebrate(grid, res, payout);
@@ -1222,6 +1701,8 @@
       setResult("Spin failed.");
       return true;
     } finally {
+      spinInProgress = false;
+      document.body.classList.remove("vv-is-spinning");
       busy = false;
       syncUI();
       syncControls();
@@ -1285,6 +1766,18 @@
 
   function applyMachineSkin(){
     document.body.setAttribute("data-slot-skin", machine.skin?.skinKey || machine.key);
+    if (machineLogoEl){
+      machineLogoEl.src = machine.visual?.logo || machineLogoEl.src;
+      machineLogoEl.alt = `${machine.name} logo`;
+    }
+    if (machineCabinetNameEl) machineCabinetNameEl.textContent = machine.name;
+    if (machineCabinetTagEl) machineCabinetTagEl.textContent = machine.desc;
+    if (machineThemeLabelEl) machineThemeLabelEl.textContent = machine.visual?.themeLabel || machine.name;
+    if (machineFeatureLabelEl) machineFeatureLabelEl.textContent = machine.visual?.featureLabel || "Feature Rich";
+    if (paytableKickerEl) paytableKickerEl.textContent = machine.visual?.themeLabel || "Paytable";
+    setBodyVar("--vv-machine-accent", machine.visual?.accent || "#ff4f93");
+    setBodyVar("--vv-machine-accent-soft", machine.visual?.accentSoft || "#93ffe4");
+    setBodyVar("--vv-cabinet-frame", `url("${FRAME_ASSETS.cabinet}")`);
   }
 
   function bindWallet(){
@@ -1356,5 +1849,14 @@
   syncUI();
   syncControls();
   applyMachineSkin();
-  setResult("Ready.");
+  Promise.resolve()
+    .then(() => preloadVisualAssets(machine))
+    .then(() => {
+      applyMachineSkin();
+      renderGrid();
+      syncControls();
+      setResult("Ready.");
+    });
+  winFrameDismissEl?.addEventListener("click", () => closeOverlayNow(winFrameEl, "win"));
+  featureFrameDismissEl?.addEventListener("click", () => closeOverlayNow(featureFrameEl, "feature"));
 })();

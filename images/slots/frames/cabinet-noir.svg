@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Velvet Cabinet frame">
+  <defs>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff4f93"/>
+      <stop offset="100%" stop-color="#9efbe4"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="rgba(255,255,255,.14)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" rx="44" fill="#0a0811"/>
+  <rect x="18" y="18" width="1564" height="864" rx="36" fill="none" stroke="url(#ring)" stroke-width="10"/>
+  <rect x="44" y="44" width="1512" height="812" rx="28" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="2"/>
+  <ellipse cx="800" cy="450" rx="620" ry="250" fill="url(#glow)" opacity=".8"/>
+  <path d="M140 780 C420 500 1180 500 1460 780" fill="none" stroke="url(#ring)" stroke-width="8" opacity=".35"/>
+  <text x="800" y="170" text-anchor="middle" fill="url(#ring)" font-size="48" font-family="Georgia, serif" letter-spacing="12">VELVET VAULT</text>
+  <text x="800" y="760" text-anchor="middle" fill="#f4efe8" font-size="88" font-family="Georgia, serif" letter-spacing="8">Velvet Cabinet</text>
+</svg>

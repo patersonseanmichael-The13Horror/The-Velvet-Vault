@@ -3,226 +3,84 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Velvet Vault - Slots Lobby</title>
+  <title>Velvet Vault — Slots Lobby</title>
   <meta name="vv-protected" content="true">
-
-  <!-- Core styles already used across site -->
-  <link rel="stylesheet" href="css/vv.tokens.css">
-  <link rel="stylesheet" href="css/vv.base.css">
-  <link rel="stylesheet" href="css/vv.components.css">
-  <link rel="stylesheet" href="css/velvet.css">
-  <link rel="stylesheet" href="css/rebirth.css">
-  <link rel="stylesheet" href="css/story.css">
-  <link rel="stylesheet" href="css/phase5-bg.css">
-  <link rel="stylesheet" href="css/phase6-effects.css">
-  <script type="module" src="js/firebase-init.js"></script>
-  <script type="module" src="js/guard.js"></script>
-
-  <style>
-    .lobbyShell{
-      width: min(1100px, calc(100% - 28px));
-      margin: 16px auto 42px;
-      display: grid;
-      gap: 14px;
-    }
-    .lobbyTop{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      gap: 12px;
-      flex-wrap:wrap;
-    }
-    .lobbyGrid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-    @media (max-width: 980px){ .lobbyGrid{ grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 640px){ .lobbyGrid{ grid-template-columns: 1fr; } }
-
-    .slotCard{
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.22);
-      border-radius: 26px;
-      box-shadow: 0 28px 90px rgba(0,0,0,0.38);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      min-height: 190px;
-    }
-    .slotCardHead{
-      padding: 14px 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:flex-start;
-    }
-    .slotCardTitle{
-      font-weight: 900;
-      letter-spacing: .03em;
-      margin: 0;
-      font-size: 18px;
-    }
-    .slotCardTag{
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: rgba(243,239,255,0.70);
-      margin-top: 6px;
-    }
-    .slotCardBody{
-      padding: 12px 14px 14px;
-      display:grid;
-      gap: 10px;
-      flex: 1;
-    }
-    .slotMeta{
-      display:flex;
-      gap: 8px;
-      flex-wrap:wrap;
-    }
-    .pill{
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04);
-      font-weight: 900;
-      letter-spacing:.08em;
-      text-transform: uppercase;
-      font-size: 11px;
-      color: rgba(243,239,255,0.76);
-    }
-    .slotActions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      margin-top: 6px;
-    }
-    .sub{
-      color: rgba(243,239,255,0.70);
-      margin: 0;
-      line-height: 1.35;
-    }
-  </style>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/pages/slots.css" />
+  <link rel="stylesheet" href="css/pages/slots-lobby.css" />
+  <script src="js/runtime-config.js" defer></script>
 </head>
+<body class="vvTheme">
+  <div id="vvBrandGlow" aria-hidden="true"></div>
 
-<body data-chapter="games">
-  <div class="vv-bg" aria-hidden="true">
-    <div class="vv-bg__layer layer-a"></div>
-    <div class="vv-bg__layer layer-b"></div>
-    <div class="vv-bg__tint"></div>
-    <div class="vv-bg__vignette"></div>
-    <div class="vv-bg__streaks"></div>
-    <div class="vv-grain"></div>
+  <div class="vvShell">
+    <header class="vvTopbar">
+      <div class="vvTopbarLeft">
+        <a class="vvLogoLink" href="members.html" aria-label="Velvet Vault">
+          <span class="vvLogo">VELVET VAULT</span>
+          <span class="vvTag">Slots Lobby</span>
+        </a>
+      </div>
+      <nav class="vvNav">
+        <a class="vvNavItem" href="members.html">Members</a>
+        <a class="vvNavItem" href="slots-lobby.html">Slots</a>
+        <a class="vvNavItem" href="promotions.html">Promotions</a>
+      </nav>
+    </header>
+
+    <main class="vvLobbyMain">
+      <section class="vvLobbyHero">
+        <div class="vvLobbyBreadcrumb">
+          <span>Members</span>
+          <span>›</span>
+          <span>Slots</span>
+        </div>
+        <h1 class="vvHeroTitle">Choose Your Machine</h1>
+        <p>
+          Five-star floor, dark-room energy. Pick a machine tile to preview the cabinet, then enter the live slot room with the selected theme loaded.
+        </p>
+      </section>
+
+      <section class="vvLobbyGridWrap">
+        <div id="vvLobbyGrid" class="vvLobbyGrid" aria-label="Slot machine tiles"></div>
+      </section>
+    </main>
   </div>
 
-  <main class="lobbyShell">
-    <div class="lobbyTop">
-      <div>
-        <div class="kicker">Members</div>
-        <h1 style="margin:6px 0 0;">Slots Lobby</h1>
-        <p class="sub" style="margin-top:8px;">Pick a machine to enter its chapter. Hold &amp; Win + Free Spins available.</p>
-      </div>
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <a class="btn" href="members.html">Back to Members</a>
-        <a class="btn primary" href="slots.html">Open Last Machine</a>
+  <div id="vvLobbyModal" class="vvLobbyModal" aria-hidden="true">
+    <div class="vvLobbyModalCard" role="dialog" aria-modal="true" aria-label="Machine preview">
+      <button class="vvSecondary vvLobbyClose" type="button" data-lobby-close="1">Close</button>
+      <div class="vvLobbyModalBody">
+        <div id="vvLobbyModalPreview" class="vvLobbyPreview"></div>
+        <div class="vvLobbyMeta">
+          <div class="vvLobbyBreadcrumb">
+            <span>Members</span>
+            <span>›</span>
+            <span>Slots</span>
+          </div>
+          <div>
+            <h2 id="vvLobbyModalTitle" class="vvHeroTitle"></h2>
+            <div id="vvLobbyModalSubtitle" class="vvTag"></div>
+          </div>
+          <p id="vvLobbyModalDesc"></p>
+          <div id="vvLobbyModalPills" class="vvLobbyPills"></div>
+          <div class="vvLobbyActions">
+            <a id="vvLobbyEnter" class="vvPrimary" href="slots.html">Enter</a>
+            <button class="vvSecondary" type="button" data-lobby-close="1">Back</button>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 
-    <section class="panel">
-      <div class="panelHead"><b>Machines</b></div>
-      <div class="panelBody">
-        <div class="lobbyGrid" id="slotGrid"></div>
-      </div>
-    </section>
-  </main>
+  <footer id="vv-footer"></footer>
 
-  <!-- Backgrounds + effects -->
+  <script type="module" src="js/firebase-init.js"></script>
+  <script type="module" src="js/guard.js"></script>
   <script src="js/story-engine.js"></script>
-  <script src="js/bg-preload.js"></script>
   <script src="js/story-progress.js"></script>
-  <script src="js/phase6-effects.js"></script>
-
-  <script>
-    // 7 machines currently integrated
-    const MACHINES = [
-      {
-        key: "velvet_noir",
-        slug: "velvet-noir",
-        name: "Velvet Noir",
-        desc: "Masks, roses, and secrets. The house whispers.",
-        tags: ["Dark Luxury", "Hold & Win", "Free Spins"]
-      },
-      {
-        key: "cyber_sakura",
-        slug: "cyber-sakura",
-        name: "Cyber Sakura",
-        desc: "Neon petals and razor luck under digital rain.",
-        tags: ["Neon", "Wild-heavy FS", "Hold & Win"]
-      },
-      {
-        key: "neon_pharaoh",
-        slug: "neon-pharaoh",
-        name: "Neon Pharaoh",
-        desc: "Ancient power glowing through the circuit sands.",
-        tags: ["Egypt Neon", "Hold & Win", "Free Spins"]
-      },
-      {
-        key: "emerald_heist",
-        slug: "emerald-heist",
-        name: "Emerald Heist",
-        desc: "Steal the glow. Breach the vault. Take the run.",
-        tags: ["Heist", "High Volatility", "Hold & Win"]
-      },
-      {
-        key: "crimson_crown",
-        slug: "crimson-crown",
-        name: "Crimson Crown",
-        desc: "Royal risk. Heavy hits. Crimson fate.",
-        tags: ["Royal", "Multipliers", "Free Spins"]
-      },
-      {
-        key: "abyssal_pearls",
-        slug: "abyssal-pearl",
-        name: "Abyssal Pearl",
-        desc: "Deep sea shimmer with bioluminescent fortune.",
-        tags: ["Ocean", "Sticky Wilds", "Free Spins"]
-      },
-      {
-        key: "clockwork_vault",
-        slug: "clockwork-vault",
-        name: "Clockwork Vault",
-        desc: "Precision luck. Gears turn. The vault ticks.",
-        tags: ["Steampunk", "Hold & Win", "Free Spins"]
-      }
-    ];
-
-    const grid = document.getElementById("slotGrid");
-    grid.innerHTML = MACHINES.map(m=>{
-      const href = `slots.html?m=${encodeURIComponent(m.key)}`;
-      const tags = m.tags.map(t=>`<span class="pill">${t}</span>`).join("");
-      return `
-        <article class="slotCard">
-          <div class="slotCardHead">
-            <div>
-              <h2 class="slotCardTitle">${m.name}</h2>
-              <div class="slotCardTag">${m.slug}</div>
-            </div>
-            <a class="btn primary" href="${href}">Enter</a>
-          </div>
-          <div class="slotCardBody">
-            <p class="sub">${m.desc}</p>
-            <div class="slotMeta">${tags}</div>
-            <div class="slotActions">
-              <a class="btn" href="${href}">Play</a>
-              <a class="btn" href="terms.html">Terms</a>
-            </div>
-          </div>
-        </article>
-      `;
-    }).join("");
-  </script>
+  <script type="module" src="js/games/slots-lobby.js"></script>
+  <script type="module" src="js/ui/footer.js"></script>
+  <script src="js/vv-bg-particles.js" defer></script>
 </body>
 </html>

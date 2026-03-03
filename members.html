@@ -11,24 +11,23 @@
   <link rel="stylesheet" href="css/pages/slots.css" />
   <link rel="stylesheet" href="css/pages/members.css" />
 
-  <script src="js/runtime-config.js"></script>
+  <script src="js/runtime-config.js" defer></script>
 </head>
 
 <body class="vvTheme">
   <div id="vvBrandGlow" aria-hidden="true"></div>
-  <script src="js/vv-bg-particles.js" defer></script>
 
   <div id="vvAppShell" class="vvShell">
     <header class="vvTopbar">
       <div class="vvTopbarLeft">
-        <a class="vvLogoLink" href="slots.html" aria-label="Velvet Vault">
+        <a class="vvLogoLink" href="members.html" aria-label="Velvet Vault">
           <span class="vvLogo">VELVET VAULT</span>
           <span class="vvTag">VIP Members</span>
         </a>
       </div>
 
       <nav class="vvNav">
-        <a class="vvNavItem" href="slots.html">Play Slots</a>
+        <a class="vvNavItem" href="slots-lobby.html">Play Slots</a>
         <button id="btnOpenWallet" class="vvNavItem vvNavButton" type="button">Wallet</button>
         <a class="vvNavItem" href="promotions.html">Promotions</a>
         <button id="btnLogout" class="vvNavItem vvNavDanger" type="button">Logout</button>
@@ -44,7 +43,7 @@
 
     <section class="vvTicker" aria-label="Live feed">
       <div class="vvTickerInner">
-        <div id="vvTickerTrack" class="vvTickerTrack"></div>
+        <div id="live-feed" class="vvTickerTrack"></div>
       </div>
     </section>
 
@@ -57,7 +56,7 @@
           </p>
 
           <div class="vvHeroActions">
-            <a class="vvPrimary" href="slots.html">Enter Slots</a>
+            <a class="vvPrimary" href="slots-lobby.html">Enter Slots</a>
             <button id="btnOpenWallet2" class="vvSecondary" type="button">Open Wallet</button>
             <a class="vvTertiary" href="promotions.html">View Promotions</a>
           </div>
@@ -101,11 +100,6 @@
       </section>
     </main>
 
-    <footer class="vvFooter">
-      <span>© Velvet Vault</span>
-      <span class="vvFooterDot">•</span>
-      <a href="terms.html">Terms</a>
-    </footer>
   </div>
 
   <div id="vvWalletModal" class="vvModal" aria-hidden="true">
@@ -236,15 +230,21 @@
           <div class="vvSubTitle">Wallet History</div>
         </div>
 
-        <div id="vvHistoryList" class="vvHistoryList" aria-label="Wallet history"></div>
+        <div id="wallet-history-list" class="vvHistoryList" aria-label="Wallet history"></div>
+        <button id="wallet-history-more" class="vvSecondary vvFull" type="button" hidden>
+          Load More
+        </button>
       </div>
     </div>
   </div>
 
+  <footer id="vv-footer"></footer>
   <script type="module" src="js/firebase-init.js"></script>
   <script type="module" src="js/guard.js"></script>
   <script type="module" src="js/wallet.js"></script>
   <script type="module" src="js/auth-store.js"></script>
   <script type="module" src="js/members.js"></script>
+  <script type="module" src="js/ui/footer.js"></script>
+  <script src="js/vv-bg-particles.js" defer></script>
 </body>
 </html>

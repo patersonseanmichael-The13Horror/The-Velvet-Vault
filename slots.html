@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/story.css">
   <link rel="stylesheet" href="css/phase4.css">
   <link rel="stylesheet" href="css/pages/slots.css">
+  <link rel="stylesheet" href="css/pages/slots-vip.css">
 
   <!-- ✅ Auth + Wallet -->
   <script type="module" src="js/firebase-init.js"></script>
@@ -32,6 +33,27 @@
     <div class="vv-bg__tint"></div>
     <div class="vv-bg__vignette"></div>
     <div class="vv-grain"></div>
+  </div>
+  <div id="vvWinFrame" class="vvOverlayFrame" aria-hidden="true">
+    <div class="vvOverlayBackdrop"></div>
+    <div class="vvOverlayCard">
+      <div class="vvOverlayArt vvOverlayArt--win"></div>
+      <div id="vvWinFrameTier" class="vvOverlayTier">Big Win</div>
+      <div id="vvWinFrameAmount" class="vvOverlayAmount">$0.00</div>
+      <div id="vvWinFrameDetail" class="vvOverlayDetail">Velvet tier engaged.</div>
+      <button id="vvWinFrameDismiss" class="vvOverlayDismiss" type="button">Tap to close</button>
+    </div>
+  </div>
+  <div id="vvFeatureFrame" class="vvOverlayFrame vvOverlayFrame--feature" aria-hidden="true">
+    <div class="vvOverlayBackdrop"></div>
+    <div class="vvOverlayCard">
+      <div class="vvOverlayArt vvOverlayArt--feature"></div>
+      <div class="vvOverlayTier">Feature Triggered</div>
+      <div id="vvFeatureFrameTitle" class="vvOverlayAmount vvOverlayAmount--feature">Free Spins</div>
+      <div id="vvFeatureFrameDetail" class="vvOverlayDetail">Cabinet glow engaged.</div>
+      <div id="vvFeatureFrameStage" class="vvFeatureStage" aria-hidden="true"></div>
+      <button id="vvFeatureFrameDismiss" class="vvOverlayDismiss" type="button">Tap to close</button>
+    </div>
   </div>
 
   <div class="vv-hud" aria-label="Story progress">
@@ -55,7 +77,9 @@
         <p class="vv-chapter__desc">Lights sing. Reels whisper. Luck shows up when it feels admired.</p>
       </div>
       <nav class="vv-nav">
-        <a href="slots.html" class="active">Slots</a>
+        <a href="members.html">Members</a>
+        <a href="slots-lobby.html" class="active">Slots</a>
+        <a href="promotions.html">Promotions</a>
       </nav>
     </div>
   </section>
@@ -90,67 +114,119 @@
             </div>
           </div>
 
-          <div class="frame">
-            <div class="slotsShell">
-              <div class="reelsWrap">
-                <div class="reelCol" id="col1">
-                  <div class="cell" id="c1r1">◆</div>
-                  <div class="cell" id="c1r2">◆</div>
-                  <div class="cell" id="c1r3">◆</div>
+          <div class="vv-slots-stage">
+            <div class="vv-vignette" aria-hidden="true"></div>
+
+            <div class="vv-cabinet" role="presentation">
+              <div class="vv-cabinet-frame" aria-hidden="true"></div>
+              <div class="vv-cabinet-glow" aria-hidden="true"></div>
+
+              <div class="vv-reel-window">
+                <div class="frame">
+                  <div class="slotsShell">
+                    <div class="cabinetFrame">
+                      <div class="cabinetVignette" aria-hidden="true"></div>
+                      <div class="cabinetHeader">
+                        <div class="cabinetBrand">
+                          <img id="machineLogo" class="cabinetLogo" src="images/slots/velvet_noir/logo.svg" alt="Current machine logo" />
+                          <div>
+                            <div class="cabinetKicker">Selected Machine</div>
+                            <div id="machineCabinetName" class="cabinetName">Velvet Noir</div>
+                            <div id="machineCabinetTag" class="cabinetTag">VIP noir cabinet with feature-rich reels.</div>
+                          </div>
+                        </div>
+                        <div class="cabinetMeters">
+                          <div class="cabinetChip">
+                            <span>Theme</span>
+                            <b id="machineThemeLabel">VIP Noir</b>
+                          </div>
+                          <div class="cabinetChip">
+                            <span>Mode</span>
+                            <b id="machineFeatureLabel">Hold &amp; Win / Free Spins</b>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cabinetViewport">
+                        <div class="cabinetChrome" aria-hidden="true"></div>
+                        <div class="reelWindow">
+                          <div class="reelsWrap">
+                            <div class="reelCol" id="col1">
+                              <div class="cell" id="c1r1">◆</div>
+                              <div class="cell" id="c1r2">◆</div>
+                              <div class="cell" id="c1r3">◆</div>
+                            </div>
+                            <div class="reelCol" id="col2">
+                              <div class="cell" id="c2r1">◆</div>
+                              <div class="cell" id="c2r2">◆</div>
+                              <div class="cell" id="c2r3">◆</div>
+                            </div>
+                            <div class="reelCol" id="col3">
+                              <div class="cell" id="c3r1">◆</div>
+                              <div class="cell" id="c3r2">◆</div>
+                              <div class="cell" id="c3r3">◆</div>
+                            </div>
+                            <div class="reelCol" id="col4">
+                              <div class="cell" id="c4r1">◆</div>
+                              <div class="cell" id="c4r2">◆</div>
+                              <div class="cell" id="c4r3">◆</div>
+                            </div>
+                            <div class="reelCol" id="col5">
+                              <div class="cell" id="c5r1">◆</div>
+                              <div class="cell" id="c5r2">◆</div>
+                              <div class="cell" id="c5r3">◆</div>
+                            </div>
+
+                            <div class="paylines" id="paylines" aria-hidden="true"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="reelCol" id="col2">
-                  <div class="cell" id="c2r1">◆</div>
-                  <div class="cell" id="c2r2">◆</div>
-                  <div class="cell" id="c2r3">◆</div>
+              </div>
+
+              <div class="vv-fx-layer" aria-hidden="true">
+                <div class="vvFxLayer" aria-hidden="true">
+                  <div id="vvMotionBlurLayer" class="vvMotionBlurLayer"></div>
+                  <div id="vvAnticipationGlow" class="vvAnticipationGlow"></div>
+                  <div id="vvReelBurstLayer" class="vvReelBurstLayer"></div>
                 </div>
-                <div class="reelCol" id="col3">
-                  <div class="cell" id="c3r1">◆</div>
-                  <div class="cell" id="c3r2">◆</div>
-                  <div class="cell" id="c3r3">◆</div>
-                </div>
-                <div class="reelCol" id="col4">
-                  <div class="cell" id="c4r1">◆</div>
-                  <div class="cell" id="c4r2">◆</div>
-                  <div class="cell" id="c4r3">◆</div>
-                </div>
-                <div class="reelCol" id="col5">
-                  <div class="cell" id="c5r1">◆</div>
-                  <div class="cell" id="c5r2">◆</div>
-                  <div class="cell" id="c5r3">◆</div>
+              </div>
+
+              <div class="vv-hud-layer">
+                <div class="hud">
+                  <div class="pill">Bet: <b id="betLabel">$1.50</b></div>
+                  <div class="pill">Line Bet: <b id="lineBetLabel">$0.50</b></div>
+                  <div class="pill">Last Mult: <b id="multLabel">—</b></div>
+                  <div class="pill">Auto: <b id="autoLabel">OFF</b></div>
                 </div>
 
-                <div class="paylines" id="paylines" aria-hidden="true"></div>
+                <div class="controls">
+                  <button class="btn" id="betDown">Bet −</button>
+                  <button class="btn" id="betUp">Bet +</button>
+                  <button class="btn green" id="spinBtn">Spin</button>
+                  <button class="btn red" id="maxBtn">Max Bet</button>
+                </div>
+
+                <div class="inline">
+                  <div class="pill" style="margin:0;">Auto Spins</div>
+                  <select id="autoCount">
+                    <option value="5">5</option>
+                    <option value="10" selected>10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                  </select>
+                  <button class="btn green" id="autoBtn" style="min-width:190px; flex:0 0 auto;">Auto-Spin</button>
+                  <button class="btn red" id="stopBtn" style="min-width:190px; flex:0 0 auto;" disabled>Stop</button>
+                </div>
+
+                <div class="result" id="result">Awaiting signal…</div>
               </div>
+
+              <div class="vv-overlay-layer" aria-hidden="true"></div>
             </div>
           </div>
-
-          <div class="hud">
-            <div class="pill">Bet: <b id="betLabel">$1.50</b></div>
-            <div class="pill">Line Bet: <b id="lineBetLabel">$0.50</b></div>
-            <div class="pill">Last Mult: <b id="multLabel">—</b></div>
-            <div class="pill">Auto: <b id="autoLabel">OFF</b></div>
-          </div>
-
-          <div class="controls">
-            <button class="btn" id="betDown">Bet −</button>
-            <button class="btn" id="betUp">Bet +</button>
-            <button class="btn green" id="spinBtn">Spin</button>
-            <button class="btn red" id="maxBtn">Max Bet</button>
-          </div>
-
-          <div class="inline">
-            <div class="pill" style="margin:0;">Auto Spins</div>
-            <select id="autoCount">
-              <option value="5">5</option>
-              <option value="10" selected>10</option>
-              <option value="25">25</option>
-              <option value="50">50</option>
-            </select>
-            <button class="btn green" id="autoBtn" style="min-width:190px; flex:0 0 auto;">Auto-Spin</button>
-            <button class="btn red" id="stopBtn" style="min-width:190px; flex:0 0 auto;" disabled>Stop</button>
-          </div>
-
-          <div class="result" id="result">Awaiting signal…</div>
 
           <!-- Paytable Modal -->
           <div class="vvModal" id="paytableModal" aria-hidden="true">

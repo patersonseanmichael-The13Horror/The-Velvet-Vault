@@ -1,4 +1,3 @@
-<!-- login.html -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,10 +14,7 @@
   <link rel="stylesheet" href="css/pages/login.css">
   <link rel="stylesheet" href="css/story.css">
   <link rel="stylesheet" href="css/phase4.css">
-
-  
 </head>
-
 <body data-chapter="initiation">
   <div class="vv-bg" aria-hidden="true">
     <div class="vv-bg__layer layer-a"></div>
@@ -26,81 +22,125 @@
     <div class="vv-bg__vignette"></div>
     <div class="vv-grain"></div>
   </div>
-<header id="vv-topbar"></header>
-
+  <header id="vv-topbar"></header>
   <div class="grain" aria-hidden="true"></div>
 
-  <div class="wrap">
-    <div class="card">
-      <section class="left">
+  <main class="wrap loginShell">
+    <section class="card loginCard">
+      <section class="left loginIntro">
         <div class="brand">
           <div class="sigil" aria-hidden="true"></div>
           <div>
             <h1>Velvet Vault</h1>
-            <small>Members Access • Red × Green Signal</small>
+            <small>VIP Access • UID or Email Entry</small>
           </div>
         </div>
 
-        <h2 class="headline">THE DOOR OPENS<br/>FOR THE VERIFIED</h2>
+        <h2 class="headline">SIGN IN TO THE<br/>VIP NOIR FLOOR</h2>
         <p class="tagline">
-          Create your key, confirm your email, then return. <br/>
-          The Greeter doesn’t argue — it <b>verifies</b>.
+          Create your member identity once. Keep your UID close. Return with either your UID or your email to unlock the lounge.
         </p>
 
         <div class="bullets" aria-hidden="true">
-          <span>🔴 Red Pulse</span>
-          <span>🟢 Neon Signal</span>
-          <span>🕯️ Gothic Shadow</span>
-          <span>⚡ Cyber Night</span>
+          <span>UID Issued on signup</span>
+          <span>Email verification supported</span>
+          <span>Slots-only VIP flow</span>
         </div>
 
-        <a class="back" href="index.html">← Back to Entrance</a>
+        <div class="introActions">
+          <a class="back" href="index.html">Back to Entrance</a>
+          <a class="back" href="about.html">About Velvet Vault</a>
+        </div>
       </section>
 
-      <section class="right">
-        <div class="formHead">
-          <h2>Sign In</h2>
-          <p>Use email + password. New members: create account, then verify email.</p>
+      <section class="right loginPanels">
+        <div class="authGrid">
+          <section class="authPanel">
+            <div class="formHead">
+              <h2>Sign Up</h2>
+              <p>Create your profile and receive your Velvet Vault User ID.</p>
+            </div>
+
+            <div class="field">
+              <label for="signupName">Name</label>
+              <input id="signupName" type="text" autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="signupEmail">Email</label>
+              <input id="signupEmail" type="email" autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="signupPhone">Number</label>
+              <input id="signupPhone" type="tel" autocomplete="tel" />
+            </div>
+            <div class="field">
+              <label for="signupDob">DOB</label>
+              <input id="signupDob" type="date" autocomplete="bday" />
+            </div>
+            <div class="field">
+              <label for="signupPassword">Password</label>
+              <input id="signupPassword" type="password" autocomplete="new-password" />
+            </div>
+            <div class="field">
+              <label for="signupPasswordConfirm">Confirm Password</label>
+              <input id="signupPasswordConfirm" type="password" autocomplete="new-password" />
+            </div>
+
+            <button class="btn green" id="signupBtn" type="button">Sign Up</button>
+          </section>
+
+          <section class="authPanel">
+            <div class="formHead">
+              <h2>Login</h2>
+              <p>Use your User ID or email with your password.</p>
+            </div>
+
+            <div class="field">
+              <label for="loginIdentifier">User ID or Email</label>
+              <input id="loginIdentifier" type="text" autocomplete="username" />
+            </div>
+            <div class="field">
+              <label for="loginPassword">Password</label>
+              <input id="loginPassword" type="password" autocomplete="current-password" />
+            </div>
+
+            <div class="loginActions">
+              <button class="btn red" id="signinBtn" type="button">Login</button>
+              <button class="btn ghost" id="resendBtn" type="button">Resend Verification</button>
+            </div>
+          </section>
         </div>
 
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" type="email" placeholder="you@domain.com" autocomplete="email" />
-        </div>
+        <section class="uidPanel" id="uidPanel" hidden aria-live="polite">
+          <div class="uidPanelHead">
+            <div>
+              <h2>Your User ID</h2>
+              <p>Copy this UID and keep it safe for fast member login.</p>
+            </div>
+            <button class="btn ghost uidCopyBtn" id="copyUidBtn" type="button">Copy UID</button>
+          </div>
+          <div class="uidValue" id="uidValue">—</div>
+        </section>
 
-        <div class="field">
-          <label for="password">Password</label>
-          <input id="password" type="password" placeholder="••••••••" autocomplete="current-password" />
-        </div>
+        <div class="msg" id="message" aria-live="polite">Sign up to receive your UID, then verify your email before entering the members lounge.</div>
 
-        <div class="row">
-          <button class="btn green" id="signinBtn">Sign In</button>
-          <button class="btn red" id="signupBtn">Create Account</button>
-        </div>
-
-        <button class="btn ghost" id="resendBtn" style="margin-top:10px;">Resend Verification Email</button>
-
-        <div class="msg" id="message">Awaiting signal…</div>
-
-        <div class="note">
-          If you sign in and it says verify: check inbox/spam, then click <b>Resend</b> after signing in once.
-          <br/>Need to change the link targets? Edit <b>index.html</b> buttons to point here.
-        </div>
-
-        <!-- Firebase scripts -->
-        <script type="module" src="js/firebase-init.js"></script>
-        <script type="module" src="js/guard.js"></script>
-        <script type="module" src="js/auth.js"></script>
-        <script src="js/story-engine.js"></script>
-        <script src="js/story-progress.js"></script>
+        <nav class="legalLinks" aria-label="Policy links">
+          <a href="terms.html">Terms</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="responsible-gambling.html">Responsible Gambling</a>
+        </nav>
       </section>
-    </div>
-  </div>
+    </section>
+  </main>
 
-<footer id="vv-footer"></footer>
-<script type="module" src="js/ui/topbar.js"></script>
-<script type="module" src="js/ui/footer.js"></script>
-<script src="js/nav.js"></script>
+  <footer id="vv-footer"></footer>
 
+  <script type="module" src="js/firebase-init.js"></script>
+  <script type="module" src="js/guard.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script src="js/story-engine.js"></script>
+  <script src="js/story-progress.js"></script>
+  <script type="module" src="js/ui/topbar.js"></script>
+  <script type="module" src="js/ui/footer.js"></script>
 </body>
 </html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Velvet Vault — Admin</title>
+
+  <meta name="vv-protected" content="true" />
+
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/pages/slots.css" />
+  <link rel="stylesheet" href="css/pages/members.css" />
+  <link rel="stylesheet" href="css/pages/admin.css" />
+
+  <script src="js/runtime-config.js" defer></script>
+</head>
+<body class="vvTheme">
+  <div id="vvBrandGlow" aria-hidden="true"></div>
+
+  <div class="vvShell">
+    <header class="vvTopbar">
+      <div class="vvTopbarLeft">
+        <a class="vvLogoLink" href="members.html" aria-label="Velvet Vault">
+          <span class="vvLogo">VELVET VAULT</span>
+          <span class="vvTag">Admin Console</span>
+        </a>
+      </div>
+
+      <nav class="vvNav">
+        <a class="vvNavItem" href="slots-lobby.html">Slots</a>
+        <a class="vvNavItem" href="members.html">Members</a>
+        <button id="adminLogoutBtn" class="vvNavItem vvNavDanger" type="button">Logout</button>
+      </nav>
+    </header>
+
+    <main class="vvAdminMain">
+      <section class="vvPanel vvAdminPanel">
+        <div class="vvAdminHeader">
+          <div>
+            <h1 class="vvPanelTitle">Pending Deposits</h1>
+            <p class="vvAdminSub">Manual approvals only. Cash and bonus authority stays in Functions.</p>
+          </div>
+          <button id="refreshDepositsBtn" class="vvSecondary" type="button">Refresh</button>
+        </div>
+        <div id="adminDepositList" class="vvAdminList" aria-live="polite"></div>
+      </section>
+
+      <section class="vvPanel vvAdminPanel">
+        <div class="vvAdminHeader">
+          <div>
+            <h1 class="vvPanelTitle">Pending Withdrawals</h1>
+            <p class="vvAdminSub">Approval and rejection use admin-only callables.</p>
+          </div>
+          <button id="refreshWithdrawalsBtn" class="vvSecondary" type="button">Refresh</button>
+        </div>
+        <div id="adminWithdrawalList" class="vvAdminList" aria-live="polite"></div>
+      </section>
+    </main>
+  </div>
+
+  <footer id="vv-footer"></footer>
+  <script type="module" src="js/firebase-init.js"></script>
+  <script type="module" src="js/guard.js"></script>
+  <script type="module" src="js/auth-store.js"></script>
+  <script type="module" src="js/admin.js"></script>
+  <script type="module" src="js/ui/footer.js"></script>
+  <script src="js/vv-bg-particles.js" defer></script>
+</body>
+</html>

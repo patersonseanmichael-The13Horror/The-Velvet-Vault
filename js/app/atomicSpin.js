@@ -24,6 +24,7 @@
     machineId,
     stakeCents,
     roundId,
+    spinSessionId,
     clientSeed,
     featureState,
     freeSpin
@@ -43,12 +44,18 @@
     }
 
     const finalRoundId = String(roundId || nextRoundId()).trim();
+    const finalSpinSessionId = String(
+      spinSessionId ||
+      (globalScope.crypto && typeof globalScope.crypto.randomUUID === "function"
+        ? globalScope.crypto.randomUUID()
+        : `spin_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`)
+    ).trim();
     const reserveAmount = freeSpin ? 0 : toInt(stakeCents, 0);
 
     await VaultEngine.reserveBet({
       roundId: finalRoundId,
       amount: reserveAmount,
-      meta: { game: "slots", machineId }
+      meta: { game: "slots", machineId, spinSessionId: finalSpinSessionId }
     });
 
     try {
@@ -63,6 +70,7 @@
           machineId,
           stake: toInt(stakeCents, 0),
           roundId: finalRoundId,
+          spinSessionId: finalSpinSessionId,
           clientSeed: String(clientSeed || ""),
           ...(featureState ? { state: featureState } : {})
         })
@@ -83,17 +91,34 @@
       await VaultEngine.settleBet({
         roundId: finalRoundId,
         payout,
-        meta: { game: "slots", machineId }
+        meta: {
+          game: "slots",
+          machineId,
+          spinSessionId: finalSpinSessionId,
+          resultHash: payload?.audit?.resultHash ?? payload?.audit?.hash ?? null
+        }
       });
 
       return {
         ok: true,
         roundId: finalRoundId,
+        spinSessionId: finalSpinSessionId,
         ...payload
       };
     } catch (error) {
       try {
         await VaultEngine.cancelBet({ roundId: finalRoundId, reason: "spin_failed" });
+      } catch {}
+      try {
+        await VaultEngine.logClientEvent?.({
+          type: "spin_error",
+          message: error?.message || "Spin failed.",
+          meta: {
+            roundId: finalRoundId,
+            spinSessionId: finalSpinSessionId,
+            machineId
+          }
+        });
       } catch {}
       throw error;
     }

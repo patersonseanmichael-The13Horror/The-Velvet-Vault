@@ -1,9 +1,15 @@
 const links = [
   { href: "index.html", label: "Home" },
+  { href: "login.html", label: "Login" },
   { href: "members.html", label: "Members" },
-  { href: "slots.html", label: "Slots" },
-  { href: "promotions.html", label: "Promotions" }
+  { href: "slots-lobby.html", label: "Slots" },
+  { href: "promotions.html", label: "Promotions" },
+  { href: "about.html", label: "About" }
 ];
+
+const activeAliases = {
+  "slots.html": "slots-lobby.html"
+};
 
 function currentName(){
   const path = (location.pathname.split("/").pop() || "index.html").toLowerCase();
@@ -14,7 +20,7 @@ export function renderTopbar(){
   const host = document.getElementById("vv-topbar");
   if(!host) return;
 
-  const cur = currentName();
+  const cur = activeAliases[currentName()] || currentName();
   host.innerHTML = `
     <div class="vv-topbar">
       <div class="vv-container vv-nav">

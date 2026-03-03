@@ -116,6 +116,7 @@ const vvSettleBet = httpsCallable(fx, "vvSettleBet");
 const vvCancelBet = httpsCallable(fx, "vvCancelBet");
 const vvCreateDepositRequest = httpsCallable(fx, "vvCreateDepositRequest");
 const vvCreateWithdrawalRequest = httpsCallable(fx, "vvCreateWithdrawalRequest");
+const vvLogClientEvent = httpsCallable(fx, "vvLogClientEvent");
 const vvSpin = httpsCallable(fx, "vvSpin");
 
 let unsubUser = null;
@@ -431,6 +432,30 @@ async function createWithdrawalRequest(request) {
   return res.data || { ok: true };
 }
 
+async function logClientEvent(request) {
+  if (!state.user) {
+    return { ok: false };
+  }
+
+  const type = safeStr(request?.type || "", 80);
+  const message = safeStr(request?.message || "", 500);
+  const meta =
+    request?.meta && typeof request.meta === "object" && !Array.isArray(request.meta)
+      ? request.meta
+      : null;
+
+  if (!type || !message) {
+    return { ok: false };
+  }
+
+  try {
+    const res = await vvLogClientEvent({ type, message, meta });
+    return res.data || { ok: true };
+  } catch {
+    return { ok: false };
+  }
+}
+
 function subscribe(fn) {
   if (typeof fn !== "function") return () => {};
   subs.add(fn);
@@ -462,6 +487,7 @@ window.VaultEngine = {
   getWalletMeta,
   createDepositRequest,
   createWithdrawalRequest,
+  logClientEvent,
   reserveBet,
   settleBet,
   cancelBet,

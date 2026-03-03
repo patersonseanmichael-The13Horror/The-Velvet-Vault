@@ -204,6 +204,7 @@ body.vvModalOpen {
 
 .vvTicker {
   margin-top: 18px;
+  min-height: 62px;
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -481,6 +482,10 @@ body.vvModalOpen {
   display: grid;
   gap: 12px;
   margin-top: 18px;
+  min-height: 320px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 6px;
 }
 
 .vvHistoryRow {
@@ -492,6 +497,10 @@ body.vvModalOpen {
 
 .vvHistoryType {
   font-weight: 700;
+}
+
+.vvHistoryAmt.isNegative {
+  color: #ffc3d1;
 }
 
 @keyframes vvGlowPulse {

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Velvet Vault — About</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/pages/legal.css" />
+</head>
+<body class="vvTheme">
+  <div id="vv-topbar"></div>
+  <main class="vvLegalShell">
+    <section class="vvLegalHero">
+      <div class="vvLegalKicker">About Velvet Vault</div>
+      <h1 class="vvLegalTitle">VIP Noir Slots Club</h1>
+      <p class="vvLegalLead">
+        Velvet Vault is a slots-only experience built around a hybrid architecture: Firebase Cloud Functions hold wallet authority, Render computes outcomes, and the frontend stays fast and static.
+      </p>
+    </section>
+
+    <section class="vvLegalGrid">
+      <article class="vvLegalCard">
+        <h2>What It Is</h2>
+        <p>Members move from the VIP hub into the Slots Lobby, choose a machine, and play through an atomic reserve-spin-settle flow.</p>
+      </article>
+      <article class="vvLegalCard">
+        <h2>How It Works</h2>
+        <p>Balances are authoritative in Firebase. The slot server never edits money. The frontend only orchestrates the secure flow.</p>
+      </article>
+      <article class="vvLegalCard">
+        <h2>Why Slots Only</h2>
+        <p>The current product focus is clarity, control, and polish around a single game category without table-game drift.</p>
+      </article>
+      <article class="vvLegalCard">
+        <h2>Next Stop</h2>
+        <div class="vvLegalActions">
+          <a class="vv-btn" href="login.html">Login</a>
+          <a class="vv-btn" href="slots-lobby.html">Open Slots Lobby</a>
+        </div>
+      </article>
+    </section>
+  </main>
+  <footer id="vv-footer"></footer>
+  <script src="js/story-engine.js"></script>
+  <script type="module" src="js/ui/topbar.js"></script>
+  <script type="module" src="js/ui/footer.js"></script>
+</body>
+</html>

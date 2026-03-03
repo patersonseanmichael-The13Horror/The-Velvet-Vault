@@ -1,0 +1,101 @@
+body.vvTheme {
+  min-height: 100vh;
+  margin: 0;
+  color: #f7efe7;
+  background:
+    linear-gradient(180deg, rgba(9, 5, 14, 0.4), rgba(9, 5, 14, 0.82)),
+    url("../../images/bg/vip-noir-bg.webp") center / cover no-repeat fixed;
+}
+
+.vvLegalShell {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, calc(100vw - 28px));
+  margin: 0 auto;
+  padding: 24px 0 44px;
+}
+
+.vvLegalHero,
+.vvLegalCard {
+  background: linear-gradient(180deg, rgba(18, 11, 26, 0.88), rgba(10, 7, 15, 0.94));
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.vvLegalHero {
+  padding: 32px;
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.vvLegalKicker {
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245, 239, 233, 0.62);
+  font-size: 0.8rem;
+}
+
+.vvLegalTitle {
+  margin: 0;
+  font-family: var(--vv-font-display, Georgia, serif);
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.vvLegalLead {
+  margin: 0;
+  max-width: 72ch;
+  color: rgba(245, 239, 233, 0.78);
+  line-height: 1.7;
+}
+
+.vvLegalGrid {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 24px;
+}
+
+.vvLegalCard {
+  padding: 24px;
+}
+
+.vvLegalCard h2 {
+  margin: 0 0 12px;
+  font-family: var(--vv-font-display, Georgia, serif);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.vvLegalCard p,
+.vvLegalCard li {
+  color: rgba(245, 239, 233, 0.78);
+  line-height: 1.7;
+}
+
+.vvLegalCard ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.vvLegalActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.vvLegalActions a {
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .vvLegalGrid {
+    grid-template-columns: 1fr;
+  }
+}
