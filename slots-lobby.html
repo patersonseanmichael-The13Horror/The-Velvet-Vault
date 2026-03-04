@@ -36,9 +36,60 @@
           <span>Slots Lobby</span>
         </div>
         <h1 class="vvHeroTitle">Choose Your Velvet Grade</h1>
-        <p>
-          Velvet Grade cabinets are now registry-driven. Pick any VG machine and launch the mapped slot client instantly.
-        </p>
+        <p>30 Velvet Grade cabinets — each with a distinct theme, layout, and feature set. Select any machine to launch instantly.</p>
+      </section>
+
+      <!-- ── Lobby Controls ──────────────────────────────────── -->
+      <section class="vvLobbyControls" aria-label="Filter and sort machines">
+        <div class="vvLobbyControlsRow">
+          <label class="vvLobbySearchWrap" aria-label="Search machines">
+            <span class="vvLobbySearchIcon" aria-hidden="true">&#9906;</span>
+            <input
+              id="vgSearch"
+              class="vvLobbySearch"
+              type="search"
+              placeholder="Search machines…"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </label>
+
+          <select id="vgFilterTheme" class="vvLobbySelect" aria-label="Filter by theme">
+            <option value="">All Themes</option>
+            <option value="noir">Noir</option>
+            <option value="neon">Neon</option>
+            <option value="gold">Gold</option>
+            <option value="diamond">Diamond</option>
+            <option value="crimson">Crimson</option>
+          </select>
+
+          <select id="vgFilterLayout" class="vvLobbySelect" aria-label="Filter by layout">
+            <option value="">All Layouts</option>
+            <option value="classic">Classic (5×3)</option>
+            <option value="feature">Feature Expand / Contract</option>
+          </select>
+
+          <select id="vgSort" class="vvLobbySelect" aria-label="Sort machines">
+            <option value="featured">Featured</option>
+            <option value="az">A → Z</option>
+            <option value="newest">Newest</option>
+            <option value="theme">By Theme</option>
+          </select>
+
+          <label class="vvLobbyToggle" title="Show flagship machines only (VG-01 to VG-04)">
+            <input id="vgFlagshipOnly" type="checkbox" />
+            <span class="vvLobbyToggleTrack" aria-hidden="true"></span>
+            <span class="vvLobbyToggleLabel">Flagship only</span>
+          </label>
+
+          <label class="vvLobbyToggle" title="Reduce animations for accessibility">
+            <input id="vgReducedMotion" type="checkbox" />
+            <span class="vvLobbyToggleTrack" aria-hidden="true"></span>
+            <span class="vvLobbyToggleLabel">Reduced motion</span>
+          </label>
+        </div>
+
+        <div id="vgResultCount" class="vvLobbyResultCount" aria-live="polite" aria-atomic="true"></div>
       </section>
 
       <section class="vvLobbyGridWrap">

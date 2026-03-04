@@ -1,0 +1,26 @@
+{
+  "machineId": "VG-12",
+  "title": "Luxe Mirage",
+  "theme": "gold",
+  "accentColor": "#d4a017",
+  "secondaryColor": "#ffe082",
+  "skinClass": "vv-theme-vg-12",
+  "symbols": [
+    { "key": "maze-crown",     "path": "images/slots/vg/VG-12/symbols/maze-crown.png",     "tier": "premium", "glowColor": "#ffe082", "label": "Maze Crown" },
+    { "key": "crystal-ball",   "path": "images/slots/vg/VG-12/symbols/crystal-ball.png",   "tier": "premium", "glowColor": "#d4a017", "label": "Crystal Ball" },
+    { "key": "labyrinth-key",  "path": "images/slots/vg/VG-12/symbols/labyrinth-key.png",  "tier": "high",    "glowColor": "#c09010", "label": "Labyrinth Key" },
+    { "key": "gold-compass",   "path": "images/slots/vg/VG-12/symbols/gold-compass.png",   "tier": "high",    "glowColor": "#d4a017", "label": "Gold Compass" },
+    { "key": "maze-gem",       "path": "images/slots/vg/VG-12/symbols/maze-gem.png",       "tier": "mid",     "glowColor": "#b08020", "label": "Maze Gem" },
+    { "key": "labyrinth-mask", "path": "images/slots/vg/VG-12/symbols/labyrinth-mask.png", "tier": "mid",     "glowColor": "#c09010", "label": "Labyrinth Mask" },
+    { "key": "card-a",         "path": "images/slots/vg/VG-12/symbols/card-a.png",         "tier": "mid",     "glowColor": "#d4a017", "label": "Ace" },
+    { "key": "card-k",         "path": "images/slots/vg/VG-12/symbols/card-k.png",         "tier": "low",     "glowColor": "#c09010", "label": "King" },
+    { "key": "card-q",         "path": "images/slots/vg/VG-12/symbols/card-q.png",         "tier": "low",     "glowColor": "#b08010", "label": "Queen" },
+    { "key": "card-j",         "path": "images/slots/vg/VG-12/symbols/card-j.png",         "tier": "low",     "glowColor": "#a07010", "label": "Jack" },
+    { "key": "card-10",        "path": "images/slots/vg/VG-12/symbols/card-10.png",        "tier": "low",     "glowColor": "#906010", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "MIRAGE LOCK",    "detail": "Golden icons locked in the mirage" },
+    "freespins":  { "title": "LUXE SPINS",     "detail": "Free spins through the labyrinth" },
+    "jackpot":    { "title": "LUXE MIRAGE",    "detail": "The golden vault reveals itself" }
+  }
+}

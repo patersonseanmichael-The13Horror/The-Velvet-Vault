@@ -1,0 +1,25 @@
+{
+  "machineId": "VG-14",
+  "title": "Opal Underground",
+  "theme": "opal",
+  "accentColor": "#a78bfa",
+  "secondaryColor": "#c4b5fd",
+  "skinClass": "vv-theme-vg-14",
+  "symbols": [
+    { "key": "mirage-crown",  "path": "images/slots/vg/VG-14/symbols/mirage-crown.png",  "tier": "premium", "glowColor": "#c4b5fd", "label": "Mirage Crown" },
+    { "key": "sand-diamond",  "path": "images/slots/vg/VG-14/symbols/sand-diamond.png",  "tier": "premium", "glowColor": "#a78bfa", "label": "Sand Diamond" },
+    { "key": "golden-scarab", "path": "images/slots/vg/VG-14/symbols/golden-scarab.png", "tier": "high",    "glowColor": "#9070e0", "label": "Golden Scarab" },
+    { "key": "oasis-palm",    "path": "images/slots/vg/VG-14/symbols/oasis-palm.png",    "tier": "high",    "glowColor": "#a78bfa", "label": "Oasis Palm" },
+    { "key": "mirage-mask",   "path": "images/slots/vg/VG-14/symbols/mirage-mask.png",   "tier": "mid",     "glowColor": "#8060c0", "label": "Mirage Mask" },
+    { "key": "card-a",        "path": "images/slots/vg/VG-14/symbols/card-a.png",        "tier": "mid",     "glowColor": "#a78bfa", "label": "Ace" },
+    { "key": "card-k",        "path": "images/slots/vg/VG-14/symbols/card-k.png",        "tier": "low",     "glowColor": "#9070d0", "label": "King" },
+    { "key": "card-q",        "path": "images/slots/vg/VG-14/symbols/card-q.png",        "tier": "low",     "glowColor": "#8060c0", "label": "Queen" },
+    { "key": "card-j",        "path": "images/slots/vg/VG-14/symbols/card-j.png",        "tier": "low",     "glowColor": "#7050b0", "label": "Jack" },
+    { "key": "card-10",       "path": "images/slots/vg/VG-14/symbols/card-10.png",       "tier": "low",     "glowColor": "#6040a0", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "UNDERGROUND LOCK", "detail": "Opal icons locked in the underground" },
+    "freespins":  { "title": "OPAL SPINS",       "detail": "Free spins through the oasis" },
+    "jackpot":    { "title": "OPAL UNDERGROUND", "detail": "The hidden vault surfaces" }
+  }
+}

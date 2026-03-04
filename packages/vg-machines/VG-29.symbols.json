@@ -1,0 +1,26 @@
+{
+  "machineId": "VG-29",
+  "title": "Royal Heist",
+  "theme": "crimson",
+  "accentColor": "#991b1b",
+  "secondaryColor": "#fca5a5",
+  "skinClass": "vv-theme-vg-29",
+  "symbols": [
+    { "key": "royal-seal",   "path": "images/slots/vg/VG-29/symbols/royal-seal.png",   "tier": "premium", "glowColor": "#fca5a5", "label": "Royal Seal" },
+    { "key": "vault-door",   "path": "images/slots/vg/VG-29/symbols/vault-door.png",   "tier": "premium", "glowColor": "#ef4444", "label": "Vault Door" },
+    { "key": "crown-key",    "path": "images/slots/vg/VG-29/symbols/crown-key.png",    "tier": "high",    "glowColor": "#dc2626", "label": "Crown Key" },
+    { "key": "heist-mask",   "path": "images/slots/vg/VG-29/symbols/heist-mask.png",   "tier": "high",    "glowColor": "#b91c1c", "label": "Heist Mask" },
+    { "key": "gold-bar",     "path": "images/slots/vg/VG-29/symbols/gold-bar.png",     "tier": "mid",     "glowColor": "#991b1b", "label": "Gold Bar" },
+    { "key": "laser-line",   "path": "images/slots/vg/VG-29/symbols/laser-line.png",   "tier": "mid",     "glowColor": "#7f1d1d", "label": "Laser Line" },
+    { "key": "card-a",       "path": "images/slots/vg/VG-29/symbols/card-a.png",       "tier": "mid",     "glowColor": "#ef4444", "label": "Ace" },
+    { "key": "card-k",       "path": "images/slots/vg/VG-29/symbols/card-k.png",       "tier": "low",     "glowColor": "#dc2626", "label": "King" },
+    { "key": "card-q",       "path": "images/slots/vg/VG-29/symbols/card-q.png",       "tier": "low",     "glowColor": "#b91c1c", "label": "Queen" },
+    { "key": "card-j",       "path": "images/slots/vg/VG-29/symbols/card-j.png",       "tier": "low",     "glowColor": "#991b1b", "label": "Jack" },
+    { "key": "card-10",      "path": "images/slots/vg/VG-29/symbols/card-10.png",      "tier": "low",     "glowColor": "#7f1d1d", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "HEIST LOCK",   "detail": "Royal icons locked in the heist" },
+    "freespins":  { "title": "ROYAL SPINS",  "detail": "Free spins — the heist is in progress" },
+    "jackpot":    { "title": "ROYAL HEIST",  "detail": "The royal vault is cracked open" }
+  }
+}

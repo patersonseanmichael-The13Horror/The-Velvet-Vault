@@ -1,0 +1,25 @@
+{
+  "machineId": "VG-20",
+  "title": "Platinum Pulse",
+  "theme": "platinum",
+  "accentColor": "#e5e4e2",
+  "secondaryColor": "#f8f8ff",
+  "skinClass": "vv-theme-vg-20",
+  "symbols": [
+    { "key": "ascension-crown", "path": "images/slots/vg/VG-20/symbols/ascension-crown.png", "tier": "premium", "glowColor": "#f8f8ff", "label": "Ascension Crown" },
+    { "key": "velvet-diamond",  "path": "images/slots/vg/VG-20/symbols/velvet-diamond.png",  "tier": "premium", "glowColor": "#e5e4e2", "label": "Velvet Diamond" },
+    { "key": "gold-crown",      "path": "images/slots/vg/VG-20/symbols/gold-crown.png",      "tier": "high",    "glowColor": "#d4d4d4", "label": "Gold Crown" },
+    { "key": "ascension-orb",   "path": "images/slots/vg/VG-20/symbols/ascension-orb.png",   "tier": "high",    "glowColor": "#e5e4e2", "label": "Ascension Orb" },
+    { "key": "vault-seal",      "path": "images/slots/vg/VG-20/symbols/vault-seal.png",      "tier": "mid",     "glowColor": "#c0c0c0", "label": "Vault Seal" },
+    { "key": "card-a",          "path": "images/slots/vg/VG-20/symbols/card-a.png",          "tier": "mid",     "glowColor": "#e5e4e2", "label": "Ace" },
+    { "key": "card-k",          "path": "images/slots/vg/VG-20/symbols/card-k.png",          "tier": "low",     "glowColor": "#c8c8c8", "label": "King" },
+    { "key": "card-q",          "path": "images/slots/vg/VG-20/symbols/card-q.png",          "tier": "low",     "glowColor": "#b0b0b0", "label": "Queen" },
+    { "key": "card-j",          "path": "images/slots/vg/VG-20/symbols/card-j.png",          "tier": "low",     "glowColor": "#989898", "label": "Jack" },
+    { "key": "card-10",         "path": "images/slots/vg/VG-20/symbols/card-10.png",         "tier": "low",     "glowColor": "#808080", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "PULSE LOCK",      "detail": "Platinum icons locked in the pulse" },
+    "freespins":  { "title": "PLATINUM SPINS",  "detail": "Free spins at platinum frequency" },
+    "jackpot":    { "title": "PLATINUM PULSE",  "detail": "The platinum vault resonates" }
+  }
+}

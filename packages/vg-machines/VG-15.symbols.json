@@ -1,0 +1,25 @@
+{
+  "machineId": "VG-15",
+  "title": "Gilded Whisper",
+  "theme": "gold",
+  "accentColor": "#b8960c",
+  "secondaryColor": "#f0d060",
+  "skinClass": "vv-theme-vg-15",
+  "symbols": [
+    { "key": "throne-crown",   "path": "images/slots/vg/VG-15/symbols/throne-crown.png",   "tier": "premium", "glowColor": "#f0d060", "label": "Throne Crown" },
+    { "key": "purple-diamond", "path": "images/slots/vg/VG-15/symbols/purple-diamond.png", "tier": "premium", "glowColor": "#b8960c", "label": "Purple Diamond" },
+    { "key": "royal-sceptre",  "path": "images/slots/vg/VG-15/symbols/royal-sceptre.png",  "tier": "high",    "glowColor": "#c8a010", "label": "Royal Sceptre" },
+    { "key": "velvet-throne",  "path": "images/slots/vg/VG-15/symbols/velvet-throne.png",  "tier": "high",    "glowColor": "#b8960c", "label": "Velvet Throne" },
+    { "key": "velvet-rose",    "path": "images/slots/vg/VG-15/symbols/velvet-rose.png",    "tier": "mid",     "glowColor": "#a07808", "label": "Velvet Rose" },
+    { "key": "card-a",         "path": "images/slots/vg/VG-15/symbols/card-a.png",         "tier": "mid",     "glowColor": "#b8960c", "label": "Ace" },
+    { "key": "card-k",         "path": "images/slots/vg/VG-15/symbols/card-k.png",         "tier": "low",     "glowColor": "#a07808", "label": "King" },
+    { "key": "card-q",         "path": "images/slots/vg/VG-15/symbols/card-q.png",         "tier": "low",     "glowColor": "#906006", "label": "Queen" },
+    { "key": "card-j",         "path": "images/slots/vg/VG-15/symbols/card-j.png",         "tier": "low",     "glowColor": "#805004", "label": "Jack" },
+    { "key": "card-10",        "path": "images/slots/vg/VG-15/symbols/card-10.png",        "tier": "low",     "glowColor": "#704002", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "WHISPER LOCK",   "detail": "Gilded icons locked in silence" },
+    "freespins":  { "title": "GILDED SPINS",   "detail": "Free spins on the velvet throne" },
+    "jackpot":    { "title": "GILDED WHISPER", "detail": "The throne room vault opens" }
+  }
+}

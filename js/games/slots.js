@@ -756,6 +756,15 @@
 
   holdWinClose.addEventListener("click", ()=>closeModal(holdWinModal));
   holdWinModal.addEventListener("click", (e)=>{ if (e.target===holdWinModal) closeModal(holdWinModal); });
+  // ESC key closes top-most open modal
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    const openModals = Array.from(document.querySelectorAll(".vvModal.open"));
+    if (openModals.length > 0) {
+      e.preventDefault();
+      closeModal(openModals[openModals.length - 1]);
+    }
+  });
 
   function formatMoney(value){
     if (window.VaultEngine?.formatAUD) return window.VaultEngine.formatAUD(value);

@@ -1,0 +1,26 @@
+{
+  "machineId": "VG-24",
+  "title": "Sapphire Nightfall",
+  "theme": "diamond",
+  "accentColor": "#1e40af",
+  "secondaryColor": "#60a5fa",
+  "skinClass": "vv-theme-vg-24",
+  "symbols": [
+    { "key": "blue-crown",     "path": "images/slots/vg/VG-24/symbols/blue-crown.png",     "tier": "premium", "glowColor": "#60a5fa", "label": "Blue Crown" },
+    { "key": "sapphire-gem",   "path": "images/slots/vg/VG-24/symbols/sapphire-gem.png",   "tier": "premium", "glowColor": "#3b82f6", "label": "Sapphire Gem" },
+    { "key": "night-moon",     "path": "images/slots/vg/VG-24/symbols/night-moon.png",     "tier": "high",    "glowColor": "#60a5fa", "label": "Night Moon" },
+    { "key": "silk-mask",      "path": "images/slots/vg/VG-24/symbols/silk-mask.png",      "tier": "high",    "glowColor": "#1e40af", "label": "Silk Mask" },
+    { "key": "midnight-chip",  "path": "images/slots/vg/VG-24/symbols/midnight-chip.png",  "tier": "mid",     "glowColor": "#1e3a8a", "label": "Midnight Chip" },
+    { "key": "vault-orb",      "path": "images/slots/vg/VG-24/symbols/vault-orb.png",      "tier": "mid",     "glowColor": "#1d4ed8", "label": "Vault Orb" },
+    { "key": "card-a",         "path": "images/slots/vg/VG-24/symbols/card-a.png",         "tier": "mid",     "glowColor": "#3b82f6", "label": "Ace" },
+    { "key": "card-k",         "path": "images/slots/vg/VG-24/symbols/card-k.png",         "tier": "low",     "glowColor": "#2563eb", "label": "King" },
+    { "key": "card-q",         "path": "images/slots/vg/VG-24/symbols/card-q.png",         "tier": "low",     "glowColor": "#1d4ed8", "label": "Queen" },
+    { "key": "card-j",         "path": "images/slots/vg/VG-24/symbols/card-j.png",         "tier": "low",     "glowColor": "#1e40af", "label": "Jack" },
+    { "key": "card-10",        "path": "images/slots/vg/VG-24/symbols/card-10.png",        "tier": "low",     "glowColor": "#1e3a8a", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "NIGHTFALL LOCK",     "detail": "Sapphire icons locked at nightfall" },
+    "freespins":  { "title": "SAPPHIRE SPINS",     "detail": "Free spins under the sapphire moon" },
+    "jackpot":    { "title": "SAPPHIRE NIGHTFALL", "detail": "The sapphire vault opens at midnight" }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "machineId": "VG-22",
+  "title": "Obsidian Fortune",
+  "theme": "noir",
+  "accentColor": "#1a1a2e",
+  "secondaryColor": "#6b21a8",
+  "skinClass": "vv-theme-vg-22",
+  "symbols": [
+    { "key": "shadow-crown",   "path": "images/slots/vg/VG-22/symbols/shadow-crown.png",   "tier": "premium", "glowColor": "#6b21a8", "label": "Shadow Crown" },
+    { "key": "obsidian-gem",   "path": "images/slots/vg/VG-22/symbols/obsidian-gem.png",   "tier": "premium", "glowColor": "#7c3aed", "label": "Obsidian Gem" },
+    { "key": "vault-eye",      "path": "images/slots/vg/VG-22/symbols/vault-eye.png",      "tier": "high",    "glowColor": "#5b21b6", "label": "Vault Eye" },
+    { "key": "noir-mask",      "path": "images/slots/vg/VG-22/symbols/noir-mask.png",      "tier": "high",    "glowColor": "#6b21a8", "label": "Noir Mask" },
+    { "key": "keycard",        "path": "images/slots/vg/VG-22/symbols/keycard.png",        "tier": "mid",     "glowColor": "#4c1d95", "label": "Keycard" },
+    { "key": "obsidian-coin",  "path": "images/slots/vg/VG-22/symbols/obsidian-coin.png",  "tier": "mid",     "glowColor": "#3b1578", "label": "Obsidian Coin" },
+    { "key": "card-a",         "path": "images/slots/vg/VG-22/symbols/card-a.png",         "tier": "mid",     "glowColor": "#6b21a8", "label": "Ace" },
+    { "key": "card-k",         "path": "images/slots/vg/VG-22/symbols/card-k.png",         "tier": "low",     "glowColor": "#5b21b6", "label": "King" },
+    { "key": "card-q",         "path": "images/slots/vg/VG-22/symbols/card-q.png",         "tier": "low",     "glowColor": "#4c1d95", "label": "Queen" },
+    { "key": "card-j",         "path": "images/slots/vg/VG-22/symbols/card-j.png",         "tier": "low",     "glowColor": "#3b1578", "label": "Jack" },
+    { "key": "card-10",        "path": "images/slots/vg/VG-22/symbols/card-10.png",        "tier": "low",     "glowColor": "#2a1060", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "OBSIDIAN LOCK",    "detail": "Dark icons locked in obsidian" },
+    "freespins":  { "title": "SHADOW SPINS",     "detail": "Free spins in the obsidian dark" },
+    "jackpot":    { "title": "OBSIDIAN FORTUNE", "detail": "The dark vault reveals its fortune" }
+  }
+}

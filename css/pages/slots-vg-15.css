@@ -1,0 +1,131 @@
+/* ============================================================
+ * css/pages/slots-vg-15.css
+ * Gilded Whisper — VG-15 theme overrides
+ * ============================================================ */
+
+/* ── CSS variable injection ────────────────────────────────── */
+body.vv-theme-vg-15 {
+  --vg-accent:    #b8960c;
+  --vg-secondary: #f0d060;
+  --vg-glow:      #b8960c;
+}
+/* ── Cabinet / machine wrapper ─────────────────────────────── */
+body.vv-theme-vg-15 .vvMachineWrap,
+body.vv-theme-vg-15 .vvCabinet {
+  background: radial-gradient(ellipse at 50% 30%, #080600 0%, #040300 100%);
+  border-color: var(--vg-accent);
+  box-shadow: 0 0 40px rgba(184,150,12, 0.3), inset 0 0 20px rgba(184,150,12, 0.08);
+}
+/* ── Reel window ───────────────────────────────────────────── */
+body.vv-theme-vg-15 .reelWindow,
+body.vv-theme-vg-15 .reelCol {
+  border-color: rgba(184,150,12, 0.35);
+  box-shadow: inset 0 0 12px rgba(184,150,12, 0.12);
+}
+/* ── Spinning reel glow ────────────────────────────────────── */
+body.vv-theme-vg-15 .reelCol.is-spinning {
+  box-shadow: inset 0 0 18px rgba(184,150,12, 0.35), 0 0 8px rgba(184,150,12, 0.2);
+}
+/* ── Reel settle bounce ────────────────────────────────────── */
+@keyframes vvWhisperSettle {
+  0%   { transform: translateY(0); }
+  20%  { transform: translateY(-9px); }
+  45%  { transform: translateY(5px); }
+  70%  { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+body.vv-theme-vg-15 .reelCol.is-settling {
+  animation: vvWhisperSettle 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+/* ── Symbol images ─────────────────────────────────────────── */
+body.vv-theme-vg-15 .symImg {
+  max-width: 82%;
+  max-height: 82%;
+  filter: drop-shadow(0 0 4px rgba(184,150,12, 0.5));
+  transition: filter 0.2s ease;
+}
+body.vv-theme-vg-15 .symCell[data-tier="premium"] .symImg {
+  filter: drop-shadow(0 0 12px rgba(240,208,96, 0.95)) drop-shadow(0 0 5px rgba(184,150,12, 0.8));
+}
+body.vv-theme-vg-15 .symCell[data-tier="high"] .symImg {
+  filter: drop-shadow(0 0 8px rgba(184,150,12, 0.7));
+}
+body.vv-theme-vg-15 .symCell[data-tier="mid"] .symImg {
+  filter: drop-shadow(0 0 5px rgba(184,150,12, 0.5));
+}
+/* ── Win cell highlight ────────────────────────────────────── */
+@keyframes vvWhisperPulse {
+  0%, 100% { box-shadow: inset 0 0 12px rgba(184,150,12, 0.4); }
+  50%       { box-shadow: inset 0 0 30px rgba(240,208,96, 0.95); }
+}
+body.vv-theme-vg-15 .symCell.is-win {
+  animation: vvWhisperPulse 0.7s ease-in-out infinite;
+  background: rgba(184,150,12, 0.1);
+}
+/* ── HUD / balance display ─────────────────────────────────── */
+body.vv-theme-vg-15 .vvHudBalance,
+body.vv-theme-vg-15 .vvBalanceDisplay {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 8px var(--vg-accent);
+}
+body.vv-theme-vg-15 .vvHudLabel { color: var(--vg-accent); }
+/* ── Spin button ───────────────────────────────────────────── */
+body.vv-theme-vg-15 #spinBtn,
+body.vv-theme-vg-15 .vvSpinBtn {
+  background: linear-gradient(135deg, #080600 0%, #040300 100%);
+  border: 2px solid var(--vg-accent);
+  color: var(--vg-secondary);
+  box-shadow: 0 0 16px rgba(184,150,12, 0.3);
+}
+body.vv-theme-vg-15 #spinBtn:hover,
+body.vv-theme-vg-15 .vvSpinBtn:hover {
+  box-shadow: 0 0 28px rgba(240,208,96, 0.7);
+  border-color: var(--vg-secondary);
+}
+/* ── Win tier overlays ─────────────────────────────────────── */
+body.vv-theme-vg-15 .vvWinFrame,
+body.vv-theme-vg-15 #vvWinFrame {
+  background: radial-gradient(ellipse at 50% 40%, rgba(8,6,0, 0.97) 0%, rgba(4,3,0, 0.99) 100%);
+  border: 2px solid var(--vg-accent);
+  box-shadow: 0 0 40px rgba(184,150,12, 0.5), inset 0 0 20px rgba(184,150,12, 0.1);
+}
+body.vv-theme-vg-15 .vvWinFrame .vvWinTierLabel {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 20px var(--vg-accent), 0 0 8px rgba(240,208,96, 0.8);
+}
+body.vv-theme-vg-15 .vvWinFrame .vvWinAmount {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 12px rgba(240,208,96, 0.7);
+}
+@keyframes vvWhisperRoyalPulse {
+  0%   { text-shadow: 0 0 20px #b8960c, 0 0 40px #b8960c; }
+  50%  { text-shadow: 0 0 60px #f0d060, 0 0 120px #b8960c, 0 0 12px #fff; }
+  100% { text-shadow: 0 0 20px #b8960c, 0 0 40px #b8960c; }
+}
+body.vv-theme-vg-15 .vvWinFrame[data-tier="EXTRAVAGANT"] .vvWinTierLabel {
+  animation: vvWhisperRoyalPulse 1.0s ease-in-out infinite;
+}
+/* ── Feature frames ────────────────────────────────────────── */
+body.vv-theme-vg-15 .vvFeatureFrame,
+body.vv-theme-vg-15 #vvFeatureFrame {
+  background: radial-gradient(ellipse at 50% 30%, rgba(8,6,0, 0.97) 0%, rgba(4,3,0, 0.99) 100%);
+  border: 2px solid var(--vg-accent);
+  box-shadow: 0 0 50px rgba(184,150,12, 0.4), inset 0 0 25px rgba(184,150,12, 0.08);
+}
+body.vv-theme-vg-15 .vvFeatureFrame .vvFrameTitle {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 16px var(--vg-accent);
+}
+body.vv-theme-vg-15 .vvFeatureFrame .vvFrameDetail { color: var(--vg-accent); }
+/* ── Coin drop particles ───────────────────────────────────── */
+body.vv-theme-vg-15 .vvCoinDrop {
+  background: radial-gradient(circle, var(--vg-secondary) 30%, var(--vg-accent) 100%);
+  box-shadow: 0 0 8px var(--vg-glow);
+}
+/* ── Z-index enforcement ───────────────────────────────────── */
+body.vv-theme-vg-15 .symImg          { z-index: 10; }
+body.vv-theme-vg-15 .vvReelFx        { z-index: 20; }
+body.vv-theme-vg-15 .vvHud           { z-index: 30; }
+body.vv-theme-vg-15 .vvFeatureFrame,
+body.vv-theme-vg-15 .vvWinFrame      { z-index: 40; }
+body.vv-theme-vg-15 .vvModal         { z-index: 1900; }

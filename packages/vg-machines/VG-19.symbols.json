@@ -1,0 +1,25 @@
+{
+  "machineId": "VG-19",
+  "title": "The House Always Listens",
+  "theme": "noir",
+  "accentColor": "#374151",
+  "secondaryColor": "#9ca3af",
+  "skinClass": "vv-theme-vg-19",
+  "symbols": [
+    { "key": "silver-crown",    "path": "images/slots/vg/VG-19/symbols/silver-crown.png",    "tier": "premium", "glowColor": "#9ca3af", "label": "Silver Crown" },
+    { "key": "phantom-diamond", "path": "images/slots/vg/VG-19/symbols/phantom-diamond.png", "tier": "premium", "glowColor": "#6b7280", "label": "Phantom Diamond" },
+    { "key": "silver-mask",     "path": "images/slots/vg/VG-19/symbols/silver-mask.png",     "tier": "high",    "glowColor": "#9ca3af", "label": "Silver Mask" },
+    { "key": "mist-orb",        "path": "images/slots/vg/VG-19/symbols/mist-orb.png",        "tier": "high",    "glowColor": "#6b7280", "label": "Mist Orb" },
+    { "key": "ghost-key",       "path": "images/slots/vg/VG-19/symbols/ghost-key.png",       "tier": "mid",     "glowColor": "#4b5563", "label": "Ghost Key" },
+    { "key": "card-a",          "path": "images/slots/vg/VG-19/symbols/card-a.png",          "tier": "mid",     "glowColor": "#6b7280", "label": "Ace" },
+    { "key": "card-k",          "path": "images/slots/vg/VG-19/symbols/card-k.png",          "tier": "low",     "glowColor": "#4b5563", "label": "King" },
+    { "key": "card-q",          "path": "images/slots/vg/VG-19/symbols/card-q.png",          "tier": "low",     "glowColor": "#374151", "label": "Queen" },
+    { "key": "card-j",          "path": "images/slots/vg/VG-19/symbols/card-j.png",          "tier": "low",     "glowColor": "#1f2937", "label": "Jack" },
+    { "key": "card-10",         "path": "images/slots/vg/VG-19/symbols/card-10.png",         "tier": "low",     "glowColor": "#111827", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "HOUSE LOCK",     "detail": "The house locks its secrets in" },
+    "freespins":  { "title": "PHANTOM SPINS",  "detail": "Free spins — the house is listening" },
+    "jackpot":    { "title": "THE HOUSE WINS", "detail": "The vault reveals what it always knew" }
+  }
+}

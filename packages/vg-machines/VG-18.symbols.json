@@ -1,0 +1,25 @@
+{
+  "machineId": "VG-18",
+  "title": "Violet Exchange",
+  "theme": "violet",
+  "accentColor": "#7c3aed",
+  "secondaryColor": "#c4b5fd",
+  "skinClass": "vv-theme-vg-18",
+  "symbols": [
+    { "key": "obsidian-crown", "path": "images/slots/vg/VG-18/symbols/obsidian-crown.png", "tier": "premium", "glowColor": "#c4b5fd", "label": "Obsidian Crown" },
+    { "key": "dark-diamond",   "path": "images/slots/vg/VG-18/symbols/dark-diamond.png",   "tier": "premium", "glowColor": "#7c3aed", "label": "Dark Diamond" },
+    { "key": "raven-feather",  "path": "images/slots/vg/VG-18/symbols/raven-feather.png",  "tier": "high",    "glowColor": "#6d28d9", "label": "Raven Feather" },
+    { "key": "onyx-ring",      "path": "images/slots/vg/VG-18/symbols/onyx-ring.png",      "tier": "high",    "glowColor": "#7c3aed", "label": "Onyx Ring" },
+    { "key": "shadow-mask",    "path": "images/slots/vg/VG-18/symbols/shadow-mask.png",    "tier": "mid",     "glowColor": "#5b21b6", "label": "Shadow Mask" },
+    { "key": "card-a",         "path": "images/slots/vg/VG-18/symbols/card-a.png",         "tier": "mid",     "glowColor": "#7c3aed", "label": "Ace" },
+    { "key": "card-k",         "path": "images/slots/vg/VG-18/symbols/card-k.png",         "tier": "low",     "glowColor": "#6d28d9", "label": "King" },
+    { "key": "card-q",         "path": "images/slots/vg/VG-18/symbols/card-q.png",         "tier": "low",     "glowColor": "#5b21b6", "label": "Queen" },
+    { "key": "card-j",         "path": "images/slots/vg/VG-18/symbols/card-j.png",         "tier": "low",     "glowColor": "#4c1d95", "label": "Jack" },
+    { "key": "card-10",        "path": "images/slots/vg/VG-18/symbols/card-10.png",        "tier": "low",     "glowColor": "#3b1578", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "EXCHANGE LOCK",   "detail": "Violet icons locked in the exchange" },
+    "freespins":  { "title": "VIOLET SPINS",    "detail": "Free spins in the violet dark" },
+    "jackpot":    { "title": "VIOLET EXCHANGE", "detail": "The dark vault trades its secrets" }
+  }
+}

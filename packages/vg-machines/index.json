@@ -146,7 +146,7 @@
         ]
       },
       "theme": {
-        "vfxTheme": "heist",
+        "vfxTheme": "crimson",
         "frameTheme": "vg-04",
         "accentColor": "#ff2222",
         "secondaryColor": "#c9a84c",
@@ -273,7 +273,7 @@
         ]
       },
       "theme": {
-        "vfxTheme": "sapphire",
+        "vfxTheme": "diamond",
         "frameTheme": "vg-07",
         "accentColor": "#1565c0",
         "secondaryColor": "#90caf9",
@@ -357,7 +357,7 @@
         ]
       },
       "theme": {
-        "vfxTheme": "phantom",
+        "vfxTheme": "noir",
         "frameTheme": "vg-09",
         "accentColor": "#9c27b0",
         "secondaryColor": "#ce93d8",
@@ -399,7 +399,7 @@
         ]
       },
       "theme": {
-        "vfxTheme": "circuit",
+        "vfxTheme": "gold",
         "frameTheme": "vg-10",
         "accentColor": "#f5c842",
         "secondaryColor": "#ffe066",
@@ -423,7 +423,7 @@
       "id": "VG-11",
       "slug": "noir-boulevard",
       "title": "Noir Boulevard",
-      "subtitle": "Every corner hides a fortune.",
+      "subtitle": "The boulevard never sleeps. Neither do the reels.",
       "machineId": "emerald_heist",
       "layout": {
         "base": {
@@ -441,8 +441,14 @@
       },
       "theme": {
         "vfxTheme": "noir",
-        "frameTheme": "Noir",
-        "soundTheme": "Noir"
+        "frameTheme": "vg-11",
+        "soundTheme": "noir-jazz",
+        "accentColor": "#c9a84c",
+        "secondaryColor": "#f5e6c8",
+        "skinClass": "vv-theme-vg-11",
+        "accent": "noir",
+        "overlayStyle": "soft",
+        "frameStyle": "boulevard"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -453,15 +459,17 @@
       "assets": {
         "cardImage": "images/slots/vg/VG-11/card.png",
         "logoImage": "images/slots/vg/VG-11/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-11/symbols"
+        "symbolPackPath": "images/slots/vg/VG-11/symbols",
+        "symbolsManifest": "packages/vg-machines/VG-11.symbols.json"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-11.symbols.json"
     },
     {
       "id": "VG-12",
       "slug": "luxe-mirage",
       "title": "Luxe Mirage",
-      "subtitle": "Luxury that shimmers just out of reach.",
+      "subtitle": "Gold shimmers. Fortune appears. The mirage is real.",
       "machineId": "crimson_crown",
       "layout": {
         "base": {
@@ -479,8 +487,14 @@
       },
       "theme": {
         "vfxTheme": "gold",
-        "frameTheme": "Gold",
-        "soundTheme": "Gold"
+        "frameTheme": "vg-12",
+        "soundTheme": "mirage-ambient",
+        "accentColor": "#d4a017",
+        "secondaryColor": "#ffe082",
+        "skinClass": "vv-theme-vg-12",
+        "accent": "gold",
+        "overlayStyle": "shimmer",
+        "frameStyle": "mirage"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -491,15 +505,17 @@
       "assets": {
         "cardImage": "images/slots/vg/VG-12/card.png",
         "logoImage": "images/slots/vg/VG-12/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-12/symbols"
+        "symbolPackPath": "images/slots/vg/VG-12/symbols",
+        "symbolsManifest": "packages/vg-machines/VG-12.symbols.json"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-12.symbols.json"
     },
     {
       "id": "VG-13",
       "slug": "velvet-voltage",
       "title": "Velvet Voltage",
-      "subtitle": "Smooth on the surface. Electric underneath.",
+      "subtitle": "High voltage. Higher stakes. Pure electric luxury.",
       "machineId": "abyssal_pearls",
       "layout": {
         "base": {
@@ -517,8 +533,14 @@
       },
       "theme": {
         "vfxTheme": "neon",
-        "frameTheme": "Neon",
-        "soundTheme": "Neon"
+        "frameTheme": "vg-13",
+        "soundTheme": "voltage-pulse",
+        "accentColor": "#00e5ff",
+        "secondaryColor": "#b2ebf2",
+        "skinClass": "vv-theme-vg-13",
+        "accent": "neon",
+        "overlayStyle": "glitch",
+        "frameStyle": "voltage"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -529,15 +551,17 @@
       "assets": {
         "cardImage": "images/slots/vg/VG-13/card.png",
         "logoImage": "images/slots/vg/VG-13/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-13/symbols"
+        "symbolPackPath": "images/slots/vg/VG-13/symbols",
+        "symbolsManifest": "packages/vg-machines/VG-13.symbols.json"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-13.symbols.json"
     },
     {
       "id": "VG-14",
       "slug": "opal-underground",
       "title": "Opal Underground",
-      "subtitle": "Rare colours. Rare rewards.",
+      "subtitle": "Below the surface, opals glow and fortunes hide.",
       "machineId": "clockwork_vault",
       "layout": {
         "base": {
@@ -555,8 +579,14 @@
       },
       "theme": {
         "vfxTheme": "diamond",
-        "frameTheme": "Diamond",
-        "soundTheme": "Diamond"
+        "frameTheme": "vg-14",
+        "soundTheme": "underground-hum",
+        "accentColor": "#a78bfa",
+        "secondaryColor": "#c4b5fd",
+        "skinClass": "vv-theme-vg-14",
+        "accent": "opal",
+        "overlayStyle": "haze",
+        "frameStyle": "underground"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -567,15 +597,17 @@
       "assets": {
         "cardImage": "images/slots/vg/VG-14/card.png",
         "logoImage": "images/slots/vg/VG-14/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-14/symbols"
+        "symbolPackPath": "images/slots/vg/VG-14/symbols",
+        "symbolsManifest": "packages/vg-machines/VG-14.symbols.json"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-14.symbols.json"
     },
     {
       "id": "VG-15",
       "slug": "gilded-whisper",
       "title": "Gilded Whisper",
-      "subtitle": "Secrets worth their weight in gold.",
+      "subtitle": "Quiet luxury. The loudest wins say nothing.",
       "machineId": "velvet_noir",
       "layout": {
         "base": {
@@ -593,8 +625,14 @@
       },
       "theme": {
         "vfxTheme": "gold",
-        "frameTheme": "Gold",
-        "soundTheme": "Gold"
+        "frameTheme": "vg-15",
+        "soundTheme": "whisper-silk",
+        "accentColor": "#b8960c",
+        "secondaryColor": "#f0d060",
+        "skinClass": "vv-theme-vg-15",
+        "accent": "gold",
+        "overlayStyle": "soft",
+        "frameStyle": "whisper"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -605,15 +643,17 @@
       "assets": {
         "cardImage": "images/slots/vg/VG-15/card.png",
         "logoImage": "images/slots/vg/VG-15/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-15/symbols"
+        "symbolPackPath": "images/slots/vg/VG-15/symbols",
+        "symbolsManifest": "packages/vg-machines/VG-15.symbols.json"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-15.symbols.json"
     },
     {
       "id": "VG-16",
       "slug": "neon-relic",
       "title": "Neon Relic",
-      "subtitle": "Ancient symbols. Modern neon power.",
+      "subtitle": "Ancient power. Neon revival. The relic awakens.",
       "machineId": "cyber_sakura",
       "layout": {
         "base": {
@@ -631,8 +671,14 @@
       },
       "theme": {
         "vfxTheme": "neon",
-        "frameTheme": "Neon",
-        "soundTheme": "Neon"
+        "frameTheme": "vg-16",
+        "soundTheme": "relic-drone",
+        "accentColor": "#39ff14",
+        "secondaryColor": "#b9fbc0",
+        "skinClass": "vv-theme-vg-16",
+        "accent": "neon",
+        "overlayStyle": "pulse",
+        "frameStyle": "relic"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -643,15 +689,17 @@
       "assets": {
         "cardImage": "images/slots/vg/VG-16/card.png",
         "logoImage": "images/slots/vg/VG-16/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-16/symbols"
+        "symbolPackPath": "images/slots/vg/VG-16/symbols",
+        "symbolsManifest": "packages/vg-machines/VG-16.symbols.json"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-16.symbols.json"
     },
     {
       "id": "VG-17",
       "slug": "crown-and-chrome",
       "title": "Crown & Chrome",
-      "subtitle": "Royalty reimagined in steel and light.",
+      "subtitle": "Royal precision. Chrome finish. Unmatched elegance.",
       "machineId": "neon_pharaoh",
       "layout": {
         "base": {
@@ -668,9 +716,15 @@
         ]
       },
       "theme": {
-        "vfxTheme": "diamond",
-        "frameTheme": "Diamond",
-        "soundTheme": "Diamond"
+        "vfxTheme": "noir",
+        "frameTheme": "vg-17",
+        "soundTheme": "chrome-mechanical",
+        "accentColor": "#b0bec5",
+        "secondaryColor": "#eceff1",
+        "skinClass": "vv-theme-vg-17",
+        "accent": "chrome",
+        "overlayStyle": "metal",
+        "frameStyle": "chrome"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -681,15 +735,17 @@
       "assets": {
         "cardImage": "images/slots/vg/VG-17/card.png",
         "logoImage": "images/slots/vg/VG-17/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-17/symbols"
+        "symbolPackPath": "images/slots/vg/VG-17/symbols",
+        "symbolsManifest": "packages/vg-machines/VG-17.symbols.json"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-17.symbols.json"
     },
     {
       "id": "VG-18",
       "slug": "violet-exchange",
       "title": "Violet Exchange",
-      "subtitle": "The underground market for the elite.",
+      "subtitle": "The violet floor never closes. Trade in luxury.",
       "machineId": "emerald_heist",
       "layout": {
         "base": {
@@ -706,9 +762,15 @@
         ]
       },
       "theme": {
-        "vfxTheme": "crimson",
-        "frameTheme": "Crimson",
-        "soundTheme": "Crimson"
+        "vfxTheme": "neon",
+        "frameTheme": "vg-18",
+        "soundTheme": "exchange-hum",
+        "accentColor": "#7c3aed",
+        "secondaryColor": "#c4b5fd",
+        "skinClass": "vv-theme-vg-18",
+        "accent": "violet",
+        "overlayStyle": "shimmer",
+        "frameStyle": "exchange"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -719,13 +781,15 @@
       "assets": {
         "cardImage": "images/slots/vg/VG-18/card.png",
         "logoImage": "images/slots/vg/VG-18/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-18/symbols"
+        "symbolPackPath": "images/slots/vg/VG-18/symbols",
+        "symbolsManifest": "packages/vg-machines/VG-18.symbols.json"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-18.symbols.json"
     },
     {
       "id": "VG-19",
-      "slug": "house-listens",
+      "slug": "the-house-always-listens",
       "title": "The House Always Listens",
       "subtitle": "Every spin is heard. Every win remembered.",
       "machineId": "crimson_crown",
@@ -745,8 +809,14 @@
       },
       "theme": {
         "vfxTheme": "noir",
-        "frameTheme": "Noir",
-        "soundTheme": "Noir"
+        "frameTheme": "vg-19",
+        "soundTheme": "spy-noir",
+        "accentColor": "#374151",
+        "secondaryColor": "#9ca3af",
+        "skinClass": "vv-theme-vg-19",
+        "accent": "noir",
+        "overlayStyle": "haze",
+        "frameStyle": "house"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -757,15 +827,17 @@
       "assets": {
         "cardImage": "images/slots/vg/VG-19/card.png",
         "logoImage": "images/slots/vg/VG-19/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-19/symbols"
+        "symbolPackPath": "images/slots/vg/VG-19/symbols",
+        "symbolsManifest": "packages/vg-machines/VG-19.symbols.json"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-19.symbols.json"
     },
     {
       "id": "VG-20",
       "slug": "platinum-pulse",
       "title": "Platinum Pulse",
-      "subtitle": "Rare metal. Rarer moments.",
+      "subtitle": "Platinum precision. Every pulse a win.",
       "machineId": "abyssal_pearls",
       "layout": {
         "base": {
@@ -782,9 +854,15 @@
         ]
       },
       "theme": {
-        "vfxTheme": "diamond",
-        "frameTheme": "Diamond",
-        "soundTheme": "Diamond"
+        "vfxTheme": "noir",
+        "frameTheme": "vg-20",
+        "soundTheme": "platinum-beat",
+        "accentColor": "#e5e4e2",
+        "secondaryColor": "#f8f8ff",
+        "skinClass": "vv-theme-vg-20",
+        "accent": "platinum",
+        "overlayStyle": "pulse",
+        "frameStyle": "pulse"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -795,9 +873,11 @@
       "assets": {
         "cardImage": "images/slots/vg/VG-20/card.png",
         "logoImage": "images/slots/vg/VG-20/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-20/symbols"
+        "symbolPackPath": "images/slots/vg/VG-20/symbols",
+        "symbolsManifest": "packages/vg-machines/VG-20.symbols.json"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-20.symbols.json"
     },
     {
       "id": "VG-21",
@@ -820,8 +900,14 @@
       },
       "theme": {
         "vfxTheme": "gold",
-        "frameTheme": "Gold",
-        "soundTheme": "Gold"
+        "frameTheme": "vg-21",
+        "soundTheme": "halo-ambient",
+        "accentColor": "#f5c842",
+        "secondaryColor": "#fff0a0",
+        "skinClass": "vv-theme-vg-21",
+        "accent": "gold",
+        "overlayStyle": "shimmer",
+        "frameStyle": "halo"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -857,8 +943,14 @@
       },
       "theme": {
         "vfxTheme": "noir",
-        "frameTheme": "Noir",
-        "soundTheme": "Noir"
+        "frameTheme": "vg-22",
+        "soundTheme": "obsidian-drone",
+        "accentColor": "#6b21a8",
+        "secondaryColor": "#c4b5fd",
+        "skinClass": "vv-theme-vg-22",
+        "accent": "noir",
+        "overlayStyle": "haze",
+        "frameStyle": "obsidian"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -894,8 +986,14 @@
       },
       "theme": {
         "vfxTheme": "crimson",
-        "frameTheme": "Crimson",
-        "soundTheme": "Crimson"
+        "frameTheme": "vg-23",
+        "soundTheme": "metro-pulse",
+        "accentColor": "#dc143c",
+        "secondaryColor": "#ff6b6b",
+        "skinClass": "vv-theme-vg-23",
+        "accent": "crimson",
+        "overlayStyle": "pulse",
+        "frameStyle": "metro"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -931,8 +1029,14 @@
       },
       "theme": {
         "vfxTheme": "diamond",
-        "frameTheme": "Diamond",
-        "soundTheme": "Diamond"
+        "frameTheme": "vg-24",
+        "soundTheme": "nightfall-ambient",
+        "accentColor": "#1e40af",
+        "secondaryColor": "#60a5fa",
+        "skinClass": "vv-theme-vg-24",
+        "accent": "diamond",
+        "overlayStyle": "shimmer",
+        "frameStyle": "nightfall"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -968,8 +1072,14 @@
       },
       "theme": {
         "vfxTheme": "noir",
-        "frameTheme": "Noir",
-        "soundTheme": "Noir"
+        "frameTheme": "vg-25",
+        "soundTheme": "society-whisper",
+        "accentColor": "#d97706",
+        "secondaryColor": "#fbbf24",
+        "skinClass": "vv-theme-vg-25",
+        "accent": "noir",
+        "overlayStyle": "soft",
+        "frameStyle": "society"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -1004,9 +1114,15 @@
         ]
       },
       "theme": {
-        "vfxTheme": "crimson",
-        "frameTheme": "Crimson",
-        "soundTheme": "Crimson"
+        "vfxTheme": "neon",
+        "frameTheme": "vg-26",
+        "soundTheme": "vortex-pulse",
+        "accentColor": "#7c3aed",
+        "secondaryColor": "#ec4899",
+        "skinClass": "vv-theme-vg-26",
+        "accent": "violet",
+        "overlayStyle": "pulse",
+        "frameStyle": "vortex"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -1042,8 +1158,14 @@
       },
       "theme": {
         "vfxTheme": "gold",
-        "frameTheme": "Gold",
-        "soundTheme": "Gold"
+        "frameTheme": "vg-27",
+        "soundTheme": "train-rumble",
+        "accentColor": "#d97706",
+        "secondaryColor": "#fbbf24",
+        "skinClass": "vv-theme-vg-27",
+        "accent": "gold",
+        "overlayStyle": "shimmer",
+        "frameStyle": "train"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -1079,8 +1201,14 @@
       },
       "theme": {
         "vfxTheme": "diamond",
-        "frameTheme": "Diamond",
-        "soundTheme": "Diamond"
+        "frameTheme": "vg-28",
+        "soundTheme": "district-ambient",
+        "accentColor": "#e2e8f0",
+        "secondaryColor": "#f8fafc",
+        "skinClass": "vv-theme-vg-28",
+        "accent": "diamond",
+        "overlayStyle": "metal",
+        "frameStyle": "district"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -1116,8 +1244,14 @@
       },
       "theme": {
         "vfxTheme": "crimson",
-        "frameTheme": "Crimson",
-        "soundTheme": "Crimson"
+        "frameTheme": "vg-29",
+        "soundTheme": "heist-tension",
+        "accentColor": "#991b1b",
+        "secondaryColor": "#fca5a5",
+        "skinClass": "vv-theme-vg-29",
+        "accent": "crimson",
+        "overlayStyle": "pulse",
+        "frameStyle": "heist"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -1152,9 +1286,15 @@
         ]
       },
       "theme": {
-        "vfxTheme": "gold",
-        "frameTheme": "Gold",
-        "soundTheme": "Gold"
+        "vfxTheme": "noir",
+        "frameTheme": "vg-30",
+        "soundTheme": "ascension-ambient",
+        "accentColor": "#a78bfa",
+        "secondaryColor": "#e0f2fe",
+        "skinClass": "vv-theme-vg-30",
+        "accent": "platinum",
+        "overlayStyle": "shimmer",
+        "frameStyle": "ascension"
       },
       "tiersCents": {
         "bigMin": 1000,

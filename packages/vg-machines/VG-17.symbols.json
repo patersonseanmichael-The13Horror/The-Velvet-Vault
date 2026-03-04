@@ -1,0 +1,25 @@
+{
+  "machineId": "VG-17",
+  "title": "Crown & Chrome",
+  "theme": "chrome",
+  "accentColor": "#b0bec5",
+  "secondaryColor": "#eceff1",
+  "skinClass": "vv-theme-vg-17",
+  "symbols": [
+    { "key": "empire-crown",  "path": "images/slots/vg/VG-17/symbols/empire-crown.png",  "tier": "premium", "glowColor": "#eceff1", "label": "Empire Crown" },
+    { "key": "emerald-gem",   "path": "images/slots/vg/VG-17/symbols/emerald-gem.png",   "tier": "premium", "glowColor": "#b0bec5", "label": "Emerald Gem" },
+    { "key": "jade-mask",     "path": "images/slots/vg/VG-17/symbols/jade-mask.png",     "tier": "high",    "glowColor": "#90a4ae", "label": "Jade Mask" },
+    { "key": "emerald-chip",  "path": "images/slots/vg/VG-17/symbols/emerald-chip.png",  "tier": "high",    "glowColor": "#b0bec5", "label": "Emerald Chip" },
+    { "key": "forest-orb",    "path": "images/slots/vg/VG-17/symbols/forest-orb.png",    "tier": "mid",     "glowColor": "#78909c", "label": "Forest Orb" },
+    { "key": "card-a",        "path": "images/slots/vg/VG-17/symbols/card-a.png",        "tier": "mid",     "glowColor": "#b0bec5", "label": "Ace" },
+    { "key": "card-k",        "path": "images/slots/vg/VG-17/symbols/card-k.png",        "tier": "low",     "glowColor": "#90a4ae", "label": "King" },
+    { "key": "card-q",        "path": "images/slots/vg/VG-17/symbols/card-q.png",        "tier": "low",     "glowColor": "#78909c", "label": "Queen" },
+    { "key": "card-j",        "path": "images/slots/vg/VG-17/symbols/card-j.png",        "tier": "low",     "glowColor": "#607d8b", "label": "Jack" },
+    { "key": "card-10",       "path": "images/slots/vg/VG-17/symbols/card-10.png",       "tier": "low",     "glowColor": "#546e7a", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "CHROME LOCK",  "detail": "Chrome icons locked in the empire" },
+    "freespins":  { "title": "CROWN SPINS",  "detail": "Free spins under the chrome crown" },
+    "jackpot":    { "title": "CROWN CHROME", "detail": "The chrome vault opens its crown" }
+  }
+}

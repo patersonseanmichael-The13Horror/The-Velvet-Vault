@@ -444,6 +444,13 @@ import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/
   btnOpenWallet?.addEventListener("click", showModal);
   btnOpenWallet2?.addEventListener("click", showModal);
   btnCloseWallet?.addEventListener("click", hideModal);
+  // ESC key closes wallet modal
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal?.getAttribute("aria-hidden") === "false") {
+      e.preventDefault();
+      hideModal();
+    }
+  });
 
   modal?.addEventListener("click", (event) => {
     const target = event.target;

@@ -1,0 +1,26 @@
+{
+  "machineId": "VG-25",
+  "title": "Secret Society",
+  "theme": "noir",
+  "accentColor": "#78350f",
+  "secondaryColor": "#d97706",
+  "skinClass": "vv-theme-vg-25",
+  "symbols": [
+    { "key": "society-seal",  "path": "images/slots/vg/VG-25/symbols/society-seal.png",  "tier": "premium", "glowColor": "#d97706", "label": "Society Seal" },
+    { "key": "hidden-diamond","path": "images/slots/vg/VG-25/symbols/hidden-diamond.png","tier": "premium", "glowColor": "#b45309", "label": "Hidden Diamond" },
+    { "key": "vault-book",    "path": "images/slots/vg/VG-25/symbols/vault-book.png",    "tier": "high",    "glowColor": "#92400e", "label": "Vault Book" },
+    { "key": "velvet-mask",   "path": "images/slots/vg/VG-25/symbols/velvet-mask.png",   "tier": "high",    "glowColor": "#78350f", "label": "Velvet Mask" },
+    { "key": "secret-key",    "path": "images/slots/vg/VG-25/symbols/secret-key.png",    "tier": "mid",     "glowColor": "#92400e", "label": "Secret Key" },
+    { "key": "wax-letter",    "path": "images/slots/vg/VG-25/symbols/wax-letter.png",    "tier": "mid",     "glowColor": "#78350f", "label": "Wax Letter" },
+    { "key": "card-a",        "path": "images/slots/vg/VG-25/symbols/card-a.png",        "tier": "mid",     "glowColor": "#b45309", "label": "Ace" },
+    { "key": "card-k",        "path": "images/slots/vg/VG-25/symbols/card-k.png",        "tier": "low",     "glowColor": "#92400e", "label": "King" },
+    { "key": "card-q",        "path": "images/slots/vg/VG-25/symbols/card-q.png",        "tier": "low",     "glowColor": "#78350f", "label": "Queen" },
+    { "key": "card-j",        "path": "images/slots/vg/VG-25/symbols/card-j.png",        "tier": "low",     "glowColor": "#5c2a08", "label": "Jack" },
+    { "key": "card-10",       "path": "images/slots/vg/VG-25/symbols/card-10.png",       "tier": "low",     "glowColor": "#3d1a05", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "SOCIETY LOCK",   "detail": "Secret icons locked by the society" },
+    "freespins":  { "title": "SECRET SPINS",   "detail": "Free spins — the society convenes" },
+    "jackpot":    { "title": "SECRET SOCIETY", "detail": "The society vault is unsealed" }
+  }
+}

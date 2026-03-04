@@ -1,0 +1,26 @@
+{
+  "machineId": "VG-28",
+  "title": "Diamond District",
+  "theme": "diamond",
+  "accentColor": "#e2e8f0",
+  "secondaryColor": "#f8fafc",
+  "skinClass": "vv-theme-vg-28",
+  "symbols": [
+    { "key": "chrome-crown",  "path": "images/slots/vg/VG-28/symbols/chrome-crown.png",  "tier": "premium", "glowColor": "#f8fafc", "label": "Chrome Crown" },
+    { "key": "vault-gem",     "path": "images/slots/vg/VG-28/symbols/vault-gem.png",     "tier": "premium", "glowColor": "#e2e8f0", "label": "Vault Gem" },
+    { "key": "luxe-watch",    "path": "images/slots/vg/VG-28/symbols/luxe-watch.png",    "tier": "high",    "glowColor": "#cbd5e1", "label": "Luxe Watch" },
+    { "key": "diamond-sign",  "path": "images/slots/vg/VG-28/symbols/diamond-sign.png",  "tier": "high",    "glowColor": "#e2e8f0", "label": "Diamond Sign" },
+    { "key": "diamond-chip",  "path": "images/slots/vg/VG-28/symbols/diamond-chip.png",  "tier": "mid",     "glowColor": "#94a3b8", "label": "Diamond Chip" },
+    { "key": "district-map",  "path": "images/slots/vg/VG-28/symbols/district-map.png",  "tier": "mid",     "glowColor": "#64748b", "label": "District Map" },
+    { "key": "card-a",        "path": "images/slots/vg/VG-28/symbols/card-a.png",        "tier": "mid",     "glowColor": "#e2e8f0", "label": "Ace" },
+    { "key": "card-k",        "path": "images/slots/vg/VG-28/symbols/card-k.png",        "tier": "low",     "glowColor": "#cbd5e1", "label": "King" },
+    { "key": "card-q",        "path": "images/slots/vg/VG-28/symbols/card-q.png",        "tier": "low",     "glowColor": "#94a3b8", "label": "Queen" },
+    { "key": "card-j",        "path": "images/slots/vg/VG-28/symbols/card-j.png",        "tier": "low",     "glowColor": "#64748b", "label": "Jack" },
+    { "key": "card-10",       "path": "images/slots/vg/VG-28/symbols/card-10.png",       "tier": "low",     "glowColor": "#475569", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "DISTRICT LOCK",    "detail": "Diamond icons locked in the district" },
+    "freespins":  { "title": "DIAMOND SPINS",    "detail": "Free spins across the diamond district" },
+    "jackpot":    { "title": "DIAMOND DISTRICT", "detail": "The district vault opens its doors" }
+  }
+}

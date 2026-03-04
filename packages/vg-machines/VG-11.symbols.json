@@ -1,0 +1,26 @@
+{
+  "machineId": "VG-11",
+  "title": "Noir Boulevard",
+  "theme": "noir",
+  "accentColor": "#c9a84c",
+  "secondaryColor": "#f5e6c8",
+  "skinClass": "vv-theme-vg-11",
+  "symbols": [
+    { "key": "cascade-crown",  "path": "images/slots/vg/VG-11/symbols/cascade-crown.png",  "tier": "premium", "glowColor": "#f5e6c8", "label": "Cascade Crown" },
+    { "key": "noir-diamond",   "path": "images/slots/vg/VG-11/symbols/noir-diamond.png",   "tier": "premium", "glowColor": "#c9a84c", "label": "Noir Diamond" },
+    { "key": "shadow-mask",    "path": "images/slots/vg/VG-11/symbols/shadow-mask.png",    "tier": "high",    "glowColor": "#b89040", "label": "Shadow Mask" },
+    { "key": "gold-watch",     "path": "images/slots/vg/VG-11/symbols/gold-watch.png",     "tier": "high",    "glowColor": "#c9a84c", "label": "Gold Watch" },
+    { "key": "night-rose",     "path": "images/slots/vg/VG-11/symbols/night-rose.png",     "tier": "mid",     "glowColor": "#a07030", "label": "Night Rose" },
+    { "key": "velvet-key",     "path": "images/slots/vg/VG-11/symbols/velvet-key.png",     "tier": "mid",     "glowColor": "#c9a84c", "label": "Velvet Key" },
+    { "key": "card-a",         "path": "images/slots/vg/VG-11/symbols/card-a.png",         "tier": "mid",     "glowColor": "#c9a84c", "label": "Ace" },
+    { "key": "card-k",         "path": "images/slots/vg/VG-11/symbols/card-k.png",         "tier": "low",     "glowColor": "#b08030", "label": "King" },
+    { "key": "card-q",         "path": "images/slots/vg/VG-11/symbols/card-q.png",         "tier": "low",     "glowColor": "#a07020", "label": "Queen" },
+    { "key": "card-j",         "path": "images/slots/vg/VG-11/symbols/card-j.png",         "tier": "low",     "glowColor": "#906010", "label": "Jack" },
+    { "key": "card-10",        "path": "images/slots/vg/VG-11/symbols/card-10.png",        "tier": "low",     "glowColor": "#806010", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "BOULEVARD LOCK",  "detail": "Noir icons locked on the boulevard" },
+    "freespins":  { "title": "SHADOW SPINS",    "detail": "Free spins under the gaslight" },
+    "jackpot":    { "title": "NOIR BOULEVARD",  "detail": "The vault opens at midnight" }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "machineId": "VG-13",
+  "title": "Velvet Voltage",
+  "theme": "neon",
+  "accentColor": "#00e5ff",
+  "secondaryColor": "#b2ebf2",
+  "skinClass": "vv-theme-vg-13",
+  "symbols": [
+    { "key": "velvet-crown",    "path": "images/slots/vg/VG-13/symbols/velvet-crown.png",    "tier": "premium", "glowColor": "#00e5ff", "label": "Velvet Crown" },
+    { "key": "voltage-diamond", "path": "images/slots/vg/VG-13/symbols/voltage-diamond.png", "tier": "premium", "glowColor": "#80f0ff", "label": "Voltage Diamond" },
+    { "key": "electric-bolt",   "path": "images/slots/vg/VG-13/symbols/electric-bolt.png",   "tier": "high",    "glowColor": "#00e5ff", "label": "Electric Bolt" },
+    { "key": "neon-ring",       "path": "images/slots/vg/VG-13/symbols/neon-ring.png",       "tier": "high",    "glowColor": "#40f0ff", "label": "Neon Ring" },
+    { "key": "cyber-chip",      "path": "images/slots/vg/VG-13/symbols/cyber-chip.png",      "tier": "mid",     "glowColor": "#00c8e0", "label": "Cyber Chip" },
+    { "key": "card-a",          "path": "images/slots/vg/VG-13/symbols/card-a.png",          "tier": "mid",     "glowColor": "#00e5ff", "label": "Ace" },
+    { "key": "card-k",          "path": "images/slots/vg/VG-13/symbols/card-k.png",          "tier": "low",     "glowColor": "#00c0d0", "label": "King" },
+    { "key": "card-q",          "path": "images/slots/vg/VG-13/symbols/card-q.png",          "tier": "low",     "glowColor": "#00a0b0", "label": "Queen" },
+    { "key": "card-j",          "path": "images/slots/vg/VG-13/symbols/card-j.png",          "tier": "low",     "glowColor": "#008090", "label": "Jack" },
+    { "key": "card-10",         "path": "images/slots/vg/VG-13/symbols/card-10.png",         "tier": "low",     "glowColor": "#006070", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "VOLTAGE LOCK",   "detail": "Neon circuits locked and charged" },
+    "freespins":  { "title": "ELECTRIC SPINS", "detail": "Free spins at full voltage" },
+    "jackpot":    { "title": "VELVET VOLTAGE", "detail": "Maximum charge — vault overloaded" }
+  }
+}

@@ -120,3 +120,32 @@
 .vv-slot-card[data-theme="crimson"] .vv-badge--theme { color: #e05555; }
 .vv-slot-card[data-theme="diamond"] .vv-badge--theme { color: #b0d8f5; }
 .vv-slot-card[data-theme="gold"] .vv-badge--theme { color: #f5d87a; }
+
+/* -- Flagship badge */
+.vv-badge--flagship { background: linear-gradient(135deg, rgba(201,168,76,0.9) 0%, rgba(255,224,100,0.9) 100%); color: #0a0800; border: 1px solid rgba(255,224,100,0.7); font-weight: 800; letter-spacing: 0.1em; }
+.vv-slot-card[data-flagship="1"] { border-color: rgba(201,168,76,0.55); box-shadow: 0 0 0 1px rgba(201,168,76,0.18), 0 8px 32px rgba(0,0,0,0.28); }
+.vv-slot-card[data-flagship="1"]:hover { border-color: rgba(255,224,100,0.7); box-shadow: 0 0 0 2px rgba(201,168,76,0.3), 0 20px 48px rgba(0,0,0,0.36); }
+.vvLobbyControls { background: linear-gradient(180deg, rgba(18,11,26,0.88), rgba(10,7,15,0.94)); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 18px 24px; box-shadow: 0 8px 32px rgba(0,0,0,0.32); }
+.vvLobbyControlsRow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.vvLobbySearchWrap { position: relative; display: flex; align-items: center; flex: 1 1 200px; min-width: 160px; }
+.vvLobbySearchIcon { position: absolute; left: 12px; color: rgba(201,168,76,0.6); font-size: 1rem; pointer-events: none; }
+.vvLobbySearch { width: 100%; padding: 9px 12px 9px 34px; background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.3); border-radius: 8px; color: rgba(245,239,233,0.9); font-size: 0.88rem; outline: none; transition: border-color 0.2s ease; }
+.vvLobbySearch::placeholder { color: rgba(245,239,233,0.35); }
+.vvLobbySearch:focus { border-color: rgba(201,168,76,0.65); box-shadow: 0 0 0 3px rgba(201,168,76,0.12); }
+.vvLobbySelect { padding: 9px 32px 9px 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.3); border-radius: 8px; color: rgba(245,239,233,0.9); font-size: 0.85rem; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; background-repeat: no-repeat; background-position: right 10px center; transition: border-color 0.2s ease; }
+.vvLobbySelect:focus { border-color: rgba(201,168,76,0.65); }
+.vvLobbySelect option { background: #0d0b14; color: #f5efe9; }
+.vvLobbyToggle { display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
+.vvLobbyToggle input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
+.vvLobbyToggleTrack { position: relative; width: 36px; height: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: 20px; transition: background 0.2s ease; flex-shrink: 0; }
+.vvLobbyToggleTrack::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; background: rgba(245,239,233,0.5); border-radius: 50%; transition: transform 0.2s ease, background 0.2s ease; }
+.vvLobbyToggle input:checked + .vvLobbyToggleTrack { background: rgba(201,168,76,0.35); border-color: rgba(201,168,76,0.7); }
+.vvLobbyToggle input:checked + .vvLobbyToggleTrack::after { transform: translateX(16px); background: #c9a84c; }
+.vvLobbyToggleLabel { font-size: 0.82rem; color: rgba(245,239,233,0.72); white-space: nowrap; }
+.vvLobbyToggle:hover .vvLobbyToggleLabel { color: rgba(245,239,233,0.9); }
+.vvLobbyResultCount { margin-top: 10px; font-size: 0.78rem; color: rgba(245,239,233,0.45); letter-spacing: 0.06em; text-transform: uppercase; }
+@media (prefers-reduced-motion: reduce) { .vv-slot-card { transition: none; } .vv-slot-card:hover { transform: none; } }
+body.vv-reduced-motion .vv-slot-card { transition: none; }
+body.vv-reduced-motion .vv-slot-card:hover { transform: none; }
+body.vv-reduced-motion * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+@media (max-width: 768px) { .vvLobbyControlsRow { flex-direction: column; align-items: stretch; } .vvLobbySearchWrap { flex: 1 1 auto; } .vvLobbySelect { width: 100%; } }

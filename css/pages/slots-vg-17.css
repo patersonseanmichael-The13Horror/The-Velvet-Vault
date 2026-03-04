@@ -1,0 +1,131 @@
+/* ============================================================
+ * css/pages/slots-vg-17.css
+ * Crown & Chrome — VG-17 theme overrides
+ * ============================================================ */
+
+/* ── CSS variable injection ────────────────────────────────── */
+body.vv-theme-vg-17 {
+  --vg-accent:    #b0bec5;
+  --vg-secondary: #eceff1;
+  --vg-glow:      #b0bec5;
+}
+/* ── Cabinet / machine wrapper ─────────────────────────────── */
+body.vv-theme-vg-17 .vvMachineWrap,
+body.vv-theme-vg-17 .vvCabinet {
+  background: radial-gradient(ellipse at 50% 30%, #080a0b 0%, #040506 100%);
+  border-color: var(--vg-accent);
+  box-shadow: 0 0 40px rgba(176,190,197, 0.3), inset 0 0 20px rgba(176,190,197, 0.08);
+}
+/* ── Reel window ───────────────────────────────────────────── */
+body.vv-theme-vg-17 .reelWindow,
+body.vv-theme-vg-17 .reelCol {
+  border-color: rgba(176,190,197, 0.35);
+  box-shadow: inset 0 0 12px rgba(176,190,197, 0.12);
+}
+/* ── Spinning reel glow ────────────────────────────────────── */
+body.vv-theme-vg-17 .reelCol.is-spinning {
+  box-shadow: inset 0 0 18px rgba(176,190,197, 0.35), 0 0 8px rgba(176,190,197, 0.2);
+}
+/* ── Reel settle bounce ────────────────────────────────────── */
+@keyframes vvChromeSettle {
+  0%   { transform: translateY(0); }
+  20%  { transform: translateY(-9px); }
+  45%  { transform: translateY(5px); }
+  70%  { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+body.vv-theme-vg-17 .reelCol.is-settling {
+  animation: vvChromeSettle 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+/* ── Symbol images ─────────────────────────────────────────── */
+body.vv-theme-vg-17 .symImg {
+  max-width: 82%;
+  max-height: 82%;
+  filter: drop-shadow(0 0 4px rgba(176,190,197, 0.5));
+  transition: filter 0.2s ease;
+}
+body.vv-theme-vg-17 .symCell[data-tier="premium"] .symImg {
+  filter: drop-shadow(0 0 12px rgba(236,239,241, 0.95)) drop-shadow(0 0 5px rgba(176,190,197, 0.8));
+}
+body.vv-theme-vg-17 .symCell[data-tier="high"] .symImg {
+  filter: drop-shadow(0 0 8px rgba(176,190,197, 0.7));
+}
+body.vv-theme-vg-17 .symCell[data-tier="mid"] .symImg {
+  filter: drop-shadow(0 0 5px rgba(176,190,197, 0.5));
+}
+/* ── Win cell highlight ────────────────────────────────────── */
+@keyframes vvChromePulse {
+  0%, 100% { box-shadow: inset 0 0 12px rgba(176,190,197, 0.4); }
+  50%       { box-shadow: inset 0 0 30px rgba(236,239,241, 0.95); }
+}
+body.vv-theme-vg-17 .symCell.is-win {
+  animation: vvChromePulse 0.7s ease-in-out infinite;
+  background: rgba(176,190,197, 0.1);
+}
+/* ── HUD / balance display ─────────────────────────────────── */
+body.vv-theme-vg-17 .vvHudBalance,
+body.vv-theme-vg-17 .vvBalanceDisplay {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 8px var(--vg-accent);
+}
+body.vv-theme-vg-17 .vvHudLabel { color: var(--vg-accent); }
+/* ── Spin button ───────────────────────────────────────────── */
+body.vv-theme-vg-17 #spinBtn,
+body.vv-theme-vg-17 .vvSpinBtn {
+  background: linear-gradient(135deg, #080a0b 0%, #040506 100%);
+  border: 2px solid var(--vg-accent);
+  color: var(--vg-secondary);
+  box-shadow: 0 0 16px rgba(176,190,197, 0.3);
+}
+body.vv-theme-vg-17 #spinBtn:hover,
+body.vv-theme-vg-17 .vvSpinBtn:hover {
+  box-shadow: 0 0 28px rgba(236,239,241, 0.7);
+  border-color: var(--vg-secondary);
+}
+/* ── Win tier overlays ─────────────────────────────────────── */
+body.vv-theme-vg-17 .vvWinFrame,
+body.vv-theme-vg-17 #vvWinFrame {
+  background: radial-gradient(ellipse at 50% 40%, rgba(8,10,11, 0.97) 0%, rgba(4,5,6, 0.99) 100%);
+  border: 2px solid var(--vg-accent);
+  box-shadow: 0 0 40px rgba(176,190,197, 0.5), inset 0 0 20px rgba(176,190,197, 0.1);
+}
+body.vv-theme-vg-17 .vvWinFrame .vvWinTierLabel {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 20px var(--vg-accent), 0 0 8px rgba(236,239,241, 0.8);
+}
+body.vv-theme-vg-17 .vvWinFrame .vvWinAmount {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 12px rgba(236,239,241, 0.7);
+}
+@keyframes vvChromeRoyalPulse {
+  0%   { text-shadow: 0 0 20px #b0bec5, 0 0 40px #b0bec5; }
+  50%  { text-shadow: 0 0 60px #eceff1, 0 0 120px #b0bec5, 0 0 12px #fff; }
+  100% { text-shadow: 0 0 20px #b0bec5, 0 0 40px #b0bec5; }
+}
+body.vv-theme-vg-17 .vvWinFrame[data-tier="EXTRAVAGANT"] .vvWinTierLabel {
+  animation: vvChromeRoyalPulse 1.0s ease-in-out infinite;
+}
+/* ── Feature frames ────────────────────────────────────────── */
+body.vv-theme-vg-17 .vvFeatureFrame,
+body.vv-theme-vg-17 #vvFeatureFrame {
+  background: radial-gradient(ellipse at 50% 30%, rgba(8,10,11, 0.97) 0%, rgba(4,5,6, 0.99) 100%);
+  border: 2px solid var(--vg-accent);
+  box-shadow: 0 0 50px rgba(176,190,197, 0.4), inset 0 0 25px rgba(176,190,197, 0.08);
+}
+body.vv-theme-vg-17 .vvFeatureFrame .vvFrameTitle {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 16px var(--vg-accent);
+}
+body.vv-theme-vg-17 .vvFeatureFrame .vvFrameDetail { color: var(--vg-accent); }
+/* ── Coin drop particles ───────────────────────────────────── */
+body.vv-theme-vg-17 .vvCoinDrop {
+  background: radial-gradient(circle, var(--vg-secondary) 30%, var(--vg-accent) 100%);
+  box-shadow: 0 0 8px var(--vg-glow);
+}
+/* ── Z-index enforcement ───────────────────────────────────── */
+body.vv-theme-vg-17 .symImg          { z-index: 10; }
+body.vv-theme-vg-17 .vvReelFx        { z-index: 20; }
+body.vv-theme-vg-17 .vvHud           { z-index: 30; }
+body.vv-theme-vg-17 .vvFeatureFrame,
+body.vv-theme-vg-17 .vvWinFrame      { z-index: 40; }
+body.vv-theme-vg-17 .vvModal         { z-index: 1900; }

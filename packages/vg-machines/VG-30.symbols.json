@@ -1,0 +1,26 @@
+{
+  "machineId": "VG-30",
+  "title": "Velvet Ascension",
+  "theme": "platinum",
+  "accentColor": "#a78bfa",
+  "secondaryColor": "#e0f2fe",
+  "skinClass": "vv-theme-vg-30",
+  "symbols": [
+    { "key": "ascension-crown", "path": "images/slots/vg/VG-30/symbols/ascension-crown.png", "tier": "premium", "glowColor": "#e0f2fe", "label": "Ascension Crown" },
+    { "key": "aurora-diamond",  "path": "images/slots/vg/VG-30/symbols/aurora-diamond.png",  "tier": "premium", "glowColor": "#a78bfa", "label": "Aurora Diamond" },
+    { "key": "vault-throne",    "path": "images/slots/vg/VG-30/symbols/vault-throne.png",    "tier": "high",    "glowColor": "#c4b5fd", "label": "Vault Throne" },
+    { "key": "halo-ring",       "path": "images/slots/vg/VG-30/symbols/halo-ring.png",       "tier": "high",    "glowColor": "#a78bfa", "label": "Halo Ring" },
+    { "key": "platinum-chip",   "path": "images/slots/vg/VG-30/symbols/platinum-chip.png",   "tier": "mid",     "glowColor": "#8b5cf6", "label": "Platinum Chip" },
+    { "key": "velvet-v",        "path": "images/slots/vg/VG-30/symbols/velvet-v.png",        "tier": "mid",     "glowColor": "#7c3aed", "label": "Velvet V" },
+    { "key": "card-a",          "path": "images/slots/vg/VG-30/symbols/card-a.png",          "tier": "mid",     "glowColor": "#a78bfa", "label": "Ace" },
+    { "key": "card-k",          "path": "images/slots/vg/VG-30/symbols/card-k.png",          "tier": "low",     "glowColor": "#8b5cf6", "label": "King" },
+    { "key": "card-q",          "path": "images/slots/vg/VG-30/symbols/card-q.png",          "tier": "low",     "glowColor": "#7c3aed", "label": "Queen" },
+    { "key": "card-j",          "path": "images/slots/vg/VG-30/symbols/card-j.png",          "tier": "low",     "glowColor": "#6d28d9", "label": "Jack" },
+    { "key": "card-10",         "path": "images/slots/vg/VG-30/symbols/card-10.png",         "tier": "low",     "glowColor": "#5b21b6", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "ASCENSION LOCK",   "detail": "Icons locked in the ascending vault" },
+    "freespins":  { "title": "AURORA SPINS",     "detail": "Free spins ascending through the aurora" },
+    "jackpot":    { "title": "VELVET ASCENSION", "detail": "The ultimate vault ascends to the throne" }
+  }
+}

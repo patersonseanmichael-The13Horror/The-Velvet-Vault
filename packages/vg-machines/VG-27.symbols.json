@@ -1,0 +1,26 @@
+{
+  "machineId": "VG-27",
+  "title": "The Money Train",
+  "theme": "gold",
+  "accentColor": "#d97706",
+  "secondaryColor": "#fbbf24",
+  "skinClass": "vv-theme-vg-27",
+  "symbols": [
+    { "key": "vault-crate",     "path": "images/slots/vg/VG-27/symbols/vault-crate.png",     "tier": "premium", "glowColor": "#fbbf24", "label": "Vault Crate" },
+    { "key": "rail-diamond",    "path": "images/slots/vg/VG-27/symbols/rail-diamond.png",    "tier": "premium", "glowColor": "#d97706", "label": "Rail Diamond" },
+    { "key": "cash-stack",      "path": "images/slots/vg/VG-27/symbols/cash-stack.png",      "tier": "high",    "glowColor": "#f59e0b", "label": "Cash Stack" },
+    { "key": "conductor-badge", "path": "images/slots/vg/VG-27/symbols/conductor-badge.png", "tier": "high",    "glowColor": "#d97706", "label": "Conductor Badge" },
+    { "key": "gold-ticket",     "path": "images/slots/vg/VG-27/symbols/gold-ticket.png",     "tier": "mid",     "glowColor": "#b45309", "label": "Gold Ticket" },
+    { "key": "train-token",     "path": "images/slots/vg/VG-27/symbols/train-token.png",     "tier": "mid",     "glowColor": "#92400e", "label": "Train Token" },
+    { "key": "card-a",          "path": "images/slots/vg/VG-27/symbols/card-a.png",          "tier": "mid",     "glowColor": "#d97706", "label": "Ace" },
+    { "key": "card-k",          "path": "images/slots/vg/VG-27/symbols/card-k.png",          "tier": "low",     "glowColor": "#b45309", "label": "King" },
+    { "key": "card-q",          "path": "images/slots/vg/VG-27/symbols/card-q.png",          "tier": "low",     "glowColor": "#92400e", "label": "Queen" },
+    { "key": "card-j",          "path": "images/slots/vg/VG-27/symbols/card-j.png",          "tier": "low",     "glowColor": "#78350f", "label": "Jack" },
+    { "key": "card-10",         "path": "images/slots/vg/VG-27/symbols/card-10.png",         "tier": "low",     "glowColor": "#5c2a08", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "TRAIN LOCK",      "detail": "Money icons locked on the train" },
+    "freespins":  { "title": "MONEY SPINS",     "detail": "Free spins — the money train departs" },
+    "jackpot":    { "title": "THE MONEY TRAIN", "detail": "The vault train arrives at the station" }
+  }
+}

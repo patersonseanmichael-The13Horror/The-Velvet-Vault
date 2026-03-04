@@ -1,0 +1,25 @@
+{
+  "machineId": "VG-16",
+  "title": "Neon Relic",
+  "theme": "neon",
+  "accentColor": "#39ff14",
+  "secondaryColor": "#b9fbc0",
+  "skinClass": "vv-theme-vg-16",
+  "symbols": [
+    { "key": "neon-crown",    "path": "images/slots/vg/VG-16/symbols/neon-crown.png",    "tier": "premium", "glowColor": "#39ff14", "label": "Neon Crown" },
+    { "key": "pink-diamond",  "path": "images/slots/vg/VG-16/symbols/pink-diamond.png",  "tier": "premium", "glowColor": "#ff69b4", "label": "Pink Diamond" },
+    { "key": "neon-rose",     "path": "images/slots/vg/VG-16/symbols/neon-rose.png",     "tier": "high",    "glowColor": "#ff1493", "label": "Neon Rose" },
+    { "key": "velvet-heart",  "path": "images/slots/vg/VG-16/symbols/velvet-heart.png",  "tier": "high",    "glowColor": "#ff69b4", "label": "Velvet Heart" },
+    { "key": "glam-chip",     "path": "images/slots/vg/VG-16/symbols/glam-chip.png",     "tier": "mid",     "glowColor": "#39ff14", "label": "Glam Chip" },
+    { "key": "card-a",        "path": "images/slots/vg/VG-16/symbols/card-a.png",        "tier": "mid",     "glowColor": "#39ff14", "label": "Ace" },
+    { "key": "card-k",        "path": "images/slots/vg/VG-16/symbols/card-k.png",        "tier": "low",     "glowColor": "#20d010", "label": "King" },
+    { "key": "card-q",        "path": "images/slots/vg/VG-16/symbols/card-q.png",        "tier": "low",     "glowColor": "#18b00c", "label": "Queen" },
+    { "key": "card-j",        "path": "images/slots/vg/VG-16/symbols/card-j.png",        "tier": "low",     "glowColor": "#109008", "label": "Jack" },
+    { "key": "card-10",       "path": "images/slots/vg/VG-16/symbols/card-10.png",       "tier": "low",     "glowColor": "#087006", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "RELIC LOCK",   "detail": "Neon relics locked in the grid" },
+    "freespins":  { "title": "NEON SPINS",   "detail": "Free spins in the neon glow" },
+    "jackpot":    { "title": "NEON RELIC",   "detail": "The relic vault ignites" }
+  }
+}

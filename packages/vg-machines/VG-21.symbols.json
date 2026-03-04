@@ -1,0 +1,26 @@
+{
+  "machineId": "VG-21",
+  "title": "High Roller Halo",
+  "theme": "gold",
+  "accentColor": "#f5c842",
+  "secondaryColor": "#fff0a0",
+  "skinClass": "vv-theme-vg-21",
+  "symbols": [
+    { "key": "halo-crown",    "path": "images/slots/vg/VG-21/symbols/halo-crown.png",    "tier": "premium", "glowColor": "#fff0a0", "label": "Halo Crown" },
+    { "key": "diamond-halo",  "path": "images/slots/vg/VG-21/symbols/diamond-halo.png",  "tier": "premium", "glowColor": "#f5c842", "label": "Diamond Halo" },
+    { "key": "champagne",     "path": "images/slots/vg/VG-21/symbols/champagne.png",     "tier": "high",    "glowColor": "#ffe066", "label": "Champagne" },
+    { "key": "luxe-ring",     "path": "images/slots/vg/VG-21/symbols/luxe-ring.png",     "tier": "high",    "glowColor": "#f5c842", "label": "Luxe Ring" },
+    { "key": "gold-chip",     "path": "images/slots/vg/VG-21/symbols/gold-chip.png",     "tier": "mid",     "glowColor": "#d4a017", "label": "Gold Chip" },
+    { "key": "vault-seal",    "path": "images/slots/vg/VG-21/symbols/vault-seal.png",    "tier": "mid",     "glowColor": "#c09010", "label": "Vault Seal" },
+    { "key": "card-a",        "path": "images/slots/vg/VG-21/symbols/card-a.png",        "tier": "mid",     "glowColor": "#f5c842", "label": "Ace" },
+    { "key": "card-k",        "path": "images/slots/vg/VG-21/symbols/card-k.png",        "tier": "low",     "glowColor": "#d4a017", "label": "King" },
+    { "key": "card-q",        "path": "images/slots/vg/VG-21/symbols/card-q.png",        "tier": "low",     "glowColor": "#c09010", "label": "Queen" },
+    { "key": "card-j",        "path": "images/slots/vg/VG-21/symbols/card-j.png",        "tier": "low",     "glowColor": "#a07808", "label": "Jack" },
+    { "key": "card-10",       "path": "images/slots/vg/VG-21/symbols/card-10.png",       "tier": "low",     "glowColor": "#906006", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "HALO LOCK",       "detail": "High roller icons locked with halo glow" },
+    "freespins":  { "title": "GOLDEN SPINS",    "detail": "Free spins in the champagne halo" },
+    "jackpot":    { "title": "HIGH ROLLER HALO","detail": "The halo vault opens for the high roller" }
+  }
+}

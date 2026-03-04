@@ -1,0 +1,26 @@
+{
+  "machineId": "VG-23",
+  "title": "Crimson Metro",
+  "theme": "crimson",
+  "accentColor": "#dc143c",
+  "secondaryColor": "#ff6b6b",
+  "skinClass": "vv-theme-vg-23",
+  "symbols": [
+    { "key": "crimson-crown",  "path": "images/slots/vg/VG-23/symbols/crimson-crown.png",  "tier": "premium", "glowColor": "#ff6b6b", "label": "Crimson Crown" },
+    { "key": "night-diamond",  "path": "images/slots/vg/VG-23/symbols/night-diamond.png",  "tier": "premium", "glowColor": "#dc143c", "label": "Night Diamond" },
+    { "key": "metro-sign",     "path": "images/slots/vg/VG-23/symbols/metro-sign.png",     "tier": "high",    "glowColor": "#ff2040", "label": "Metro Sign" },
+    { "key": "velvet-rose",    "path": "images/slots/vg/VG-23/symbols/velvet-rose.png",    "tier": "high",    "glowColor": "#dc143c", "label": "Velvet Rose" },
+    { "key": "vault-ticket",   "path": "images/slots/vg/VG-23/symbols/vault-ticket.png",   "tier": "mid",     "glowColor": "#b01030", "label": "Vault Ticket" },
+    { "key": "metro-key",      "path": "images/slots/vg/VG-23/symbols/metro-key.png",      "tier": "mid",     "glowColor": "#c01228", "label": "Metro Key" },
+    { "key": "card-a",         "path": "images/slots/vg/VG-23/symbols/card-a.png",         "tier": "mid",     "glowColor": "#dc143c", "label": "Ace" },
+    { "key": "card-k",         "path": "images/slots/vg/VG-23/symbols/card-k.png",         "tier": "low",     "glowColor": "#b01030", "label": "King" },
+    { "key": "card-q",         "path": "images/slots/vg/VG-23/symbols/card-q.png",         "tier": "low",     "glowColor": "#900c28", "label": "Queen" },
+    { "key": "card-j",         "path": "images/slots/vg/VG-23/symbols/card-j.png",         "tier": "low",     "glowColor": "#700820", "label": "Jack" },
+    { "key": "card-10",        "path": "images/slots/vg/VG-23/symbols/card-10.png",        "tier": "low",     "glowColor": "#500618", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "METRO LOCK",    "detail": "Crimson icons locked at the station" },
+    "freespins":  { "title": "CRIMSON SPINS", "detail": "Free spins on the crimson metro" },
+    "jackpot":    { "title": "CRIMSON METRO", "detail": "The crimson vault arrives on time" }
+  }
+}

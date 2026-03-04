@@ -26,7 +26,27 @@ const VG_SKIN_MANIFESTS = {
   "VG-07": "packages/vg-machines/VG-07.symbols.json",
   "VG-08": "packages/vg-machines/VG-08.symbols.json",
   "VG-09": "packages/vg-machines/VG-09.symbols.json",
-  "VG-10": "packages/vg-machines/VG-10.symbols.json"
+  "VG-10": "packages/vg-machines/VG-10.symbols.json",
+  "VG-11": "packages/vg-machines/VG-11.symbols.json",
+  "VG-12": "packages/vg-machines/VG-12.symbols.json",
+  "VG-13": "packages/vg-machines/VG-13.symbols.json",
+  "VG-14": "packages/vg-machines/VG-14.symbols.json",
+  "VG-15": "packages/vg-machines/VG-15.symbols.json",
+  "VG-16": "packages/vg-machines/VG-16.symbols.json",
+  "VG-17": "packages/vg-machines/VG-17.symbols.json",
+  "VG-18": "packages/vg-machines/VG-18.symbols.json",
+  "VG-19": "packages/vg-machines/VG-19.symbols.json",
+  "VG-20": "packages/vg-machines/VG-20.symbols.json",
+  "VG-21": "packages/vg-machines/VG-21.symbols.json",
+  "VG-22": "packages/vg-machines/VG-22.symbols.json",
+  "VG-23": "packages/vg-machines/VG-23.symbols.json",
+  "VG-24": "packages/vg-machines/VG-24.symbols.json",
+  "VG-25": "packages/vg-machines/VG-25.symbols.json",
+  "VG-26": "packages/vg-machines/VG-26.symbols.json",
+  "VG-27": "packages/vg-machines/VG-27.symbols.json",
+  "VG-28": "packages/vg-machines/VG-28.symbols.json",
+  "VG-29": "packages/vg-machines/VG-29.symbols.json",
+  "VG-30": "packages/vg-machines/VG-30.symbols.json"
 };
 
 /** In-memory cache so we only fetch each manifest once per session */
@@ -161,7 +181,14 @@ export function removeVGSkin() {
     "vv-vfx-noir-vip", "vv-vfx-neon-syndicate",
     "vv-theme-vg-03", "vv-theme-vg-04",
     "vv-theme-vg-05", "vv-theme-vg-06", "vv-theme-vg-07",
-    "vv-theme-vg-08", "vv-theme-vg-09", "vv-theme-vg-10"
+    "vv-theme-vg-08", "vv-theme-vg-09", "vv-theme-vg-10",
+    "vv-theme-vg-11", "vv-theme-vg-12", "vv-theme-vg-13",
+    "vv-theme-vg-14", "vv-theme-vg-15", "vv-theme-vg-16",
+    "vv-theme-vg-17", "vv-theme-vg-18", "vv-theme-vg-19",
+    "vv-theme-vg-20", "vv-theme-vg-21", "vv-theme-vg-22",
+    "vv-theme-vg-23", "vv-theme-vg-24", "vv-theme-vg-25",
+    "vv-theme-vg-26", "vv-theme-vg-27", "vv-theme-vg-28",
+    "vv-theme-vg-29", "vv-theme-vg-30"
   );
   delete document.body.dataset.vgSkin;
   // Reset CSS variables to defaults

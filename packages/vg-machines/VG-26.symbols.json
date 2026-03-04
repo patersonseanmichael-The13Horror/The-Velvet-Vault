@@ -1,0 +1,26 @@
+{
+  "machineId": "VG-26",
+  "title": "Velvet Vortex",
+  "theme": "violet",
+  "accentColor": "#7c3aed",
+  "secondaryColor": "#ec4899",
+  "skinClass": "vv-theme-vg-26",
+  "symbols": [
+    { "key": "velvet-crown",  "path": "images/slots/vg/VG-26/symbols/velvet-crown.png",  "tier": "premium", "glowColor": "#ec4899", "label": "Velvet Crown" },
+    { "key": "swirl-diamond",  "path": "images/slots/vg/VG-26/symbols/swirl-diamond.png",  "tier": "premium", "glowColor": "#7c3aed", "label": "Swirl Diamond" },
+    { "key": "vortex-v",       "path": "images/slots/vg/VG-26/symbols/vortex-v.png",       "tier": "high",    "glowColor": "#a855f7", "label": "Vortex V" },
+    { "key": "neon-orb",       "path": "images/slots/vg/VG-26/symbols/neon-orb.png",       "tier": "high",    "glowColor": "#ec4899", "label": "Neon Orb" },
+    { "key": "pulse-chip",     "path": "images/slots/vg/VG-26/symbols/pulse-chip.png",     "tier": "mid",     "glowColor": "#7c3aed", "label": "Pulse Chip" },
+    { "key": "vault-core",     "path": "images/slots/vg/VG-26/symbols/vault-core.png",     "tier": "mid",     "glowColor": "#6d28d9", "label": "Vault Core" },
+    { "key": "card-a",         "path": "images/slots/vg/VG-26/symbols/card-a.png",         "tier": "mid",     "glowColor": "#a855f7", "label": "Ace" },
+    { "key": "card-k",         "path": "images/slots/vg/VG-26/symbols/card-k.png",         "tier": "low",     "glowColor": "#7c3aed", "label": "King" },
+    { "key": "card-q",         "path": "images/slots/vg/VG-26/symbols/card-q.png",         "tier": "low",     "glowColor": "#6d28d9", "label": "Queen" },
+    { "key": "card-j",         "path": "images/slots/vg/VG-26/symbols/card-j.png",         "tier": "low",     "glowColor": "#5b21b6", "label": "Jack" },
+    { "key": "card-10",        "path": "images/slots/vg/VG-26/symbols/card-10.png",        "tier": "low",     "glowColor": "#4c1d95", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "VORTEX LOCK",   "detail": "Velvet icons locked in the vortex" },
+    "freespins":  { "title": "VORTEX SPINS",  "detail": "Free spins spiraling in the vortex" },
+    "jackpot":    { "title": "VELVET VORTEX", "detail": "The vortex vault opens at the center" }
+  }
+}
