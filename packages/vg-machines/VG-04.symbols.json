@@ -1,0 +1,34 @@
+{
+  "machineId": "VG-04",
+  "skinClass": "vv-theme-vg-04",
+  "accentColor": "#ff2222",
+  "secondaryColor": "#c9a84c",
+  "symbols": [
+    { "id": "crown",     "path": "images/slots/vg/VG-04/symbols/vault-door.png",      "glowColor": "#ff2222", "tier": "premium",  "label": "Vault Door"      },
+    { "id": "diamond",   "path": "images/slots/vg/VG-04/symbols/diamond-core.png",    "glowColor": "#ff2222", "tier": "premium",  "label": "Diamond Core"    },
+    { "id": "ring",      "path": "images/slots/vg/VG-04/symbols/duffel-cash.png",     "glowColor": "#c9a84c", "tier": "high",     "label": "Duffel Cash"     },
+    { "id": "champagne", "path": "images/slots/vg/VG-04/symbols/gold-bar.png",        "glowColor": "#c9a84c", "tier": "high",     "label": "Gold Bar"        },
+    { "id": "noir-mask", "path": "images/slots/vg/VG-04/symbols/red-laser.png",       "glowColor": "#ff2222", "tier": "mid",      "label": "Red Laser"       },
+    { "id": "velvet-v",  "path": "images/slots/vg/VG-04/symbols/security-badge.png",  "glowColor": "#888",    "tier": "mid",      "label": "Security Badge"  },
+    { "id": "vault",     "path": "images/slots/vg/VG-04/symbols/lockpick.png",        "glowColor": "#888",    "tier": "mid",      "label": "Lockpick"        },
+    { "id": "card-a",    "path": "images/slots/vg/VG-04/symbols/card-a.png",          "glowColor": "#c9a84c", "tier": "low",      "label": "Ace"             },
+    { "id": "card-k",    "path": "images/slots/vg/VG-04/symbols/card-k.png",          "glowColor": "#888",    "tier": "low",      "label": "King"            },
+    { "id": "card-q",    "path": "images/slots/vg/VG-04/symbols/card-q.png",          "glowColor": "#888",    "tier": "low",      "label": "Queen"           },
+    { "id": "card-j",    "path": "images/slots/vg/VG-04/symbols/card-j.png",          "glowColor": "#666",    "tier": "low",      "label": "Jack"            },
+    { "id": "card-10",   "path": "images/slots/vg/VG-04/symbols/card-10.png",         "glowColor": "#666",    "tier": "low",      "label": "Ten"             }
+  ],
+  "featureFrames": {
+    "freespins": {
+      "title": "HEIST FREE SPINS • x8",
+      "detail": "The vault is open — take what you can"
+    },
+    "holdandwin": {
+      "title": "LOCKED IN • 6 DROPS",
+      "detail": "Security engaged — hold your positions"
+    },
+    "jackpot": {
+      "title": "VAULT BREACH JACKPOT",
+      "detail": "The alarm is triggered — maximum payout"
+    }
+  }
+}

@@ -1,0 +1,427 @@
+/*
+ * css/pages/slots-vg-04.css
+ * VG-04 Vault Heist — Cinematic Heist Skin
+ *
+ * All rules are scoped to .vv-theme-vg-04 or #vv-laser-layer.
+ * Zero layout shifts. Zero pointer-event interference.
+ * Reuses existing animation engine (blur/bounce) from slots.css.
+ */
+
+/* ============================================================
+   1. CSS CUSTOM PROPERTIES (VG-04 palette)
+   ============================================================ */
+.vv-theme-vg-04 {
+  --vg04-red:        #ff2222;
+  --vg04-red-dim:    #aa1111;
+  --vg04-gold:       #c9a84c;
+  --vg04-gold-bright:#f0c060;
+  --vg04-metal:      #1a1a1e;
+  --vg04-metal-mid:  #2a2a30;
+  --vg04-metal-edge: #3c3c44;
+  --vg04-hazard-y:   #f5c518;
+  --vg04-hazard-b:   #111;
+}
+
+/* ============================================================
+   2. CABINET — vault metal panel texture + hazard corners
+   ============================================================ */
+.vv-theme-vg-04 .vvCabinetFrame,
+.vv-theme-vg-04 .vvCabinetViewport {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      var(--vg04-hazard-b) 0px,
+      var(--vg04-hazard-b) 8px,
+      var(--vg04-hazard-y) 8px,
+      var(--vg04-hazard-y) 16px
+    ) top left / 32px 32px no-repeat,
+    repeating-linear-gradient(
+      135deg,
+      var(--vg04-hazard-b) 0px,
+      var(--vg04-hazard-b) 8px,
+      var(--vg04-hazard-y) 8px,
+      var(--vg04-hazard-y) 16px
+    ) top right / 32px 32px no-repeat,
+    repeating-linear-gradient(
+      135deg,
+      var(--vg04-hazard-b) 0px,
+      var(--vg04-hazard-b) 8px,
+      var(--vg04-hazard-y) 8px,
+      var(--vg04-hazard-y) 16px
+    ) bottom left / 32px 32px no-repeat,
+    repeating-linear-gradient(
+      135deg,
+      var(--vg04-hazard-b) 0px,
+      var(--vg04-hazard-b) 8px,
+      var(--vg04-hazard-y) 8px,
+      var(--vg04-hazard-y) 16px
+    ) bottom right / 32px 32px no-repeat,
+    linear-gradient(
+      180deg,
+      var(--vg04-metal) 0%,
+      var(--vg04-metal-mid) 50%,
+      var(--vg04-metal) 100%
+    );
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  border: 2px solid var(--vg04-metal-edge);
+  box-shadow:
+    0 0 0 1px var(--vg04-red-dim),
+    0 0 24px rgba(255, 34, 34, 0.18),
+    inset 0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+/* ============================================================
+   3. REELS — red alarm border + glow
+   ============================================================ */
+.vv-theme-vg-04 .reelsWrap {
+  border: 1.5px solid var(--vg04-red-dim);
+  box-shadow:
+    0 0 12px rgba(255, 34, 34, 0.3),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+.vv-theme-vg-04 .reelCol {
+  border-right: 1px solid rgba(255, 34, 34, 0.15);
+}
+.vv-theme-vg-04 .reelCol:last-child {
+  border-right: none;
+}
+
+/* Spinning column — red edge pulse */
+.vv-theme-vg-04 .reelCol.vv-is-spinning {
+  box-shadow: inset 0 0 8px rgba(255, 34, 34, 0.25);
+}
+
+/* ============================================================
+   4. REEL SETTLE ANIMATION — vault-lock bounce
+   ============================================================ */
+@keyframes vvVaultSettle {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-6px); }
+  55%  { transform: translateY(3px); }
+  75%  { transform: translateY(-2px); }
+  90%  { transform: translateY(1px); }
+  100% { transform: translateY(0); }
+}
+
+.vv-theme-vg-04 .reelCol.vv-reel-settled {
+  animation: vvVaultSettle 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* ============================================================
+   5. SYMBOL IMAGES — sizing + per-tier glow halos
+   ============================================================ */
+.vv-theme-vg-04 .symImg {
+  max-width: 82%;
+  max-height: 82%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
+  transition: filter 0.15s ease;
+}
+
+/* Premium tier — vault-door, diamond-core */
+.vv-theme-vg-04 .symCell[data-tier="premium"] .symImg {
+  filter:
+    drop-shadow(0 0 8px var(--vg04-red))
+    drop-shadow(0 0 16px rgba(255, 34, 34, 0.5))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
+}
+
+/* High tier — duffel-cash, gold-bar */
+.vv-theme-vg-04 .symCell[data-tier="high"] .symImg {
+  filter:
+    drop-shadow(0 0 6px var(--vg04-gold))
+    drop-shadow(0 0 12px rgba(201, 168, 76, 0.4))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
+}
+
+/* Mid tier — red-laser, security-badge, lockpick */
+.vv-theme-vg-04 .symCell[data-tier="mid"] .symImg {
+  filter:
+    drop-shadow(0 0 4px rgba(255, 34, 34, 0.4))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
+}
+
+/* Win cell highlight — red alarm flash */
+.vv-theme-vg-04 .symCell.vv-win-cell {
+  background: radial-gradient(circle, rgba(255, 34, 34, 0.18) 0%, transparent 70%);
+  animation: vvHeistWinPulse 0.6s ease-in-out 3;
+}
+
+@keyframes vvHeistWinPulse {
+  0%, 100% { background: radial-gradient(circle, rgba(255, 34, 34, 0.08) 0%, transparent 70%); }
+  50%       { background: radial-gradient(circle, rgba(255, 34, 34, 0.28) 0%, transparent 70%); }
+}
+
+/* ============================================================
+   6. HUD — red accent reskin
+   ============================================================ */
+.vv-theme-vg-04 .vvHudPanel {
+  background: linear-gradient(135deg, var(--vg04-metal) 0%, var(--vg04-metal-mid) 100%);
+  border: 1px solid var(--vg04-metal-edge);
+  box-shadow: 0 0 8px rgba(255, 34, 34, 0.12);
+}
+
+.vv-theme-vg-04 .vvHudValue {
+  color: var(--vg04-gold-bright);
+  text-shadow: 0 0 8px rgba(201, 168, 76, 0.4);
+}
+
+.vv-theme-vg-04 .vvHudLabel {
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.08em;
+}
+
+/* ============================================================
+   7. SPIN BUTTON — red alarm style
+   ============================================================ */
+.vv-theme-vg-04 #spinBtn,
+.vv-theme-vg-04 .vvSpinBtn {
+  background: linear-gradient(135deg, var(--vg04-red-dim) 0%, var(--vg04-red) 100%);
+  border: 1.5px solid var(--vg04-red);
+  box-shadow:
+    0 0 12px rgba(255, 34, 34, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.vv-theme-vg-04 #spinBtn:hover:not(:disabled),
+.vv-theme-vg-04 .vvSpinBtn:hover:not(:disabled) {
+  box-shadow:
+    0 0 20px rgba(255, 34, 34, 0.65),
+    0 2px 8px rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.vv-theme-vg-04 #spinBtn:disabled,
+.vv-theme-vg-04 .vvSpinBtn:disabled {
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+/* ============================================================
+   8. WIN TIER OVERLAYS — vault breach burst
+   ============================================================ */
+@keyframes vvVaultBreach {
+  0%   { transform: scale(0.6); opacity: 0; }
+  40%  { transform: scale(1.08); opacity: 1; }
+  65%  { transform: scale(0.97); }
+  80%  { transform: scale(1.03); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes vvBreachRing {
+  0%   { transform: scale(0.5); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes vvAlarmPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 34, 34, 0.4), 0 0 60px rgba(255, 34, 34, 0.1); }
+  50%       { box-shadow: 0 0 40px rgba(255, 34, 34, 0.8), 0 0 100px rgba(255, 34, 34, 0.3); }
+}
+
+.vv-theme-vg-04 .vvWinFrame {
+  animation: vvVaultBreach 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Breach ring pseudo-element */
+.vv-theme-vg-04 .vvWinFrame::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  border: 3px solid var(--vg04-red);
+  animation: vvBreachRing 0.7s ease-out forwards;
+  pointer-events: none;
+}
+
+/* BIG WIN */
+.vv-theme-vg-04 .vvWinFrame[data-tier="big"] {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2a1010 100%);
+  border: 2px solid var(--vg04-red-dim);
+  color: var(--vg04-red);
+  text-shadow: 0 0 16px rgba(255, 34, 34, 0.6);
+}
+
+/* SUPER WIN */
+.vv-theme-vg-04 .vvWinFrame[data-tier="super"] {
+  background: linear-gradient(135deg, #1a0808 0%, #330e0e 100%);
+  border: 2px solid var(--vg04-red);
+  color: #ff4444;
+  text-shadow: 0 0 20px rgba(255, 34, 34, 0.8);
+  animation: vvVaultBreach 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+             vvAlarmPulse 1.2s ease-in-out infinite 0.55s;
+}
+
+/* HUGE WIN */
+.vv-theme-vg-04 .vvWinFrame[data-tier="huge"] {
+  background: linear-gradient(135deg, #1a0505 0%, #3d0c0c 100%);
+  border: 2px solid #ff4444;
+  color: #ff6666;
+  text-shadow: 0 0 24px rgba(255, 34, 34, 1);
+  animation: vvVaultBreach 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+             vvAlarmPulse 0.9s ease-in-out infinite 0.55s;
+}
+
+/* EXTRAVAGANT WIN */
+.vv-theme-vg-04 .vvWinFrame[data-tier="extravagant"] {
+  background: linear-gradient(135deg, #1a0e00 0%, #3d2800 50%, #1a0e00 100%);
+  border: 2px solid var(--vg04-gold);
+  color: var(--vg04-gold-bright);
+  text-shadow:
+    0 0 20px rgba(201, 168, 76, 0.9),
+    0 0 40px rgba(255, 34, 34, 0.5);
+  animation:
+    vvVaultBreach 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+    vvHeistGoldShift 2s linear infinite 0.55s;
+}
+
+@keyframes vvHeistGoldShift {
+  0%   { border-color: var(--vg04-gold); }
+  50%  { border-color: var(--vg04-red); }
+  100% { border-color: var(--vg04-gold); }
+}
+
+/* ============================================================
+   9. FEATURE FRAMES — alarm metal edges
+   ============================================================ */
+.vv-theme-vg-04 .vvFeatureFrame {
+  background: linear-gradient(135deg, var(--vg04-metal) 0%, #0d0d10 100%);
+  border: 2px solid var(--vg04-red-dim);
+  box-shadow:
+    0 0 0 1px rgba(255, 34, 34, 0.15),
+    0 0 30px rgba(255, 34, 34, 0.2),
+    inset 0 0 40px rgba(0, 0, 0, 0.7);
+}
+
+.vv-theme-vg-04 .vvFeatureFrame .vvFeatureTitle {
+  color: var(--vg04-red);
+  text-shadow: 0 0 12px rgba(255, 34, 34, 0.7);
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+.vv-theme-vg-04 .vvFeatureFrame .vvFeatureDetail {
+  color: rgba(255, 255, 255, 0.65);
+  font-style: italic;
+}
+
+/* Hold & Win — LOCKED IN red pulse badge */
+.vv-theme-vg-04 .vvFeatureFrame[data-type="holdandwin"] .vvFeatureTitle {
+  animation: vvLockedInPulse 1s ease-in-out infinite;
+}
+
+@keyframes vvLockedInPulse {
+  0%, 100% { color: var(--vg04-red); text-shadow: 0 0 12px rgba(255, 34, 34, 0.7); }
+  50%       { color: #ff6666;         text-shadow: 0 0 24px rgba(255, 34, 34, 1); }
+}
+
+/* Hold & Win locked cells — gold token style */
+.vv-theme-vg-04 .vvFeatureCoin {
+  background: radial-gradient(circle, var(--vg04-gold-bright) 0%, var(--vg04-gold) 60%, #7a5c1a 100%);
+  border: 2px solid var(--vg04-gold-bright);
+  box-shadow: 0 0 8px rgba(201, 168, 76, 0.6);
+  color: #1a1a1e;
+  font-weight: 800;
+}
+
+/* Free spins frame — gold accent */
+.vv-theme-vg-04 .vvFeatureFrame[data-type="freespins"] {
+  border-color: var(--vg04-gold);
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.2),
+    0 0 30px rgba(201, 168, 76, 0.15),
+    inset 0 0 40px rgba(0, 0, 0, 0.7);
+}
+
+.vv-theme-vg-04 .vvFeatureFrame[data-type="freespins"] .vvFeatureTitle {
+  color: var(--vg04-gold-bright);
+  text-shadow: 0 0 12px rgba(201, 168, 76, 0.7);
+  animation: none;
+}
+
+/* Jackpot frame — vault breach gold+red */
+.vv-theme-vg-04 .vvFeatureFrame[data-type="jackpot"] {
+  border-color: var(--vg04-gold);
+  box-shadow:
+    0 0 0 1px rgba(255, 34, 34, 0.3),
+    0 0 40px rgba(255, 34, 34, 0.25),
+    0 0 60px rgba(201, 168, 76, 0.1),
+    inset 0 0 40px rgba(0, 0, 0, 0.7);
+}
+
+.vv-theme-vg-04 .vvFeatureFrame[data-type="jackpot"] .vvFeatureTitle {
+  color: var(--vg04-gold-bright);
+  text-shadow:
+    0 0 16px rgba(201, 168, 76, 0.9),
+    0 0 32px rgba(255, 34, 34, 0.5);
+  animation: vvJackpotHeistFlash 1.5s ease-in-out infinite;
+}
+
+@keyframes vvJackpotHeistFlash {
+  0%, 100% { color: var(--vg04-gold-bright); }
+  50%       { color: #fff; text-shadow: 0 0 24px rgba(255, 34, 34, 0.9), 0 0 48px rgba(201, 168, 76, 0.6); }
+}
+
+/* ============================================================
+   10. LASER SCAN LAYER — #vv-laser-layer
+   ============================================================ */
+#vv-laser-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 35;
+  display: none;
+  overflow: hidden;
+}
+
+/* Only show when VG-04 is active AND feature/win is triggered */
+.vv-theme-vg-04 #vv-laser-layer.vv-laser-active {
+  display: block;
+}
+
+/* Subtle red haze background */
+.vv-theme-vg-04 #vv-laser-layer.vv-laser-active::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(255, 34, 34, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Horizontal scan line */
+.vv-theme-vg-04 #vv-laser-layer.vv-laser-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -4px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 34, 34, 0.9) 20%, #ff2222 50%, rgba(255, 34, 34, 0.9) 80%, transparent 100%);
+  box-shadow: 0 0 8px rgba(255, 34, 34, 0.8), 0 0 16px rgba(255, 34, 34, 0.4);
+  animation: vvLaserScan 2.4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes vvLaserScan {
+  0%   { top: -4px;   opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { top: 100vh;  opacity: 0; }
+}
+
+/* ============================================================
+   11. Z-INDEX ENFORCEMENT
+   ============================================================ */
+.vv-theme-vg-04 .symImg          { z-index: 10; }
+.vv-theme-vg-04 .vvReelFX        { z-index: 20; }
+.vv-theme-vg-04 .vvHudPanel      { z-index: 30; }
+#vv-laser-layer                   { z-index: 35; }
+.vv-theme-vg-04 .vvWinFrame,
+.vv-theme-vg-04 .vvFeatureFrame   { z-index: 40; }
+.vv-theme-vg-04 .vvModal          { z-index: 1900; }

@@ -127,7 +127,7 @@
       "id": "VG-04",
       "slug": "vault-heist",
       "title": "Vault Heist",
-      "subtitle": "The score of a lifetime \u2014 if you can crack it.",
+      "subtitle": "Breach the vault. Claim the gold.",
       "machineId": "emerald_heist",
       "layout": {
         "base": {
@@ -145,9 +145,11 @@
         ]
       },
       "theme": {
-        "vfxTheme": "gold",
-        "frameTheme": "Gold",
-        "soundTheme": "Gold"
+        "vfxTheme": "heist",
+        "frameTheme": "vg-04",
+        "accentColor": "#ff2222",
+        "secondaryColor": "#c9a84c",
+        "glowColor": "rgba(255,34,34,0.5)"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -156,11 +158,12 @@
         "extravagantMin": 10000
       },
       "assets": {
-        "cardImage": "images/slots/vg/VG-04/card.png",
-        "logoImage": "images/slots/vg/VG-04/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-04/symbols"
+        "card": "images/slots/vg/VG-04/card.png",
+        "logo": "images/slots/vg/VG-04/logo.png",
+        "symbols": "images/slots/vg/VG-04/symbols/"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-04.symbols.json"
     },
     {
       "id": "VG-05",
