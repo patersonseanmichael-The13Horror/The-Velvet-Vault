@@ -1,0 +1,147 @@
+/* =============================================================
+   slots-vg-10.css — VG-10 Royal Circuit
+   Electric gold circuit board theme. All rules scoped to
+   body.vv-theme-vg-10 to prevent bleed into other machines.
+   ============================================================= */
+
+/* ── CSS Variables ─────────────────────────────────────────── */
+body.vv-theme-vg-10 {
+  --vg-accent:    #f5c842;
+  --vg-secondary: #ffe066;
+  --vg-glow:      #ffe000;
+  --vg-bg-dark:   #0d0d00;
+  --vg-bg-mid:    #1a1a00;
+  --vg-circuit:   #2a2a00;
+}
+
+/* ── Cabinet ───────────────────────────────────────────────── */
+body.vv-theme-vg-10 .vv-cabinet,
+body.vv-theme-vg-10 #cabinetEl {
+  background: radial-gradient(ellipse at 50% 30%, #1a1a00 0%, #080800 100%);
+  border-color: var(--vg-accent);
+  box-shadow: 0 0 40px rgba(245, 200, 66, 0.3), inset 0 0 20px rgba(245, 200, 66, 0.08);
+}
+
+/* ── Reel window ───────────────────────────────────────────── */
+body.vv-theme-vg-10 .reelWindow,
+body.vv-theme-vg-10 .reelCol {
+  border-color: rgba(245, 200, 66, 0.35);
+  box-shadow: inset 0 0 12px rgba(245, 200, 66, 0.12);
+}
+
+/* ── Spinning reel glow ────────────────────────────────────── */
+body.vv-theme-vg-10 .reelCol.is-spinning {
+  box-shadow: inset 0 0 18px rgba(245, 200, 66, 0.35), 0 0 8px rgba(245, 200, 66, 0.2);
+}
+
+/* ── Reel settle bounce ────────────────────────────────────── */
+@keyframes vvCircuitSettle {
+  0%   { transform: translateY(0); }
+  20%  { transform: translateY(-9px); }
+  45%  { transform: translateY(5px); }
+  70%  { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+body.vv-theme-vg-10 .reelCol.is-settling {
+  animation: vvCircuitSettle 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Symbol images ─────────────────────────────────────────── */
+body.vv-theme-vg-10 .symImg {
+  max-width: 82%;
+  max-height: 82%;
+  filter: drop-shadow(0 0 4px rgba(245, 200, 66, 0.5));
+  transition: filter 0.2s ease;
+}
+body.vv-theme-vg-10 .symCell[data-tier="premium"] .symImg {
+  filter: drop-shadow(0 0 12px rgba(255, 224, 0, 0.95)) drop-shadow(0 0 5px rgba(255, 230, 102, 0.8));
+}
+body.vv-theme-vg-10 .symCell[data-tier="high"] .symImg {
+  filter: drop-shadow(0 0 8px rgba(245, 200, 66, 0.7));
+}
+body.vv-theme-vg-10 .symCell[data-tier="mid"] .symImg {
+  filter: drop-shadow(0 0 5px rgba(212, 160, 23, 0.5));
+}
+
+/* ── Win cell highlight ────────────────────────────────────── */
+@keyframes vvCircuitPulse {
+  0%, 100% { box-shadow: inset 0 0 12px rgba(245, 200, 66, 0.4); }
+  50%       { box-shadow: inset 0 0 30px rgba(255, 224, 0, 0.95); }
+}
+body.vv-theme-vg-10 .symCell.is-win {
+  animation: vvCircuitPulse 0.7s ease-in-out infinite;
+  background: rgba(245, 200, 66, 0.1);
+}
+
+/* ── HUD / balance display ─────────────────────────────────── */
+body.vv-theme-vg-10 .vvHudBalance,
+body.vv-theme-vg-10 .vvBalanceDisplay {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 8px var(--vg-accent);
+}
+body.vv-theme-vg-10 .vvHudLabel { color: var(--vg-accent); }
+
+/* ── Spin button ───────────────────────────────────────────── */
+body.vv-theme-vg-10 #spinBtn,
+body.vv-theme-vg-10 .vvSpinBtn {
+  background: linear-gradient(135deg, #1a1a00 0%, #2a2a00 100%);
+  border: 2px solid var(--vg-accent);
+  color: var(--vg-secondary);
+  box-shadow: 0 0 16px rgba(245, 200, 66, 0.3);
+}
+body.vv-theme-vg-10 #spinBtn:hover,
+body.vv-theme-vg-10 .vvSpinBtn:hover {
+  box-shadow: 0 0 28px rgba(255, 224, 0, 0.7);
+  border-color: var(--vg-secondary);
+}
+
+/* ── Win tier overlays ─────────────────────────────────────── */
+body.vv-theme-vg-10 .vvWinFrame,
+body.vv-theme-vg-10 #vvWinFrame {
+  background: radial-gradient(ellipse at 50% 40%, rgba(26, 26, 0, 0.97) 0%, rgba(8, 8, 0, 0.99) 100%);
+  border: 2px solid var(--vg-accent);
+  box-shadow: 0 0 40px rgba(245, 200, 66, 0.5), inset 0 0 20px rgba(245, 200, 66, 0.1);
+}
+body.vv-theme-vg-10 .vvWinFrame .vvWinTierLabel {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 20px var(--vg-accent), 0 0 8px rgba(255, 224, 0, 0.8);
+}
+body.vv-theme-vg-10 .vvWinFrame .vvWinAmount {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 12px rgba(255, 230, 102, 0.7);
+}
+@keyframes vvCircuitRoyalPulse {
+  0%   { text-shadow: 0 0 20px #f5c842, 0 0 40px #d4a017; }
+  50%  { text-shadow: 0 0 60px #ffe066, 0 0 120px #ffe000, 0 0 12px #fff; }
+  100% { text-shadow: 0 0 20px #f5c842, 0 0 40px #d4a017; }
+}
+body.vv-theme-vg-10 .vvWinFrame[data-tier="EXTRAVAGANT"] .vvWinTierLabel {
+  animation: vvCircuitRoyalPulse 1.0s ease-in-out infinite;
+}
+
+/* ── Feature frames ────────────────────────────────────────── */
+body.vv-theme-vg-10 .vvFeatureFrame,
+body.vv-theme-vg-10 #vvFeatureFrame {
+  background: radial-gradient(ellipse at 50% 30%, rgba(26, 26, 0, 0.97) 0%, rgba(8, 8, 0, 0.99) 100%);
+  border: 2px solid var(--vg-accent);
+  box-shadow: 0 0 50px rgba(245, 200, 66, 0.4), inset 0 0 25px rgba(245, 200, 66, 0.08);
+}
+body.vv-theme-vg-10 .vvFeatureFrame .vvFrameTitle {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 16px var(--vg-accent);
+}
+body.vv-theme-vg-10 .vvFeatureFrame .vvFrameDetail { color: var(--vg-accent); }
+
+/* ── Coin drop particles ───────────────────────────────────── */
+body.vv-theme-vg-10 .vvCoinDrop {
+  background: radial-gradient(circle, var(--vg-secondary) 30%, var(--vg-accent) 100%);
+  box-shadow: 0 0 8px var(--vg-glow);
+}
+
+/* ── Z-index enforcement ───────────────────────────────────── */
+body.vv-theme-vg-10 .symImg          { z-index: 10; }
+body.vv-theme-vg-10 .vvReelFx        { z-index: 20; }
+body.vv-theme-vg-10 .vvHud           { z-index: 30; }
+body.vv-theme-vg-10 .vvFeatureFrame,
+body.vv-theme-vg-10 .vvWinFrame      { z-index: 40; }
+body.vv-theme-vg-10 .vvModal         { z-index: 1900; }

@@ -1,0 +1,25 @@
+{
+  "machineId": "VG-06",
+  "title": "Crimson Council",
+  "theme": "crimson",
+  "accentColor": "#cc1a1a",
+  "secondaryColor": "#c9a84c",
+  "skinClass": "vv-theme-vg-06",
+  "symbols": [
+    { "key": "crimson-crown",  "path": "images/slots/vg/VG-06/symbols/crimson-crown.png",  "tier": "premium", "glowColor": "#ff2222", "label": "Crown" },
+    { "key": "council-seal",   "path": "images/slots/vg/VG-06/symbols/council-seal.png",   "tier": "premium", "glowColor": "#dd1111", "label": "Seal" },
+    { "key": "ruby-gem",       "path": "images/slots/vg/VG-06/symbols/ruby-gem.png",       "tier": "high",    "glowColor": "#ee2222", "label": "Ruby" },
+    { "key": "velvet-rose",    "path": "images/slots/vg/VG-06/symbols/velvet-rose.png",    "tier": "high",    "glowColor": "#cc1111", "label": "Rose" },
+    { "key": "chalice",        "path": "images/slots/vg/VG-06/symbols/chalice.png",        "tier": "mid",     "glowColor": "#c9a84c", "label": "Chalice" },
+    { "key": "card-a",         "path": "images/slots/vg/VG-06/symbols/card-a.png",         "tier": "mid",     "glowColor": "#bb1010", "label": "Ace" },
+    { "key": "card-k",         "path": "images/slots/vg/VG-06/symbols/card-k.png",         "tier": "low",     "glowColor": "#aa0f0f", "label": "King" },
+    { "key": "card-q",         "path": "images/slots/vg/VG-06/symbols/card-q.png",         "tier": "low",     "glowColor": "#990e0e", "label": "Queen" },
+    { "key": "card-j",         "path": "images/slots/vg/VG-06/symbols/card-j.png",         "tier": "low",     "glowColor": "#880d0d", "label": "Jack" },
+    { "key": "card-10",        "path": "images/slots/vg/VG-06/symbols/card-10.png",        "tier": "low",     "glowColor": "#770c0c", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "COUNCIL LOCK",   "detail": "The council holds your fate" },
+    "freespins":  { "title": "CRIMSON DECREE", "detail": "Free spins by royal order" },
+    "jackpot":    { "title": "BLOOD JACKPOT",  "detail": "The council grants the vault" }
+  }
+}

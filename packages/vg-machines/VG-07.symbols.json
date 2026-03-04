@@ -1,0 +1,25 @@
+{
+  "machineId": "VG-07",
+  "title": "Sapphire Fortune",
+  "theme": "sapphire",
+  "accentColor": "#1a6acc",
+  "secondaryColor": "#c9a84c",
+  "skinClass": "vv-theme-vg-07",
+  "symbols": [
+    { "key": "sapphire-gem",    "path": "images/slots/vg/VG-07/symbols/sapphire-gem.png",    "tier": "premium", "glowColor": "#2277ee", "label": "Sapphire" },
+    { "key": "fortune-wheel",   "path": "images/slots/vg/VG-07/symbols/fortune-wheel.png",   "tier": "premium", "glowColor": "#1a6acc", "label": "Fortune Wheel" },
+    { "key": "blue-crown",      "path": "images/slots/vg/VG-07/symbols/blue-crown.png",      "tier": "high",    "glowColor": "#1e7ae0", "label": "Crown" },
+    { "key": "lucky-star",      "path": "images/slots/vg/VG-07/symbols/lucky-star.png",      "tier": "high",    "glowColor": "#2288ff", "label": "Lucky Star" },
+    { "key": "treasure-chest",  "path": "images/slots/vg/VG-07/symbols/treasure-chest.png",  "tier": "mid",     "glowColor": "#c9a84c", "label": "Treasure" },
+    { "key": "card-a",          "path": "images/slots/vg/VG-07/symbols/card-a.png",          "tier": "mid",     "glowColor": "#1566bb", "label": "Ace" },
+    { "key": "card-k",          "path": "images/slots/vg/VG-07/symbols/card-k.png",          "tier": "low",     "glowColor": "#1460aa", "label": "King" },
+    { "key": "card-q",          "path": "images/slots/vg/VG-07/symbols/card-q.png",          "tier": "low",     "glowColor": "#1358a0", "label": "Queen" },
+    { "key": "card-j",          "path": "images/slots/vg/VG-07/symbols/card-j.png",          "tier": "low",     "glowColor": "#125090", "label": "Jack" },
+    { "key": "card-10",         "path": "images/slots/vg/VG-07/symbols/card-10.png",         "tier": "low",     "glowColor": "#114888", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "FORTUNE LOCK",    "detail": "Sapphire gems locked in place" },
+    "freespins":  { "title": "FORTUNE SPINS",   "detail": "Sapphire multipliers spinning" },
+    "jackpot":    { "title": "SAPPHIRE VAULT",  "detail": "The fortune vault opens" }
+  }
+}

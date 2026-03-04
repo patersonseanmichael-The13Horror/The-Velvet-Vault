@@ -1,0 +1,150 @@
+/* =============================================================
+   slots-vg-06.css — VG-06 Crimson Council
+   Deep crimson velvet and gold theme. All rules scoped to
+   body.vv-theme-vg-06 to prevent bleed into other machines.
+   ============================================================= */
+
+/* ── CSS Variables ─────────────────────────────────────────── */
+body.vv-theme-vg-06 {
+  --vg-accent:    #cc1a1a;
+  --vg-secondary: #c9a84c;
+  --vg-glow:      #ff2222;
+  --vg-bg-dark:   #1a0505;
+  --vg-bg-mid:    #250808;
+  --vg-velvet:    #3d0a0a;
+}
+
+/* ── Cabinet ───────────────────────────────────────────────── */
+body.vv-theme-vg-06 .vv-cabinet,
+body.vv-theme-vg-06 #cabinetEl {
+  background: radial-gradient(ellipse at 50% 30%, #250808 0%, #0d0202 100%);
+  border-color: var(--vg-accent);
+  box-shadow: 0 0 40px rgba(204, 26, 26, 0.3), inset 0 0 20px rgba(204, 26, 26, 0.1);
+}
+
+/* ── Reel window ───────────────────────────────────────────── */
+body.vv-theme-vg-06 .reelWindow,
+body.vv-theme-vg-06 .reelCol {
+  border-color: rgba(204, 26, 26, 0.35);
+  box-shadow: inset 0 0 12px rgba(204, 26, 26, 0.12);
+}
+
+/* ── Spinning reel glow ────────────────────────────────────── */
+body.vv-theme-vg-06 .reelCol.is-spinning {
+  box-shadow: inset 0 0 18px rgba(204, 26, 26, 0.35), 0 0 8px rgba(204, 26, 26, 0.2);
+}
+
+/* ── Reel settle bounce ────────────────────────────────────── */
+@keyframes vvCrimsonSettle {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-7px); }
+  55%  { transform: translateY(4px); }
+  75%  { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+body.vv-theme-vg-06 .reelCol.is-settling {
+  animation: vvCrimsonSettle 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Symbol images ─────────────────────────────────────────── */
+body.vv-theme-vg-06 .symImg {
+  max-width: 82%;
+  max-height: 82%;
+  filter: drop-shadow(0 0 4px rgba(204, 26, 26, 0.5));
+  transition: filter 0.2s ease;
+}
+body.vv-theme-vg-06 .symCell[data-tier="premium"] .symImg {
+  filter: drop-shadow(0 0 10px rgba(255, 34, 34, 0.9)) drop-shadow(0 0 4px rgba(201, 168, 76, 0.5));
+}
+body.vv-theme-vg-06 .symCell[data-tier="high"] .symImg {
+  filter: drop-shadow(0 0 7px rgba(204, 26, 26, 0.7));
+}
+body.vv-theme-vg-06 .symCell[data-tier="mid"] .symImg {
+  filter: drop-shadow(0 0 5px rgba(201, 168, 76, 0.5));
+}
+
+/* ── Win cell highlight ────────────────────────────────────── */
+@keyframes vvCrimsonPulse {
+  0%, 100% { box-shadow: inset 0 0 12px rgba(204, 26, 26, 0.4); }
+  50%       { box-shadow: inset 0 0 24px rgba(255, 34, 34, 0.8); }
+}
+body.vv-theme-vg-06 .symCell.is-win {
+  animation: vvCrimsonPulse 0.8s ease-in-out infinite;
+  background: rgba(204, 26, 26, 0.1);
+}
+
+/* ── HUD / balance display ─────────────────────────────────── */
+body.vv-theme-vg-06 .vvHudBalance,
+body.vv-theme-vg-06 .vvBalanceDisplay {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 8px var(--vg-accent);
+}
+body.vv-theme-vg-06 .vvHudLabel {
+  color: var(--vg-accent);
+}
+
+/* ── Spin button ───────────────────────────────────────────── */
+body.vv-theme-vg-06 #spinBtn,
+body.vv-theme-vg-06 .vvSpinBtn {
+  background: linear-gradient(135deg, #250808 0%, #3d0a0a 100%);
+  border: 2px solid var(--vg-accent);
+  color: var(--vg-secondary);
+  box-shadow: 0 0 16px rgba(204, 26, 26, 0.3);
+}
+body.vv-theme-vg-06 #spinBtn:hover,
+body.vv-theme-vg-06 .vvSpinBtn:hover {
+  box-shadow: 0 0 28px rgba(255, 34, 34, 0.6);
+  border-color: var(--vg-secondary);
+}
+
+/* ── Win tier overlays ─────────────────────────────────────── */
+body.vv-theme-vg-06 .vvWinFrame,
+body.vv-theme-vg-06 #vvWinFrame {
+  background: radial-gradient(ellipse at 50% 40%, rgba(37, 8, 8, 0.97) 0%, rgba(13, 2, 2, 0.99) 100%);
+  border: 2px solid var(--vg-accent);
+  box-shadow: 0 0 40px rgba(204, 26, 26, 0.5), inset 0 0 20px rgba(204, 26, 26, 0.1);
+}
+body.vv-theme-vg-06 .vvWinFrame .vvWinTierLabel {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 20px var(--vg-accent), 0 0 8px rgba(255, 34, 34, 0.8);
+}
+body.vv-theme-vg-06 .vvWinFrame .vvWinAmount {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 12px rgba(201, 168, 76, 0.6);
+}
+@keyframes vvCrimsonBloodPulse {
+  0%, 100% { text-shadow: 0 0 20px #ff2222, 0 0 40px #cc1a1a; }
+  50%       { text-shadow: 0 0 40px #ff4444, 0 0 80px #ee2222, 0 0 8px #c9a84c; }
+}
+body.vv-theme-vg-06 .vvWinFrame[data-tier="EXTRAVAGANT"] .vvWinTierLabel {
+  animation: vvCrimsonBloodPulse 1.2s ease-in-out infinite;
+}
+
+/* ── Feature frames ────────────────────────────────────────── */
+body.vv-theme-vg-06 .vvFeatureFrame,
+body.vv-theme-vg-06 #vvFeatureFrame {
+  background: radial-gradient(ellipse at 50% 30%, rgba(37, 8, 8, 0.97) 0%, rgba(13, 2, 2, 0.99) 100%);
+  border: 2px solid var(--vg-accent);
+  box-shadow: 0 0 50px rgba(204, 26, 26, 0.4), inset 0 0 25px rgba(204, 26, 26, 0.08);
+}
+body.vv-theme-vg-06 .vvFeatureFrame .vvFrameTitle {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 16px var(--vg-accent);
+}
+body.vv-theme-vg-06 .vvFeatureFrame .vvFrameDetail {
+  color: var(--vg-accent);
+}
+
+/* ── Coin drop particles ───────────────────────────────────── */
+body.vv-theme-vg-06 .vvCoinDrop {
+  background: radial-gradient(circle, var(--vg-secondary) 30%, var(--vg-accent) 100%);
+  box-shadow: 0 0 6px var(--vg-accent);
+}
+
+/* ── Z-index enforcement ───────────────────────────────────── */
+body.vv-theme-vg-06 .symImg          { z-index: 10; }
+body.vv-theme-vg-06 .vvReelFx        { z-index: 20; }
+body.vv-theme-vg-06 .vvHud           { z-index: 30; }
+body.vv-theme-vg-06 .vvFeatureFrame,
+body.vv-theme-vg-06 .vvWinFrame      { z-index: 40; }
+body.vv-theme-vg-06 .vvModal         { z-index: 1900; }

@@ -20,7 +20,13 @@ const VG_SKIN_MANIFESTS = {
   "VG-01": "packages/vg-machines/VG-01.symbols.json",
   "VG-02": "packages/vg-machines/VG-02.symbols.json",
   "VG-03": "packages/vg-machines/VG-03.symbols.json",
-  "VG-04": "packages/vg-machines/VG-04.symbols.json"
+  "VG-04": "packages/vg-machines/VG-04.symbols.json",
+  "VG-05": "packages/vg-machines/VG-05.symbols.json",
+  "VG-06": "packages/vg-machines/VG-06.symbols.json",
+  "VG-07": "packages/vg-machines/VG-07.symbols.json",
+  "VG-08": "packages/vg-machines/VG-08.symbols.json",
+  "VG-09": "packages/vg-machines/VG-09.symbols.json",
+  "VG-10": "packages/vg-machines/VG-10.symbols.json"
 };
 
 /** In-memory cache so we only fetch each manifest once per session */
@@ -151,7 +157,12 @@ export async function applyVGSkin(machine, vgMachine) {
  */
 export function removeVGSkin() {
   // Remove all known skin classes
-  document.body.classList.remove("vv-vfx-noir-vip", "vv-vfx-neon-syndicate", "vv-theme-vg-03", "vv-theme-vg-04");
+  document.body.classList.remove(
+    "vv-vfx-noir-vip", "vv-vfx-neon-syndicate",
+    "vv-theme-vg-03", "vv-theme-vg-04",
+    "vv-theme-vg-05", "vv-theme-vg-06", "vv-theme-vg-07",
+    "vv-theme-vg-08", "vv-theme-vg-09", "vv-theme-vg-10"
+  );
   delete document.body.dataset.vgSkin;
   // Reset CSS variables to defaults
   document.documentElement.style.removeProperty("--vg-accent");

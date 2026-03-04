@@ -1,0 +1,25 @@
+{
+  "machineId": "VG-10",
+  "title": "Royal Circuit",
+  "theme": "circuit",
+  "accentColor": "#f5c842",
+  "secondaryColor": "#ffe066",
+  "skinClass": "vv-theme-vg-10",
+  "symbols": [
+    { "key": "circuit-crown",  "path": "images/slots/vg/VG-10/symbols/circuit-crown.png",  "tier": "premium", "glowColor": "#ffe066", "label": "Circuit Crown" },
+    { "key": "gold-chip",      "path": "images/slots/vg/VG-10/symbols/gold-chip.png",      "tier": "premium", "glowColor": "#f5c842", "label": "Gold Chip" },
+    { "key": "electric-diamond","path": "images/slots/vg/VG-10/symbols/electric-diamond.png","tier": "high",   "glowColor": "#f0d020", "label": "Electric Diamond" },
+    { "key": "royal-bolt",     "path": "images/slots/vg/VG-10/symbols/royal-bolt.png",     "tier": "high",    "glowColor": "#ffe000", "label": "Royal Bolt" },
+    { "key": "vault-circuit",  "path": "images/slots/vg/VG-10/symbols/vault-circuit.png",  "tier": "mid",     "glowColor": "#e8b830", "label": "Vault Circuit" },
+    { "key": "card-a",         "path": "images/slots/vg/VG-10/symbols/card-a.png",         "tier": "mid",     "glowColor": "#d4a017", "label": "Ace" },
+    { "key": "card-k",         "path": "images/slots/vg/VG-10/symbols/card-k.png",         "tier": "low",     "glowColor": "#c09010", "label": "King" },
+    { "key": "card-q",         "path": "images/slots/vg/VG-10/symbols/card-q.png",         "tier": "low",     "glowColor": "#b08010", "label": "Queen" },
+    { "key": "card-j",         "path": "images/slots/vg/VG-10/symbols/card-j.png",         "tier": "low",     "glowColor": "#a07010", "label": "Jack" },
+    { "key": "card-10",        "path": "images/slots/vg/VG-10/symbols/card-10.png",        "tier": "low",     "glowColor": "#906010", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "CIRCUIT LOCK",   "detail": "Royal circuits locked in sequence" },
+    "freespins":  { "title": "ROYAL SPINS",    "detail": "Electric multipliers charging" },
+    "jackpot":    { "title": "ROYAL CIRCUIT",  "detail": "Maximum voltage — vault open" }
+  }
+}

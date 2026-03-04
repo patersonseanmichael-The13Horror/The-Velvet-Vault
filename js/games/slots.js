@@ -640,6 +640,13 @@
     const isVaultHeist = activeVGMachine?.id === "VG-04"
       || activeVGMachine?.theme?.frameTheme === "vg-04";
     document.body.classList.toggle("vv-theme-vg-04", Boolean(isVaultHeist));
+    // VG-05..VG-10 — theme classes driven by machine ID
+    document.body.classList.toggle("vv-theme-vg-05", activeVGMachine?.id === "VG-05");
+    document.body.classList.toggle("vv-theme-vg-06", activeVGMachine?.id === "VG-06");
+    document.body.classList.toggle("vv-theme-vg-07", activeVGMachine?.id === "VG-07");
+    document.body.classList.toggle("vv-theme-vg-08", activeVGMachine?.id === "VG-08");
+    document.body.classList.toggle("vv-theme-vg-09", activeVGMachine?.id === "VG-09");
+    document.body.classList.toggle("vv-theme-vg-10", activeVGMachine?.id === "VG-10");
   }
 
   function applySlotLayout(mode = "base", reason = "") {
@@ -986,16 +993,33 @@
     const isVG03 = activeVGMachine?.id === "VG-03";
     // VG-04 Vault Heist — text overrides for feature frames
     const isVG04 = activeVGMachine?.id === "VG-04";
+    // VG-05..VG-10 — text overrides driven by manifest featureFrames
+    const isVG05 = activeVGMachine?.id === "VG-05";
+    const isVG06 = activeVGMachine?.id === "VG-06";
+    const isVG07 = activeVGMachine?.id === "VG-07";
+    const isVG08 = activeVGMachine?.id === "VG-08";
+    const isVG09 = activeVGMachine?.id === "VG-09";
+    const isVG10 = activeVGMachine?.id === "VG-10";
+    // Helper: resolve feature text from manifest or fall back to default
+    function vgFeatureText(field, fallback) {
+      const frames = window._vgManifestCache?.[activeVGMachine?.id]?.featureFrames;
+      return frames?.[field] || fallback;
+    }
 
     if (kind === "hold-win"){
       setFeatureClass("holdwin");
       featureFrameEl.classList.add("vvOverlayFrame--hold");
       featureFrameEl.style.setProperty("--vv-frame-art", `url("${FRAME_ASSETS.feature.holdWin}")`);
-      featureFrameTitleEl.textContent = isVG04 ? "LOCKED IN \u2022 6 DROPS" : isVG03 ? "LOTUS LOCK" : "HOLD & WIN";
+      featureFrameTitleEl.textContent = isVG04 ? "LOCKED IN \u2022 6 DROPS" : isVG03 ? "LOTUS LOCK"
+        : (isVG05||isVG06||isVG07||isVG08||isVG09||isVG10)
+          ? vgFeatureText("holdandwin", {title:"HOLD & WIN"}).title || "HOLD & WIN"
+          : "HOLD & WIN";
       if (featureFrameDetailEl) featureFrameDetailEl.textContent = isVG04
         ? "Security engaged \u2014 hold your positions."
         : isVG03 ? "6 DROPS \u2014 jade coins lock into the dynasty grid."
-        : "Private vault coins lock in under the noir lights.";
+        : (isVG05||isVG06||isVG07||isVG08||isVG09||isVG10)
+          ? (vgFeatureText("holdandwin", {detail:"Symbols locked in place."}).detail || "Symbols locked in place.")
+          : "Private vault coins lock in under the noir lights.";
       for (let i = 0; i < 6; i += 1){
         const coin = document.createElement("span");
         coin.className = isVG03 ? "vvFeatureCoin vv-coin-drop" : "vvFeatureCoin";
@@ -1007,11 +1031,16 @@
       setFeatureClass("freespins");
       featureFrameEl.classList.add("vvOverlayFrame--free");
       featureFrameEl.style.setProperty("--vv-frame-art", `url("${FRAME_ASSETS.feature.freeSpins}")`);
-      featureFrameTitleEl.textContent = isVG04 ? "HEIST COMPLETE" : isVG03 ? "DYNASTY SPINS COMPLETE" : "FREE SPINS COMPLETE";
+      featureFrameTitleEl.textContent = isVG04 ? "HEIST COMPLETE" : isVG03 ? "DYNASTY SPINS COMPLETE"
+        : (isVG05||isVG06||isVG07||isVG08||isVG09||isVG10)
+          ? (vgFeatureText("freespins", {title:"FREE SPINS COMPLETE"}).title || "FREE SPINS COMPLETE")
+          : "FREE SPINS COMPLETE";
       if (featureFrameDetailEl) featureFrameDetailEl.textContent = isVG04
         ? `Vault cleared \u2014 ${formatMoney(detail.totalWin || 0)} secured.`
         : isVG03 ? `Aurora settles at ${formatMoney(detail.totalWin || 0)}.`
-        : `House lights settle at ${formatMoney(detail.totalWin || 0)}.`;
+        : (isVG05||isVG06||isVG07||isVG08||isVG09||isVG10)
+          ? `${vgFeatureText("freespins", {detail:"Spins complete."}).detail || "Spins complete."} ${formatMoney(detail.totalWin || 0)} secured.`
+          : `House lights settle at ${formatMoney(detail.totalWin || 0)}.`;
       const chip = document.createElement("span");
       chip.className = "vvFeatureChip vvFeatureChip--summary";
       chip.textContent = formatMoney(detail.totalWin || 0);
@@ -1025,12 +1054,16 @@
         ? `HEIST FREE SPINS \u2022 x${detail.count || 8}`
         : isVG03
         ? `DYNASTY FREE SPINS \u2022 x${detail.count || 8}`
-        : `FREE SPINS x${detail.count || 8}`;
+        : (isVG05||isVG06||isVG07||isVG08||isVG09||isVG10)
+          ? `${vgFeatureText("freespins", {title:"FREE SPINS"}).title || "FREE SPINS"} \u2022 x${detail.count || 8}`
+          : `FREE SPINS x${detail.count || 8}`;
       if (featureFrameDetailEl) featureFrameDetailEl.textContent = isVG04
         ? "The vault is open \u2014 take what you can."
         : isVG03
         ? "The aurora opens the dynasty grid \u2014 the dragon awakens."
-        : "VIP noir floods the cabinet and the floor opens wider.";
+        : (isVG05||isVG06||isVG07||isVG08||isVG09||isVG10)
+          ? (vgFeatureText("freespins", {detail:"The cabinet opens wider."}).detail || "The cabinet opens wider.")
+          : "VIP noir floods the cabinet and the floor opens wider.";
       for (let i = 0; i < 8; i += 1){
         const chip = document.createElement("span");
         chip.className = "vvFeatureChip";
@@ -2009,6 +2042,9 @@
 
   // --- VG Symbol Skin System ---
   let _vgSkinsModule = null;
+  let _vgThemeModule = null;
+  let _vgFeaturesModule = null;
+
   async function loadVGSkinsModule() {
     if (_vgSkinsModule) return _vgSkinsModule;
     try {
@@ -2019,12 +2055,42 @@
     }
     return _vgSkinsModule;
   }
+
+  async function loadVGThemeModule() {
+    if (_vgThemeModule) return _vgThemeModule;
+    try {
+      _vgThemeModule = await import("../vg/vg-theme.js");
+    } catch (e) {
+      console.warn("[Slots] vg-theme.js not available:", e);
+      _vgThemeModule = { applyTheme: () => {}, removeTheme: () => {}, provideThemeTokens: () => ({}) };
+    }
+    return _vgThemeModule;
+  }
+
+  async function loadVGFeaturesModule() {
+    if (_vgFeaturesModule) return _vgFeaturesModule;
+    try {
+      _vgFeaturesModule = await import("../vg/vg-features.js");
+    } catch (e) {
+      console.warn("[Slots] vg-features.js not available:", e);
+      _vgFeaturesModule = { initFeatureFrames: () => {}, initWinTierOverlay: () => {}, getFeatureText: () => ({ title: "", detail: "" }), getWinTierStyle: () => ({}) };
+    }
+    return _vgFeaturesModule;
+  }
   async function applyVGSymbolSkin() {
-    const mod = await loadVGSkinsModule();
+    const [skinMod, themeMod, featuresMod] = await Promise.all([
+      loadVGSkinsModule(),
+      loadVGThemeModule(),
+      loadVGFeaturesModule(),
+    ]);
     if (activeVGMachine) {
-      await mod.applyVGSkin(machine, activeVGMachine);
+      await skinMod.applyVGSkin(machine, activeVGMachine);
+      themeMod.applyTheme(activeVGMachine);
+      featuresMod.initFeatureFrames(activeVGMachine);
+      featuresMod.initWinTierOverlay(activeVGMachine);
     } else {
-      mod.removeVGSkin();
+      skinMod.removeVGSkin();
+      themeMod.removeTheme();
     }
   }
 

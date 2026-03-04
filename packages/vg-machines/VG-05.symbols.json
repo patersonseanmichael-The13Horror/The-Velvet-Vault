@@ -1,0 +1,25 @@
+{
+  "machineId": "VG-05",
+  "title": "Diamond Protocol",
+  "theme": "diamond",
+  "accentColor": "#a8d8f0",
+  "secondaryColor": "#e8f4fc",
+  "skinClass": "vv-theme-vg-05",
+  "symbols": [
+    { "key": "diamond-core",  "path": "images/slots/vg/VG-05/symbols/diamond-core.png",  "tier": "premium",  "glowColor": "#a8d8f0", "label": "Diamond" },
+    { "key": "chrome-crown",  "path": "images/slots/vg/VG-05/symbols/chrome-crown.png",  "tier": "premium",  "glowColor": "#c0e8ff", "label": "Crown" },
+    { "key": "hex-chip",      "path": "images/slots/vg/VG-05/symbols/hex-chip.png",      "tier": "high",     "glowColor": "#80c8f0", "label": "Hex Chip" },
+    { "key": "crystal-shard", "path": "images/slots/vg/VG-05/symbols/crystal-shard.png", "tier": "high",     "glowColor": "#90d8ff", "label": "Crystal" },
+    { "key": "vault-lock",    "path": "images/slots/vg/VG-05/symbols/vault-lock.png",    "tier": "mid",      "glowColor": "#60b8e8", "label": "Vault Lock" },
+    { "key": "card-a",        "path": "images/slots/vg/VG-05/symbols/card-a.png",        "tier": "mid",      "glowColor": "#50a8d8", "label": "Ace" },
+    { "key": "card-k",        "path": "images/slots/vg/VG-05/symbols/card-k.png",        "tier": "low",      "glowColor": "#4898c8", "label": "King" },
+    { "key": "card-q",        "path": "images/slots/vg/VG-05/symbols/card-q.png",        "tier": "low",      "glowColor": "#4090c0", "label": "Queen" },
+    { "key": "card-j",        "path": "images/slots/vg/VG-05/symbols/card-j.png",        "tier": "low",      "glowColor": "#3888b8", "label": "Jack" },
+    { "key": "card-10",       "path": "images/slots/vg/VG-05/symbols/card-10.png",       "tier": "low",      "glowColor": "#3080b0", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "CRYSTAL LOCK", "detail": "Hold & collect diamond shards" },
+    "freespins":  { "title": "PROTOCOL SPINS", "detail": "Diamond multipliers activated" },
+    "jackpot":    { "title": "DIAMOND VAULT", "detail": "Maximum protocol engaged" }
+  }
+}

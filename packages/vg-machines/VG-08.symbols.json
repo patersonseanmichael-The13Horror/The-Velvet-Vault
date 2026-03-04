@@ -1,0 +1,25 @@
+{
+  "machineId": "VG-08",
+  "title": "Golden Cartel",
+  "theme": "gold",
+  "accentColor": "#d4a017",
+  "secondaryColor": "#f5e070",
+  "skinClass": "vv-theme-vg-08",
+  "symbols": [
+    { "key": "gold-ingot",    "path": "images/slots/vg/VG-08/symbols/gold-ingot.png",    "tier": "premium", "glowColor": "#f5c842", "label": "Gold Bar" },
+    { "key": "cartel-crown",  "path": "images/slots/vg/VG-08/symbols/cartel-crown.png",  "tier": "premium", "glowColor": "#e8b830", "label": "Crown" },
+    { "key": "amber-diamond", "path": "images/slots/vg/VG-08/symbols/amber-diamond.png", "tier": "high",    "glowColor": "#f0c020", "label": "Amber Diamond" },
+    { "key": "money-stack",   "path": "images/slots/vg/VG-08/symbols/money-stack.png",   "tier": "high",    "glowColor": "#d4a017", "label": "Gold Stack" },
+    { "key": "signet-ring",   "path": "images/slots/vg/VG-08/symbols/signet-ring.png",   "tier": "mid",     "glowColor": "#c89010", "label": "Signet Ring" },
+    { "key": "card-a",        "path": "images/slots/vg/VG-08/symbols/card-a.png",        "tier": "mid",     "glowColor": "#c08010", "label": "Ace" },
+    { "key": "card-k",        "path": "images/slots/vg/VG-08/symbols/card-k.png",        "tier": "low",     "glowColor": "#b87010", "label": "King" },
+    { "key": "card-q",        "path": "images/slots/vg/VG-08/symbols/card-q.png",        "tier": "low",     "glowColor": "#a86010", "label": "Queen" },
+    { "key": "card-j",        "path": "images/slots/vg/VG-08/symbols/card-j.png",        "tier": "low",     "glowColor": "#985010", "label": "Jack" },
+    { "key": "card-10",       "path": "images/slots/vg/VG-08/symbols/card-10.png",       "tier": "low",     "glowColor": "#884010", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "CARTEL LOCK",    "detail": "Gold bars locked and loaded" },
+    "freespins":  { "title": "CARTEL SPINS",   "detail": "Golden multipliers in play" },
+    "jackpot":    { "title": "GOLDEN VAULT",   "detail": "The cartel vault is open" }
+  }
+}

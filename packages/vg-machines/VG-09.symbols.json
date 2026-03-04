@@ -1,0 +1,25 @@
+{
+  "machineId": "VG-09",
+  "title": "Phantom Reserve",
+  "theme": "phantom",
+  "accentColor": "#9b5de5",
+  "secondaryColor": "#e8e8f8",
+  "skinClass": "vv-theme-vg-09",
+  "symbols": [
+    { "key": "phantom-mask",  "path": "images/slots/vg/VG-09/symbols/phantom-mask.png",  "tier": "premium", "glowColor": "#bb88ff", "label": "Phantom Mask" },
+    { "key": "ghost-diamond", "path": "images/slots/vg/VG-09/symbols/ghost-diamond.png", "tier": "premium", "glowColor": "#aa77ee", "label": "Ghost Diamond" },
+    { "key": "silver-crown",  "path": "images/slots/vg/VG-09/symbols/silver-crown.png",  "tier": "high",    "glowColor": "#d0d0f0", "label": "Silver Crown" },
+    { "key": "mist-orb",      "path": "images/slots/vg/VG-09/symbols/mist-orb.png",      "tier": "high",    "glowColor": "#9966dd", "label": "Mist Orb" },
+    { "key": "shadow-key",    "path": "images/slots/vg/VG-09/symbols/shadow-key.png",    "tier": "mid",     "glowColor": "#8855cc", "label": "Shadow Key" },
+    { "key": "card-a",        "path": "images/slots/vg/VG-09/symbols/card-a.png",        "tier": "mid",     "glowColor": "#7744bb", "label": "Ace" },
+    { "key": "card-k",        "path": "images/slots/vg/VG-09/symbols/card-k.png",        "tier": "low",     "glowColor": "#6633aa", "label": "King" },
+    { "key": "card-q",        "path": "images/slots/vg/VG-09/symbols/card-q.png",        "tier": "low",     "glowColor": "#552299", "label": "Queen" },
+    { "key": "card-j",        "path": "images/slots/vg/VG-09/symbols/card-j.png",        "tier": "low",     "glowColor": "#441188", "label": "Jack" },
+    { "key": "card-10",       "path": "images/slots/vg/VG-09/symbols/card-10.png",       "tier": "low",     "glowColor": "#330077", "label": "Ten" }
+  ],
+  "featureFrames": {
+    "holdandwin": { "title": "PHANTOM LOCK",    "detail": "Spectral symbols locked in mist" },
+    "freespins":  { "title": "PHANTOM SPINS",   "detail": "Ethereal multipliers awakened" },
+    "jackpot":    { "title": "PHANTOM VAULT",   "detail": "The reserve materialises" }
+  }
+}

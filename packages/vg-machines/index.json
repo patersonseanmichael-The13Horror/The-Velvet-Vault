@@ -115,9 +115,10 @@
         "extravagantMin": 10000
       },
       "assets": {
-        "card": "images/slots/vg/VG-03/card.png",
-        "logo": "images/slots/vg/VG-03/logo.png",
-        "symbols": "images/slots/vg/VG-03/symbols"
+        "cardImage": "images/slots/vg/VG-03/card.png",
+        "logoImage": "images/slots/vg/VG-03/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-03/symbols",
+        "symbolsManifest": "packages/vg-machines/VG-03.symbols.json"
       },
       "machineIdAlias": "TODO_MAP_UNIQUE",
       "symbolsManifest": "packages/vg-machines/VG-03.symbols.json",
@@ -158,9 +159,10 @@
         "extravagantMin": 10000
       },
       "assets": {
-        "card": "images/slots/vg/VG-04/card.png",
-        "logo": "images/slots/vg/VG-04/logo.png",
-        "symbols": "images/slots/vg/VG-04/symbols/"
+        "cardImage": "images/slots/vg/VG-04/card.png",
+        "logoImage": "images/slots/vg/VG-04/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-04/symbols",
+        "symbolsManifest": "packages/vg-machines/VG-04.symbols.json"
       },
       "machineIdAlias": "TODO_MAP_UNIQUE",
       "symbolsManifest": "packages/vg-machines/VG-04.symbols.json"
@@ -169,7 +171,7 @@
       "id": "VG-05",
       "slug": "diamond-protocol",
       "title": "Diamond Protocol",
-      "subtitle": "Classified. Encrypted. Priceless.",
+      "subtitle": "Ice-cold precision. Every facet a fortune.",
       "machineId": "crimson_crown",
       "layout": {
         "base": {
@@ -188,8 +190,10 @@
       },
       "theme": {
         "vfxTheme": "diamond",
-        "frameTheme": "Diamond",
-        "soundTheme": "Diamond"
+        "frameTheme": "vg-05",
+        "accentColor": "#a8d8f0",
+        "secondaryColor": "#e0f4ff",
+        "skinClass": "vv-theme-vg-05"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -202,13 +206,14 @@
         "logoImage": "images/slots/vg/VG-05/logo.png",
         "symbolPackPath": "images/slots/vg/VG-05/symbols"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-05.symbols.json"
     },
     {
       "id": "VG-06",
       "slug": "crimson-council",
       "title": "Crimson Council",
-      "subtitle": "Power brokers meet at midnight.",
+      "subtitle": "Power wears velvet. The council convenes.",
       "machineId": "abyssal_pearls",
       "layout": {
         "base": {
@@ -227,8 +232,10 @@
       },
       "theme": {
         "vfxTheme": "crimson",
-        "frameTheme": "Crimson",
-        "soundTheme": "Crimson"
+        "frameTheme": "vg-06",
+        "accentColor": "#c0392b",
+        "secondaryColor": "#e8c99a",
+        "skinClass": "vv-theme-vg-06"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -241,13 +248,14 @@
         "logoImage": "images/slots/vg/VG-06/logo.png",
         "symbolPackPath": "images/slots/vg/VG-06/symbols"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-06.symbols.json"
     },
     {
       "id": "VG-07",
       "slug": "sapphire-fortune",
       "title": "Sapphire Fortune",
-      "subtitle": "Deep blue wealth, cold as ice.",
+      "subtitle": "Blue-blooded luck. Fortune favours the bold.",
       "machineId": "clockwork_vault",
       "layout": {
         "base": {
@@ -265,9 +273,11 @@
         ]
       },
       "theme": {
-        "vfxTheme": "diamond",
-        "frameTheme": "Diamond",
-        "soundTheme": "Diamond"
+        "vfxTheme": "sapphire",
+        "frameTheme": "vg-07",
+        "accentColor": "#1565c0",
+        "secondaryColor": "#90caf9",
+        "skinClass": "vv-theme-vg-07"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -280,13 +290,14 @@
         "logoImage": "images/slots/vg/VG-07/logo.png",
         "symbolPackPath": "images/slots/vg/VG-07/symbols"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-07.symbols.json"
     },
     {
       "id": "VG-08",
       "slug": "golden-cartel",
       "title": "Golden Cartel",
-      "subtitle": "Gold moves in silence.",
+      "subtitle": "Warm gold. Cold power. Unlimited ambition.",
       "machineId": "velvet_noir",
       "layout": {
         "base": {
@@ -305,8 +316,10 @@
       },
       "theme": {
         "vfxTheme": "gold",
-        "frameTheme": "Gold",
-        "soundTheme": "Gold"
+        "frameTheme": "vg-08",
+        "accentColor": "#d4a017",
+        "secondaryColor": "#ffe082",
+        "skinClass": "vv-theme-vg-08"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -319,13 +332,14 @@
         "logoImage": "images/slots/vg/VG-08/logo.png",
         "symbolPackPath": "images/slots/vg/VG-08/symbols"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-08.symbols.json"
     },
     {
       "id": "VG-09",
       "slug": "phantom-reserve",
       "title": "Phantom Reserve",
-      "subtitle": "A vault no one can find \u2014 until now.",
+      "subtitle": "Shadows hold the rarest wins.",
       "machineId": "cyber_sakura",
       "layout": {
         "base": {
@@ -343,9 +357,11 @@
         ]
       },
       "theme": {
-        "vfxTheme": "noir",
-        "frameTheme": "Noir",
-        "soundTheme": "Noir"
+        "vfxTheme": "phantom",
+        "frameTheme": "vg-09",
+        "accentColor": "#9c27b0",
+        "secondaryColor": "#ce93d8",
+        "skinClass": "vv-theme-vg-09"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -358,13 +374,14 @@
         "logoImage": "images/slots/vg/VG-09/logo.png",
         "symbolPackPath": "images/slots/vg/VG-09/symbols"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-09.symbols.json"
     },
     {
       "id": "VG-10",
       "slug": "royal-circuit",
       "title": "Royal Circuit",
-      "subtitle": "High voltage. Higher stakes.",
+      "subtitle": "Electric royalty. The circuit never sleeps.",
       "machineId": "neon_pharaoh",
       "layout": {
         "base": {
@@ -382,9 +399,11 @@
         ]
       },
       "theme": {
-        "vfxTheme": "neon",
-        "frameTheme": "Neon",
-        "soundTheme": "Neon"
+        "vfxTheme": "circuit",
+        "frameTheme": "vg-10",
+        "accentColor": "#f5c842",
+        "secondaryColor": "#ffe066",
+        "skinClass": "vv-theme-vg-10"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -397,7 +416,8 @@
         "logoImage": "images/slots/vg/VG-10/logo.png",
         "symbolPackPath": "images/slots/vg/VG-10/symbols"
       },
-      "machineIdAlias": "TODO_MAP_UNIQUE"
+      "machineIdAlias": "TODO_MAP_UNIQUE",
+      "symbolsManifest": "packages/vg-machines/VG-10.symbols.json"
     },
     {
       "id": "VG-11",
