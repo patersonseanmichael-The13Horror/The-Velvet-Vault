@@ -1,11 +1,10 @@
 {
-  "version": 1,
   "machines": [
     {
       "id": "VG-01",
       "slug": "high-society",
       "title": "High Society",
-      "subtitle": "Noir cabinet. 5\u00d73 base \u2014 expands to 6\u00d74 in feature.",
+      "subtitle": "Noir cabinet. 5×3 base — expands to 6×4 in feature.",
       "machineId": "velvet_noir",
       "layout": {
         "base": {
@@ -27,23 +26,23 @@
         "frameTheme": "Noir",
         "soundTheme": "Noir"
       },
-      "assets": {
-        "cardImage": "images/slots/vg/VG-01/card.png",
-        "logoImage": "images/slots/vg/VG-01/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-01/symbols"
-      },
       "tiersCents": {
         "bigMin": 1000,
         "superMin": 2500,
         "hugeMin": 5000,
         "extravagantMin": 10000
+      },
+      "assets": {
+        "cardImage": "images/slots/vg/VG-01/card.png",
+        "logoImage": "images/slots/vg/VG-01/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-01/symbols"
       }
     },
     {
       "id": "VG-02",
-      "slug": "velvet-grade-02",
-      "title": "Velvet Grade 02",
-      "subtitle": "Neon cabinet, 5x3 base / 6x4 feature.",
+      "slug": "midnight-syndicate",
+      "title": "Midnight Syndicate",
+      "subtitle": "Where deals are sealed after dark.",
       "machineId": "cyber_sakura",
       "layout": {
         "base": {
@@ -61,27 +60,28 @@
         ]
       },
       "theme": {
-        "vfxTheme": "neon",
-        "frameTheme": "Neon",
-        "soundTheme": "Neon"
+        "vfxTheme": "noir",
+        "frameTheme": "Noir",
+        "soundTheme": "Noir"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-02/card.png",
         "logoImage": "images/slots/vg/VG-02/logo.png",
         "symbolPackPath": "images/slots/vg/VG-02/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-03",
-      "slug": "velvet-grade-03",
-      "title": "Velvet Grade 03",
-      "subtitle": "Diamond cabinet, 5x3 base / 6x4 feature.",
+      "slug": "neon-dynasty",
+      "title": "Neon Dynasty",
+      "subtitle": "A dynasty built on neon and ambition.",
       "machineId": "neon_pharaoh",
       "layout": {
         "base": {
@@ -99,27 +99,28 @@
         ]
       },
       "theme": {
-        "vfxTheme": "diamond",
-        "frameTheme": "Diamond",
-        "soundTheme": "Diamond"
+        "vfxTheme": "neon",
+        "frameTheme": "Neon",
+        "soundTheme": "Neon"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-03/card.png",
         "logoImage": "images/slots/vg/VG-03/logo.png",
         "symbolPackPath": "images/slots/vg/VG-03/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-04",
-      "slug": "velvet-grade-04",
-      "title": "Velvet Grade 04",
-      "subtitle": "Crimson cabinet, 5x3 base / 6x4 feature.",
+      "slug": "vault-heist",
+      "title": "Vault Heist",
+      "subtitle": "The score of a lifetime — if you can crack it.",
       "machineId": "emerald_heist",
       "layout": {
         "base": {
@@ -137,27 +138,28 @@
         ]
       },
       "theme": {
-        "vfxTheme": "crimson",
-        "frameTheme": "Crimson",
-        "soundTheme": "Crimson"
+        "vfxTheme": "gold",
+        "frameTheme": "Gold",
+        "soundTheme": "Gold"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-04/card.png",
         "logoImage": "images/slots/vg/VG-04/logo.png",
         "symbolPackPath": "images/slots/vg/VG-04/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-05",
-      "slug": "velvet-grade-05",
-      "title": "Velvet Grade 05",
-      "subtitle": "Gold cabinet, 5x3 base / 6x4 feature.",
+      "slug": "diamond-protocol",
+      "title": "Diamond Protocol",
+      "subtitle": "Classified. Encrypted. Priceless.",
       "machineId": "crimson_crown",
       "layout": {
         "base": {
@@ -175,27 +177,28 @@
         ]
       },
       "theme": {
-        "vfxTheme": "gold",
-        "frameTheme": "Gold",
-        "soundTheme": "Gold"
+        "vfxTheme": "diamond",
+        "frameTheme": "Diamond",
+        "soundTheme": "Diamond"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-05/card.png",
         "logoImage": "images/slots/vg/VG-05/logo.png",
         "symbolPackPath": "images/slots/vg/VG-05/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-06",
-      "slug": "velvet-grade-06",
-      "title": "Velvet Grade 06",
-      "subtitle": "Noir cabinet, 5x3 base / 6x4 feature.",
+      "slug": "crimson-council",
+      "title": "Crimson Council",
+      "subtitle": "Power brokers meet at midnight.",
       "machineId": "abyssal_pearls",
       "layout": {
         "base": {
@@ -213,27 +216,28 @@
         ]
       },
       "theme": {
-        "vfxTheme": "noir",
-        "frameTheme": "Noir",
-        "soundTheme": "Noir"
+        "vfxTheme": "crimson",
+        "frameTheme": "Crimson",
+        "soundTheme": "Crimson"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-06/card.png",
         "logoImage": "images/slots/vg/VG-06/logo.png",
         "symbolPackPath": "images/slots/vg/VG-06/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-07",
-      "slug": "velvet-grade-07",
-      "title": "Velvet Grade 07",
-      "subtitle": "Neon cabinet, 5x3 base / 6x4 feature.",
+      "slug": "sapphire-fortune",
+      "title": "Sapphire Fortune",
+      "subtitle": "Deep blue wealth, cold as ice.",
       "machineId": "clockwork_vault",
       "layout": {
         "base": {
@@ -251,27 +255,28 @@
         ]
       },
       "theme": {
-        "vfxTheme": "neon",
-        "frameTheme": "Neon",
-        "soundTheme": "Neon"
+        "vfxTheme": "diamond",
+        "frameTheme": "Diamond",
+        "soundTheme": "Diamond"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-07/card.png",
         "logoImage": "images/slots/vg/VG-07/logo.png",
         "symbolPackPath": "images/slots/vg/VG-07/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-08",
-      "slug": "velvet-grade-08",
-      "title": "Velvet Grade 08",
-      "subtitle": "Diamond cabinet, 5x3 base / 6x4 feature.",
+      "slug": "golden-cartel",
+      "title": "Golden Cartel",
+      "subtitle": "Gold moves in silence.",
       "machineId": "velvet_noir",
       "layout": {
         "base": {
@@ -289,27 +294,28 @@
         ]
       },
       "theme": {
-        "vfxTheme": "diamond",
-        "frameTheme": "Diamond",
-        "soundTheme": "Diamond"
+        "vfxTheme": "gold",
+        "frameTheme": "Gold",
+        "soundTheme": "Gold"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-08/card.png",
         "logoImage": "images/slots/vg/VG-08/logo.png",
         "symbolPackPath": "images/slots/vg/VG-08/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-09",
-      "slug": "velvet-grade-09",
-      "title": "Velvet Grade 09",
-      "subtitle": "Crimson cabinet, 5x3 base / 6x4 feature.",
+      "slug": "phantom-reserve",
+      "title": "Phantom Reserve",
+      "subtitle": "A vault no one can find — until now.",
       "machineId": "cyber_sakura",
       "layout": {
         "base": {
@@ -327,27 +333,28 @@
         ]
       },
       "theme": {
-        "vfxTheme": "crimson",
-        "frameTheme": "Crimson",
-        "soundTheme": "Crimson"
+        "vfxTheme": "noir",
+        "frameTheme": "Noir",
+        "soundTheme": "Noir"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-09/card.png",
         "logoImage": "images/slots/vg/VG-09/logo.png",
         "symbolPackPath": "images/slots/vg/VG-09/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-10",
-      "slug": "velvet-grade-10",
-      "title": "Velvet Grade 10",
-      "subtitle": "Gold cabinet, 5x3 base / 6x4 feature.",
+      "slug": "royal-circuit",
+      "title": "Royal Circuit",
+      "subtitle": "High voltage. Higher stakes.",
       "machineId": "neon_pharaoh",
       "layout": {
         "base": {
@@ -365,27 +372,28 @@
         ]
       },
       "theme": {
-        "vfxTheme": "gold",
-        "frameTheme": "Gold",
-        "soundTheme": "Gold"
+        "vfxTheme": "neon",
+        "frameTheme": "Neon",
+        "soundTheme": "Neon"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-10/card.png",
         "logoImage": "images/slots/vg/VG-10/logo.png",
         "symbolPackPath": "images/slots/vg/VG-10/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-11",
-      "slug": "velvet-grade-11",
-      "title": "Velvet Grade 11",
-      "subtitle": "Noir cabinet, 6x4 base / 5x3 feature.",
+      "slug": "noir-boulevard",
+      "title": "Noir Boulevard",
+      "subtitle": "Every corner hides a fortune.",
       "machineId": "emerald_heist",
       "layout": {
         "base": {
@@ -398,32 +406,32 @@
         },
         "switchOn": [
           "freespins",
-          "holdandwin",
-          "jackpot"
+          "holdandwin"
         ]
       },
       "theme": {
         "vfxTheme": "noir",
         "frameTheme": "Noir",
         "soundTheme": "Noir"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-11/card.png",
         "logoImage": "images/slots/vg/VG-11/logo.png",
         "symbolPackPath": "images/slots/vg/VG-11/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-12",
-      "slug": "velvet-grade-12",
-      "title": "Velvet Grade 12",
-      "subtitle": "Neon cabinet, 6x4 base / 5x3 feature.",
+      "slug": "luxe-mirage",
+      "title": "Luxe Mirage",
+      "subtitle": "Luxury that shimmers just out of reach.",
       "machineId": "crimson_crown",
       "layout": {
         "base": {
@@ -436,32 +444,32 @@
         },
         "switchOn": [
           "freespins",
-          "holdandwin",
-          "jackpot"
+          "holdandwin"
         ]
       },
       "theme": {
-        "vfxTheme": "neon",
-        "frameTheme": "Neon",
-        "soundTheme": "Neon"
+        "vfxTheme": "gold",
+        "frameTheme": "Gold",
+        "soundTheme": "Gold"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-12/card.png",
         "logoImage": "images/slots/vg/VG-12/logo.png",
         "symbolPackPath": "images/slots/vg/VG-12/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-13",
-      "slug": "velvet-grade-13",
-      "title": "Velvet Grade 13",
-      "subtitle": "Diamond cabinet, 6x4 base / 5x3 feature.",
+      "slug": "velvet-voltage",
+      "title": "Velvet Voltage",
+      "subtitle": "Smooth on the surface. Electric underneath.",
       "machineId": "abyssal_pearls",
       "layout": {
         "base": {
@@ -474,32 +482,32 @@
         },
         "switchOn": [
           "freespins",
-          "holdandwin",
-          "jackpot"
+          "holdandwin"
         ]
       },
       "theme": {
-        "vfxTheme": "diamond",
-        "frameTheme": "Diamond",
-        "soundTheme": "Diamond"
+        "vfxTheme": "neon",
+        "frameTheme": "Neon",
+        "soundTheme": "Neon"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-13/card.png",
         "logoImage": "images/slots/vg/VG-13/logo.png",
         "symbolPackPath": "images/slots/vg/VG-13/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-14",
-      "slug": "velvet-grade-14",
-      "title": "Velvet Grade 14",
-      "subtitle": "Crimson cabinet, 6x4 base / 5x3 feature.",
+      "slug": "opal-underground",
+      "title": "Opal Underground",
+      "subtitle": "Rare colours. Rare rewards.",
       "machineId": "clockwork_vault",
       "layout": {
         "base": {
@@ -512,32 +520,32 @@
         },
         "switchOn": [
           "freespins",
-          "holdandwin",
-          "jackpot"
+          "holdandwin"
         ]
       },
       "theme": {
-        "vfxTheme": "crimson",
-        "frameTheme": "Crimson",
-        "soundTheme": "Crimson"
+        "vfxTheme": "diamond",
+        "frameTheme": "Diamond",
+        "soundTheme": "Diamond"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-14/card.png",
         "logoImage": "images/slots/vg/VG-14/logo.png",
         "symbolPackPath": "images/slots/vg/VG-14/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-15",
-      "slug": "velvet-grade-15",
-      "title": "Velvet Grade 15",
-      "subtitle": "Gold cabinet, 6x4 base / 5x3 feature.",
+      "slug": "gilded-whisper",
+      "title": "Gilded Whisper",
+      "subtitle": "Secrets worth their weight in gold.",
       "machineId": "velvet_noir",
       "layout": {
         "base": {
@@ -550,32 +558,32 @@
         },
         "switchOn": [
           "freespins",
-          "holdandwin",
-          "jackpot"
+          "holdandwin"
         ]
       },
       "theme": {
         "vfxTheme": "gold",
         "frameTheme": "Gold",
         "soundTheme": "Gold"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-15/card.png",
         "logoImage": "images/slots/vg/VG-15/logo.png",
         "symbolPackPath": "images/slots/vg/VG-15/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-16",
-      "slug": "velvet-grade-16",
-      "title": "Velvet Grade 16",
-      "subtitle": "Noir cabinet, 6x4 base / 5x3 feature.",
+      "slug": "neon-relic",
+      "title": "Neon Relic",
+      "subtitle": "Ancient symbols. Modern neon power.",
       "machineId": "cyber_sakura",
       "layout": {
         "base": {
@@ -588,32 +596,32 @@
         },
         "switchOn": [
           "freespins",
-          "holdandwin",
-          "jackpot"
+          "holdandwin"
         ]
       },
       "theme": {
-        "vfxTheme": "noir",
-        "frameTheme": "Noir",
-        "soundTheme": "Noir"
+        "vfxTheme": "neon",
+        "frameTheme": "Neon",
+        "soundTheme": "Neon"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-16/card.png",
         "logoImage": "images/slots/vg/VG-16/logo.png",
         "symbolPackPath": "images/slots/vg/VG-16/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-17",
-      "slug": "velvet-grade-17",
-      "title": "Velvet Grade 17",
-      "subtitle": "Neon cabinet, 6x4 base / 5x3 feature.",
+      "slug": "crown-and-chrome",
+      "title": "Crown & Chrome",
+      "subtitle": "Royalty reimagined in steel and light.",
       "machineId": "neon_pharaoh",
       "layout": {
         "base": {
@@ -626,32 +634,32 @@
         },
         "switchOn": [
           "freespins",
-          "holdandwin",
-          "jackpot"
+          "holdandwin"
         ]
       },
       "theme": {
-        "vfxTheme": "neon",
-        "frameTheme": "Neon",
-        "soundTheme": "Neon"
+        "vfxTheme": "diamond",
+        "frameTheme": "Diamond",
+        "soundTheme": "Diamond"
+      },
+      "tiersCents": {
+        "bigMin": 1000,
+        "superMin": 2500,
+        "hugeMin": 5000,
+        "extravagantMin": 10000
       },
       "assets": {
         "cardImage": "images/slots/vg/VG-17/card.png",
         "logoImage": "images/slots/vg/VG-17/logo.png",
         "symbolPackPath": "images/slots/vg/VG-17/symbols"
       },
-      "tiersCents": {
-        "bigMin": 1000,
-        "superMin": 2500,
-        "hugeMin": 5000,
-        "extravagantMin": 10000
-      }
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-18",
-      "slug": "velvet-grade-18",
-      "title": "Velvet Grade 18",
-      "subtitle": "Diamond cabinet, 6x4 base / 5x3 feature.",
+      "slug": "violet-exchange",
+      "title": "Violet Exchange",
+      "subtitle": "The underground market for the elite.",
       "machineId": "emerald_heist",
       "layout": {
         "base": {
@@ -664,32 +672,32 @@
         },
         "switchOn": [
           "freespins",
-          "holdandwin",
-          "jackpot"
+          "holdandwin"
         ]
       },
       "theme": {
-        "vfxTheme": "diamond",
-        "frameTheme": "Diamond",
-        "soundTheme": "Diamond"
-      },
-      "assets": {
-        "cardImage": "images/slots/vg/VG-18/card.png",
-        "logoImage": "images/slots/vg/VG-18/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-18/symbols"
+        "vfxTheme": "crimson",
+        "frameTheme": "Crimson",
+        "soundTheme": "Crimson"
       },
       "tiersCents": {
         "bigMin": 1000,
         "superMin": 2500,
         "hugeMin": 5000,
         "extravagantMin": 10000
-      }
+      },
+      "assets": {
+        "cardImage": "images/slots/vg/VG-18/card.png",
+        "logoImage": "images/slots/vg/VG-18/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-18/symbols"
+      },
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-19",
-      "slug": "velvet-grade-19",
-      "title": "Velvet Grade 19",
-      "subtitle": "Crimson cabinet, 6x4 base / 5x3 feature.",
+      "slug": "house-listens",
+      "title": "The House Always Listens",
+      "subtitle": "Every spin is heard. Every win remembered.",
       "machineId": "crimson_crown",
       "layout": {
         "base": {
@@ -702,32 +710,32 @@
         },
         "switchOn": [
           "freespins",
-          "holdandwin",
-          "jackpot"
+          "holdandwin"
         ]
       },
       "theme": {
-        "vfxTheme": "crimson",
-        "frameTheme": "Crimson",
-        "soundTheme": "Crimson"
-      },
-      "assets": {
-        "cardImage": "images/slots/vg/VG-19/card.png",
-        "logoImage": "images/slots/vg/VG-19/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-19/symbols"
+        "vfxTheme": "noir",
+        "frameTheme": "Noir",
+        "soundTheme": "Noir"
       },
       "tiersCents": {
         "bigMin": 1000,
         "superMin": 2500,
         "hugeMin": 5000,
         "extravagantMin": 10000
-      }
+      },
+      "assets": {
+        "cardImage": "images/slots/vg/VG-19/card.png",
+        "logoImage": "images/slots/vg/VG-19/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-19/symbols"
+      },
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-20",
-      "slug": "velvet-grade-20",
-      "title": "Velvet Grade 20",
-      "subtitle": "Gold cabinet, 6x4 base / 5x3 feature.",
+      "slug": "platinum-pulse",
+      "title": "Platinum Pulse",
+      "subtitle": "Rare metal. Rarer moments.",
       "machineId": "abyssal_pearls",
       "layout": {
         "base": {
@@ -740,32 +748,32 @@
         },
         "switchOn": [
           "freespins",
-          "holdandwin",
-          "jackpot"
+          "holdandwin"
         ]
       },
       "theme": {
-        "vfxTheme": "gold",
-        "frameTheme": "Gold",
-        "soundTheme": "Gold"
-      },
-      "assets": {
-        "cardImage": "images/slots/vg/VG-20/card.png",
-        "logoImage": "images/slots/vg/VG-20/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-20/symbols"
+        "vfxTheme": "diamond",
+        "frameTheme": "Diamond",
+        "soundTheme": "Diamond"
       },
       "tiersCents": {
         "bigMin": 1000,
         "superMin": 2500,
         "hugeMin": 5000,
         "extravagantMin": 10000
-      }
+      },
+      "assets": {
+        "cardImage": "images/slots/vg/VG-20/card.png",
+        "logoImage": "images/slots/vg/VG-20/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-20/symbols"
+      },
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-21",
-      "slug": "velvet-grade-21",
-      "title": "Velvet Grade 21",
-      "subtitle": "Noir cabinet, 5x3 base / 5x3 feature.",
+      "slug": "high-roller-halo",
+      "title": "High Roller Halo",
+      "subtitle": "Only the boldest earn the light.",
       "machineId": "clockwork_vault",
       "layout": {
         "base": {
@@ -777,33 +785,32 @@
           "rows": 3
         },
         "switchOn": [
-          "freespins",
-          "holdandwin",
-          "jackpot"
+          "freespins"
         ]
       },
       "theme": {
-        "vfxTheme": "noir",
-        "frameTheme": "Noir",
-        "soundTheme": "Noir"
-      },
-      "assets": {
-        "cardImage": "images/slots/vg/VG-21/card.png",
-        "logoImage": "images/slots/vg/VG-21/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-21/symbols"
+        "vfxTheme": "gold",
+        "frameTheme": "Gold",
+        "soundTheme": "Gold"
       },
       "tiersCents": {
         "bigMin": 1000,
         "superMin": 2500,
         "hugeMin": 5000,
         "extravagantMin": 10000
-      }
+      },
+      "assets": {
+        "cardImage": "images/slots/vg/VG-21/card.png",
+        "logoImage": "images/slots/vg/VG-21/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-21/symbols"
+      },
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-22",
-      "slug": "velvet-grade-22",
-      "title": "Velvet Grade 22",
-      "subtitle": "Neon cabinet, 5x3 base / 5x3 feature.",
+      "slug": "obsidian-fortune",
+      "title": "Obsidian Fortune",
+      "subtitle": "Black glass. Black market. Black gold.",
       "machineId": "velvet_noir",
       "layout": {
         "base": {
@@ -815,33 +822,32 @@
           "rows": 3
         },
         "switchOn": [
-          "freespins",
-          "holdandwin",
-          "jackpot"
+          "freespins"
         ]
       },
       "theme": {
-        "vfxTheme": "neon",
-        "frameTheme": "Neon",
-        "soundTheme": "Neon"
-      },
-      "assets": {
-        "cardImage": "images/slots/vg/VG-22/card.png",
-        "logoImage": "images/slots/vg/VG-22/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-22/symbols"
+        "vfxTheme": "noir",
+        "frameTheme": "Noir",
+        "soundTheme": "Noir"
       },
       "tiersCents": {
         "bigMin": 1000,
         "superMin": 2500,
         "hugeMin": 5000,
         "extravagantMin": 10000
-      }
+      },
+      "assets": {
+        "cardImage": "images/slots/vg/VG-22/card.png",
+        "logoImage": "images/slots/vg/VG-22/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-22/symbols"
+      },
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-23",
-      "slug": "velvet-grade-23",
-      "title": "Velvet Grade 23",
-      "subtitle": "Diamond cabinet, 5x3 base / 5x3 feature.",
+      "slug": "crimson-metro",
+      "title": "Crimson Metro",
+      "subtitle": "Underground lines running red.",
       "machineId": "cyber_sakura",
       "layout": {
         "base": {
@@ -853,33 +859,32 @@
           "rows": 3
         },
         "switchOn": [
-          "freespins",
-          "holdandwin",
-          "jackpot"
+          "freespins"
         ]
       },
       "theme": {
-        "vfxTheme": "diamond",
-        "frameTheme": "Diamond",
-        "soundTheme": "Diamond"
-      },
-      "assets": {
-        "cardImage": "images/slots/vg/VG-23/card.png",
-        "logoImage": "images/slots/vg/VG-23/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-23/symbols"
+        "vfxTheme": "crimson",
+        "frameTheme": "Crimson",
+        "soundTheme": "Crimson"
       },
       "tiersCents": {
         "bigMin": 1000,
         "superMin": 2500,
         "hugeMin": 5000,
         "extravagantMin": 10000
-      }
+      },
+      "assets": {
+        "cardImage": "images/slots/vg/VG-23/card.png",
+        "logoImage": "images/slots/vg/VG-23/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-23/symbols"
+      },
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-24",
-      "slug": "velvet-grade-24",
-      "title": "Velvet Grade 24",
-      "subtitle": "Crimson cabinet, 5x3 base / 5x3 feature.",
+      "slug": "sapphire-nightfall",
+      "title": "Sapphire Nightfall",
+      "subtitle": "When the city sleeps, the vault opens.",
       "machineId": "neon_pharaoh",
       "layout": {
         "base": {
@@ -891,33 +896,32 @@
           "rows": 3
         },
         "switchOn": [
-          "freespins",
-          "holdandwin",
-          "jackpot"
+          "freespins"
         ]
       },
       "theme": {
-        "vfxTheme": "crimson",
-        "frameTheme": "Crimson",
-        "soundTheme": "Crimson"
-      },
-      "assets": {
-        "cardImage": "images/slots/vg/VG-24/card.png",
-        "logoImage": "images/slots/vg/VG-24/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-24/symbols"
+        "vfxTheme": "diamond",
+        "frameTheme": "Diamond",
+        "soundTheme": "Diamond"
       },
       "tiersCents": {
         "bigMin": 1000,
         "superMin": 2500,
         "hugeMin": 5000,
         "extravagantMin": 10000
-      }
+      },
+      "assets": {
+        "cardImage": "images/slots/vg/VG-24/card.png",
+        "logoImage": "images/slots/vg/VG-24/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-24/symbols"
+      },
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-25",
-      "slug": "velvet-grade-25",
-      "title": "Velvet Grade 25",
-      "subtitle": "Gold cabinet, 5x3 base / 5x3 feature.",
+      "slug": "secret-society",
+      "title": "Secret Society",
+      "subtitle": "Membership is earned. Never given.",
       "machineId": "emerald_heist",
       "layout": {
         "base": {
@@ -929,33 +933,32 @@
           "rows": 3
         },
         "switchOn": [
-          "freespins",
-          "holdandwin",
-          "jackpot"
+          "freespins"
         ]
       },
       "theme": {
-        "vfxTheme": "gold",
-        "frameTheme": "Gold",
-        "soundTheme": "Gold"
-      },
-      "assets": {
-        "cardImage": "images/slots/vg/VG-25/card.png",
-        "logoImage": "images/slots/vg/VG-25/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-25/symbols"
+        "vfxTheme": "noir",
+        "frameTheme": "Noir",
+        "soundTheme": "Noir"
       },
       "tiersCents": {
         "bigMin": 1000,
         "superMin": 2500,
         "hugeMin": 5000,
         "extravagantMin": 10000
-      }
+      },
+      "assets": {
+        "cardImage": "images/slots/vg/VG-25/card.png",
+        "logoImage": "images/slots/vg/VG-25/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-25/symbols"
+      },
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-26",
-      "slug": "velvet-grade-26",
-      "title": "Velvet Grade 26",
-      "subtitle": "Noir cabinet, 5x3 base / 5x3 feature.",
+      "slug": "velvet-vortex",
+      "title": "Velvet Vortex",
+      "subtitle": "Pulled into the spin. Never let go.",
       "machineId": "crimson_crown",
       "layout": {
         "base": {
@@ -967,33 +970,32 @@
           "rows": 3
         },
         "switchOn": [
-          "freespins",
-          "holdandwin",
-          "jackpot"
+          "freespins"
         ]
       },
       "theme": {
-        "vfxTheme": "noir",
-        "frameTheme": "Noir",
-        "soundTheme": "Noir"
-      },
-      "assets": {
-        "cardImage": "images/slots/vg/VG-26/card.png",
-        "logoImage": "images/slots/vg/VG-26/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-26/symbols"
+        "vfxTheme": "crimson",
+        "frameTheme": "Crimson",
+        "soundTheme": "Crimson"
       },
       "tiersCents": {
         "bigMin": 1000,
         "superMin": 2500,
         "hugeMin": 5000,
         "extravagantMin": 10000
-      }
+      },
+      "assets": {
+        "cardImage": "images/slots/vg/VG-26/card.png",
+        "logoImage": "images/slots/vg/VG-26/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-26/symbols"
+      },
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-27",
-      "slug": "velvet-grade-27",
-      "title": "Velvet Grade 27",
-      "subtitle": "Neon cabinet, 5x3 base / 5x3 feature.",
+      "slug": "money-train",
+      "title": "The Money Train",
+      "subtitle": "Last stop: maximum payout.",
       "machineId": "abyssal_pearls",
       "layout": {
         "base": {
@@ -1005,33 +1007,32 @@
           "rows": 3
         },
         "switchOn": [
-          "freespins",
-          "holdandwin",
-          "jackpot"
+          "freespins"
         ]
       },
       "theme": {
-        "vfxTheme": "neon",
-        "frameTheme": "Neon",
-        "soundTheme": "Neon"
-      },
-      "assets": {
-        "cardImage": "images/slots/vg/VG-27/card.png",
-        "logoImage": "images/slots/vg/VG-27/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-27/symbols"
+        "vfxTheme": "gold",
+        "frameTheme": "Gold",
+        "soundTheme": "Gold"
       },
       "tiersCents": {
         "bigMin": 1000,
         "superMin": 2500,
         "hugeMin": 5000,
         "extravagantMin": 10000
-      }
+      },
+      "assets": {
+        "cardImage": "images/slots/vg/VG-27/card.png",
+        "logoImage": "images/slots/vg/VG-27/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-27/symbols"
+      },
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-28",
-      "slug": "velvet-grade-28",
-      "title": "Velvet Grade 28",
-      "subtitle": "Diamond cabinet, 5x3 base / 5x3 feature.",
+      "slug": "diamond-district",
+      "title": "Diamond District",
+      "subtitle": "Every block is worth a fortune.",
       "machineId": "clockwork_vault",
       "layout": {
         "base": {
@@ -1043,9 +1044,7 @@
           "rows": 3
         },
         "switchOn": [
-          "freespins",
-          "holdandwin",
-          "jackpot"
+          "freespins"
         ]
       },
       "theme": {
@@ -1053,23 +1052,24 @@
         "frameTheme": "Diamond",
         "soundTheme": "Diamond"
       },
-      "assets": {
-        "cardImage": "images/slots/vg/VG-28/card.png",
-        "logoImage": "images/slots/vg/VG-28/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-28/symbols"
-      },
       "tiersCents": {
         "bigMin": 1000,
         "superMin": 2500,
         "hugeMin": 5000,
         "extravagantMin": 10000
-      }
+      },
+      "assets": {
+        "cardImage": "images/slots/vg/VG-28/card.png",
+        "logoImage": "images/slots/vg/VG-28/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-28/symbols"
+      },
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-29",
-      "slug": "velvet-grade-29",
-      "title": "Velvet Grade 29",
-      "subtitle": "Crimson cabinet, 5x3 base / 5x3 feature.",
+      "slug": "royal-heist",
+      "title": "Royal Heist",
+      "subtitle": "Crown jewels. One chance. No second tries.",
       "machineId": "velvet_noir",
       "layout": {
         "base": {
@@ -1081,9 +1081,7 @@
           "rows": 3
         },
         "switchOn": [
-          "freespins",
-          "holdandwin",
-          "jackpot"
+          "freespins"
         ]
       },
       "theme": {
@@ -1091,23 +1089,24 @@
         "frameTheme": "Crimson",
         "soundTheme": "Crimson"
       },
-      "assets": {
-        "cardImage": "images/slots/vg/VG-29/card.png",
-        "logoImage": "images/slots/vg/VG-29/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-29/symbols"
-      },
       "tiersCents": {
         "bigMin": 1000,
         "superMin": 2500,
         "hugeMin": 5000,
         "extravagantMin": 10000
-      }
+      },
+      "assets": {
+        "cardImage": "images/slots/vg/VG-29/card.png",
+        "logoImage": "images/slots/vg/VG-29/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-29/symbols"
+      },
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     },
     {
       "id": "VG-30",
-      "slug": "velvet-grade-30",
-      "title": "Velvet Grade 30",
-      "subtitle": "Gold cabinet, 5x3 base / 5x3 feature.",
+      "slug": "velvet-ascension",
+      "title": "Velvet Ascension",
+      "subtitle": "The final grade. The ultimate vault.",
       "machineId": "cyber_sakura",
       "layout": {
         "base": {
@@ -1119,9 +1118,7 @@
           "rows": 3
         },
         "switchOn": [
-          "freespins",
-          "holdandwin",
-          "jackpot"
+          "freespins"
         ]
       },
       "theme": {
@@ -1129,17 +1126,18 @@
         "frameTheme": "Gold",
         "soundTheme": "Gold"
       },
-      "assets": {
-        "cardImage": "images/slots/vg/VG-30/card.png",
-        "logoImage": "images/slots/vg/VG-30/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-30/symbols"
-      },
       "tiersCents": {
         "bigMin": 1000,
         "superMin": 2500,
         "hugeMin": 5000,
         "extravagantMin": 10000
-      }
+      },
+      "assets": {
+        "cardImage": "images/slots/vg/VG-30/card.png",
+        "logoImage": "images/slots/vg/VG-30/logo.png",
+        "symbolPackPath": "images/slots/vg/VG-30/symbols"
+      },
+      "machineIdAlias": "TODO_MAP_UNIQUE"
     }
   ]
 }

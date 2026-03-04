@@ -109,3 +109,14 @@
     padding: 22px;
   }
 }
+
+/* VG Card Badges */
+.vv-slot-card { position: relative; }
+.vv-slot-card-badges { position: absolute; top: 10px; left: 10px; display: flex; flex-wrap: wrap; gap: 5px; z-index: 2; }
+.vv-badge { display: inline-block; padding: 3px 8px; border-radius: 3px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.4; pointer-events: none; backdrop-filter: blur(4px); }
+.vv-badge--layout { background: rgba(0,0,0,0.72); color: #c9a84c; border: 1px solid rgba(201,168,76,0.45); }
+.vv-badge--theme { background: rgba(0,0,0,0.60); color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.18); }
+.vv-slot-card[data-theme="neon"] .vv-badge--theme { color: #00e5ff; }
+.vv-slot-card[data-theme="crimson"] .vv-badge--theme { color: #e05555; }
+.vv-slot-card[data-theme="diamond"] .vv-badge--theme { color: #b0d8f5; }
+.vv-slot-card[data-theme="gold"] .vv-badge--theme { color: #f5d87a; }
