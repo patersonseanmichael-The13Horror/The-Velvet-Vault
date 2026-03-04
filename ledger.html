@@ -1,60 +1,70 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="vv-protected" content="true" />
   <title>Velvet Vault — Ledger</title>
-
-  <link rel="stylesheet" href="css/vv.tokens.css">
-  <link rel="stylesheet" href="css/vv.base.css">
-  <link rel="stylesheet" href="css/vv.components.css">
-  <link rel="stylesheet" href="css/velvet.css">
-  <link rel="stylesheet" href="css/rebirth.css">
-  <link rel="stylesheet" href="css/pages/ledger.css">
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/pages/slots.css" />
+  <link rel="stylesheet" href="css/pages/members.css" />
+  <script src="js/runtime-config.js" defer></script>
+</head>
+<body class="vvTheme">
+  <div id="vvBrandGlow" aria-hidden="true"></div>
+  <div class="vvShell">
+    <header class="vvTopbar">
+      <div class="vvTopbarLeft">
+        <a class="vvLogoLink" href="members.html" aria-label="Velvet Vault">
+          <span class="vvLogo">VELVET VAULT</span>
+          <span class="vvTag">Ledger</span>
+        </a>
+      </div>
+      <nav class="vvNav">
+        <a class="vvNavItem" href="members.html">Members</a>
+        <a class="vvNavItem" href="slots-lobby.html">Play Slots</a>
+        <a class="vvNavItem" href="promotions.html">Promotions</a>
+        <button id="btnLogout" class="vvNavItem vvNavDanger" type="button">Logout</button>
+      </nav>
+    </header>
+    <main class="vvLedgerMain">
+      <section class="vvLedgerHero">
+        <div class="vvLedgerBreadcrumb">
+          <a href="members.html">Members</a>
+          <span>›</span>
+          <span>Ledger</span>
+        </div>
+        <h1 class="vvHeroTitle">Transaction Ledger</h1>
+        <p class="vvLedgerSub">All credits and debits recorded for your account.</p>
+        <p class="vvLedgerBalance">Balance: <strong id="bal">—</strong></p>
+      </section>
+      <section class="vvLedgerTableWrap">
+        <div class="vvLedgerScrollWrap">
+          <table class="vvLedgerTable">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Note</th>
+                <th>Balance After</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+        <!-- Hidden test controls kept for VaultEngine compatibility -->
+        <button id="testCredit" style="display:none" aria-hidden="true"></button>
+        <button id="testDebit" style="display:none" aria-hidden="true"></button>
+      </section>
+    </main>
+  </div>
+  <footer id="vv-footer"></footer>
   <script type="module" src="js/firebase-init.js"></script>
   <script type="module" src="js/guard.js"></script>
   <script type="module" src="js/wallet.js"></script>
-
-  
-</head>
-<body>
-  <meta name="vv-protected" content="true">
-  <header id="vv-topbar"></header>
-  <div class="box">
-    <div class="row">
-      <div>
-        <h2 style="margin:0 0 6px;">Ledger</h2>
-        <small>All credits/debits recorded for this account.</small>
-      </div>
-      <div class="row">
-        <button class="btn" onclick="location.href='members.html'">Back</button>
-        <button class="btn" id="testCredit">+500</button>
-        <button class="btn" id="testDebit">-200</button>
-      </div>
-    </div>
-
-    <p style="margin:12px 0 0;">Wallet: <b id="bal">—</b></p>
-
-    <div class="tableWrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>Type</th>
-            <th>Amount</th>
-            <th>Note</th>
-            <th>Balance After</th>
-          </tr>
-        </thead>
-        <tbody id="rows"></tbody>
-      </table>
-    </div>
-  </div>
-
   <script src="js/games/ledger.js" defer></script>
-<footer id="vv-footer"></footer>
-<script type="module" src="js/ui/topbar.js"></script>
-<script type="module" src="js/ui/footer.js"></script>
-
+  <script type="module" src="js/ui/footer.js"></script>
+  <script src="js/vv-bg-particles.js" defer></script>
 </body>
 </html>

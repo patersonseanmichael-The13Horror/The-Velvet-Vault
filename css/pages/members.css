@@ -156,6 +156,12 @@ body.vvModalOpen {
   background: rgba(120, 24, 46, 0.36);
 }
 
+.vvNavActive {
+  border-color: rgba(0, 255, 154, 0.45) !important;
+  background: rgba(0, 255, 154, 0.10) !important;
+  color: #d6ffe9 !important;
+}
+
 .vvPrimary {
   background: linear-gradient(135deg, rgba(255, 0, 170, 0.32), rgba(255, 215, 140, 0.18));
   box-shadow: 0 12px 28px rgba(255, 0, 170, 0.18);
@@ -511,6 +517,104 @@ body.vvModalOpen {
 @keyframes vvTickerSlide {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+
+/* Ledger page styles */
+.vvLedgerMain {
+  display: grid;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.vvLedgerHero {
+  background: linear-gradient(180deg, rgba(18, 11, 26, 0.88), rgba(10, 7, 15, 0.94));
+  border: 1px solid var(--vv-border);
+  border-radius: 30px;
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  padding: 32px;
+  display: grid;
+  gap: 12px;
+}
+
+.vvLedgerBreadcrumb {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  color: rgba(245, 239, 233, 0.66);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+}
+
+.vvLedgerBreadcrumb a {
+  color: rgba(245, 239, 233, 0.66);
+  text-decoration: none;
+}
+
+.vvLedgerBreadcrumb a:hover {
+  color: rgba(0, 255, 154, 0.9);
+}
+
+.vvLedgerSub {
+  margin: 0;
+  color: var(--vv-text-soft);
+}
+
+.vvLedgerBalance {
+  margin: 0;
+  color: var(--vv-text-soft);
+}
+
+.vvLedgerBalance strong {
+  color: var(--vv-gold);
+  font-family: var(--vv-font-display, Georgia, serif);
+  font-size: 1.2rem;
+}
+
+.vvLedgerTableWrap {
+  background: linear-gradient(180deg, rgba(18, 11, 26, 0.88), rgba(10, 7, 15, 0.94));
+  border: 1px solid var(--vv-border);
+  border-radius: 30px;
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  padding: 20px;
+}
+
+.vvLedgerScrollWrap {
+  overflow-x: auto;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.vvLedgerTable {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+.vvLedgerTable th,
+.vvLedgerTable td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  text-align: left;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.vvLedgerTable th {
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--vv-text-dim);
+  font-weight: 700;
+}
+
+.vvLedgerTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.vvLedgerTable tbody tr:hover td {
+  background: rgba(255, 255, 255, 0.03);
 }
 
 @media (max-width: 960px) {

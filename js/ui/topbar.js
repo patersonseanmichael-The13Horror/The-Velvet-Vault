@@ -8,7 +8,9 @@ const links = [
 ];
 
 const activeAliases = {
-  "slots.html": "slots-lobby.html"
+  "slots.html": "slots-lobby.html",
+  "slots-hub.html": "slots-lobby.html",
+  "ledger.html": "members.html"
 };
 
 function currentName(){
@@ -53,6 +55,16 @@ export function renderTopbar(){
   const navLinks = document.getElementById("vvNavLinks");
   if(toggle && navLinks){
     toggle.addEventListener("click", ()=> navLinks.classList.toggle("is-open"));
+    document.addEventListener("click", (e) => {
+      if (!host.contains(e.target)) navLinks.classList.remove("is-open");
+    });
+  }
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", async () => {
+      try { await window.vvAuth?.signOut?.(); } catch (_) {}
+      window.location.href = "index.html";
+    });
   }
 }
 

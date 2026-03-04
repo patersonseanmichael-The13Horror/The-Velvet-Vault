@@ -22,17 +22,18 @@
       </div>
       <nav class="vvNav">
         <a class="vvNavItem" href="members.html">Members</a>
-        <a class="vvNavItem" href="slots-lobby.html">Slots</a>
+        <a class="vvNavItem vvNavActive" href="slots-lobby.html">Slots</a>
         <a class="vvNavItem" href="promotions.html">Promotions</a>
+        <button id="btnLogout" class="vvNavItem vvNavDanger" type="button">Logout</button>
       </nav>
     </header>
 
     <main class="vvLobbyMain">
       <section class="vvLobbyHero">
         <div class="vvLobbyBreadcrumb">
-          <span>Members</span>
+          <a href="members.html">Members</a>
           <span>›</span>
-          <span>Slots</span>
+          <span>Slots Lobby</span>
         </div>
         <h1 class="vvHeroTitle">Choose Your Velvet Grade</h1>
         <p>
@@ -48,11 +49,12 @@
 
   <footer id="vv-footer"></footer>
 
+  <script src="js/runtime-config.js"></script>
   <script type="module" src="js/firebase-init.js"></script>
   <script type="module" src="js/guard.js"></script>
+  <script type="module" src="js/wallet.js"></script>
   <script src="js/story-engine.js"></script>
   <script src="js/story-progress.js"></script>
-  <script src="js/runtime-config.js"></script>
   <script type="module" src="js/vg/vg-registry.js"></script>
   <script type="module" src="js/vg/vg-lobby.js"></script>
   <script type="module" src="js/ui/footer.js"></script>
