@@ -1,0 +1,382 @@
+/**
+ * css/pages/slots-vg-02.css
+ *
+ * VG-02 Midnight Syndicate — Neon Noir Theme Skin
+ *
+ * All rules are scoped to body[data-vg-skin="VG-02"] or
+ * body.vv-vfx-neon-syndicate so they activate only for this machine.
+ * Zero changes to wallet / RNG / payout logic.
+ *
+ * CSS variable overrides:
+ *   --vg-accent    : #00f5ff  (electric cyan)
+ *   --vg-secondary : #ff00cc  (magenta)
+ *   --vg-glow      : rgba(0, 245, 255, 0.7)
+ */
+
+/* ============================================================
+   1. ROOT VARIABLE DEFAULTS (fallback if JS doesn't set them)
+   ============================================================ */
+body[data-vg-skin="VG-02"] {
+  --vg-accent:    #00f5ff;
+  --vg-secondary: #ff00cc;
+  --vg-glow:      rgba(0, 245, 255, 0.7);
+  --vg-bg-deep:   #03040f;
+  --vg-bg-mid:    #07091a;
+  --vg-scanline:  rgba(0, 245, 255, 0.03);
+}
+
+/* ============================================================
+   2. CABINET & STAGE — Neon Noir Reskin
+   ============================================================ */
+body[data-vg-skin="VG-02"] .vv-cabinet,
+body[data-vg-skin="VG-02"] #cabinetEl {
+  background: linear-gradient(180deg, var(--vg-bg-deep) 0%, var(--vg-bg-mid) 100%);
+  border-color: var(--vg-accent);
+  box-shadow:
+    0 0 0 1px var(--vg-accent),
+    0 0 18px 4px var(--vg-glow),
+    0 0 60px 10px rgba(255, 0, 204, 0.15),
+    inset 0 0 40px rgba(0, 245, 255, 0.04);
+}
+
+/* Scanline overlay */
+body[data-vg-skin="VG-02"] .vv-cabinet::before,
+body[data-vg-skin="VG-02"] #cabinetEl::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    var(--vg-scanline) 3px,
+    var(--vg-scanline) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+/* ============================================================
+   3. REEL WINDOW — Neon Border & Glow
+   ============================================================ */
+body[data-vg-skin="VG-02"] .reelWindow,
+body[data-vg-skin="VG-02"] #reelWindow {
+  border: 1px solid var(--vg-accent);
+  box-shadow:
+    0 0 12px 2px var(--vg-glow),
+    inset 0 0 20px rgba(0, 245, 255, 0.06);
+  background: rgba(0, 5, 20, 0.92);
+}
+
+/* ============================================================
+   4. REEL COLUMNS — Neon Separator Lines
+   ============================================================ */
+body[data-vg-skin="VG-02"] .reelCol + .reelCol {
+  border-left: 1px solid rgba(0, 245, 255, 0.15);
+}
+
+/* Spinning reel — cyan motion blur */
+body[data-vg-skin="VG-02"] .reelCol.vv-is-spinning .symImg {
+  filter: blur(3px) brightness(1.1) drop-shadow(0 0 6px var(--vg-accent));
+  transition: filter 0.08s linear;
+}
+
+/* Reel settle — neon bounce */
+@keyframes vvNeonSettle {
+  0%   { transform: translateY(-6px); }
+  40%  { transform: translateY(3px); }
+  70%  { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+
+body[data-vg-skin="VG-02"] .reelCol.vv-reel-settled .symImg {
+  animation: vvNeonSettle 0.28s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+/* Anticipation — cyan column edge glow */
+body[data-vg-skin="VG-02"] .reelCol.vv-anticipating {
+  box-shadow:
+    inset 2px 0 12px rgba(0, 245, 255, 0.3),
+    inset -2px 0 12px rgba(0, 245, 255, 0.3);
+}
+
+/* ============================================================
+   5. SYMBOL IMAGES — Neon Glow & Win Halos
+   ============================================================ */
+body[data-vg-skin="VG-02"] .symImg {
+  max-width: 82%;
+  max-height: 82%;
+  filter: drop-shadow(0 0 5px rgba(0, 245, 255, 0.4));
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+/* Premium tier symbols — stronger cyan glow */
+body[data-vg-skin="VG-02"] .symCell[data-tier="premium"] .symImg {
+  filter: drop-shadow(0 0 10px var(--vg-accent)) drop-shadow(0 0 20px rgba(0, 245, 255, 0.5));
+}
+
+/* Mid tier — magenta glow */
+body[data-vg-skin="VG-02"] .symCell[data-tier="mid"] .symImg {
+  filter: drop-shadow(0 0 7px var(--vg-secondary)) drop-shadow(0 0 14px rgba(255, 0, 204, 0.4));
+}
+
+/* Win cell highlight — neon cyan halo */
+body[data-vg-skin="VG-02"] .symCell.vv-win-cell .symImg {
+  filter:
+    drop-shadow(0 0 8px var(--vg-accent))
+    drop-shadow(0 0 18px rgba(0, 245, 255, 0.8))
+    brightness(1.25);
+  transform: scale(1.06);
+}
+
+/* Win cell background pulse */
+@keyframes vvNeonWinPulse {
+  0%, 100% { background: rgba(0, 245, 255, 0.06); }
+  50%       { background: rgba(0, 245, 255, 0.18); }
+}
+
+body[data-vg-skin="VG-02"] .symCell.vv-win-cell {
+  animation: vvNeonWinPulse 0.7s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   6. HUD — Neon Reskin (balance, bet, win displays)
+   ============================================================ */
+body[data-vg-skin="VG-02"] .vvHudPanel,
+body[data-vg-skin="VG-02"] .vv-hud-panel {
+  background: rgba(3, 4, 15, 0.9);
+  border-color: rgba(0, 245, 255, 0.25);
+  box-shadow: 0 0 10px rgba(0, 245, 255, 0.1);
+}
+
+body[data-vg-skin="VG-02"] .vvHudValue,
+body[data-vg-skin="VG-02"] .vv-hud-value {
+  color: var(--vg-accent);
+  text-shadow: 0 0 8px var(--vg-glow);
+}
+
+body[data-vg-skin="VG-02"] .vvHudLabel,
+body[data-vg-skin="VG-02"] .vv-hud-label {
+  color: rgba(0, 245, 255, 0.55);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.65em;
+}
+
+/* ============================================================
+   7. SPIN BUTTON — Neon Cyan Theme
+   ============================================================ */
+body[data-vg-skin="VG-02"] #spinBtn,
+body[data-vg-skin="VG-02"] .vv-spin-btn {
+  background: linear-gradient(135deg, #001a2e 0%, #002a40 100%);
+  border: 1.5px solid var(--vg-accent);
+  color: var(--vg-accent);
+  text-shadow: 0 0 8px var(--vg-glow);
+  box-shadow:
+    0 0 12px rgba(0, 245, 255, 0.3),
+    inset 0 0 8px rgba(0, 245, 255, 0.05);
+  transition: box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+body[data-vg-skin="VG-02"] #spinBtn:hover,
+body[data-vg-skin="VG-02"] .vv-spin-btn:hover {
+  box-shadow:
+    0 0 22px rgba(0, 245, 255, 0.6),
+    0 0 8px rgba(255, 0, 204, 0.3),
+    inset 0 0 12px rgba(0, 245, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+body[data-vg-skin="VG-02"] #spinBtn:active,
+body[data-vg-skin="VG-02"] .vv-spin-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 8px rgba(0, 245, 255, 0.2);
+}
+
+/* ============================================================
+   8. WIN-TIER OVERLAYS — Neon Reskin
+   ============================================================ */
+
+/* Base overlay */
+body[data-vg-skin="VG-02"] .vvWinFrame,
+body[data-vg-skin="VG-02"] #vvWinFrame {
+  background: radial-gradient(ellipse at center,
+    rgba(0, 10, 30, 0.97) 0%,
+    rgba(0, 5, 20, 0.99) 100%
+  );
+  border: 1px solid var(--vg-accent);
+  box-shadow:
+    0 0 0 1px var(--vg-accent),
+    0 0 30px 8px var(--vg-glow),
+    0 0 80px 20px rgba(255, 0, 204, 0.2);
+}
+
+/* Win tier title text */
+body[data-vg-skin="VG-02"] .vvWinTierTitle,
+body[data-vg-skin="VG-02"] .vv-win-tier-title {
+  color: var(--vg-accent);
+  text-shadow:
+    0 0 10px var(--vg-glow),
+    0 0 30px rgba(0, 245, 255, 0.5),
+    0 0 60px rgba(0, 245, 255, 0.2);
+  letter-spacing: 0.2em;
+  font-family: "Cinzel", serif;
+}
+
+/* Win amount */
+body[data-vg-skin="VG-02"] .vvWinAmount,
+body[data-vg-skin="VG-02"] .vv-win-amount {
+  color: #ffffff;
+  text-shadow:
+    0 0 8px var(--vg-accent),
+    0 0 20px var(--vg-glow);
+}
+
+/* BIG WIN */
+body[data-vg-skin="VG-02"] .vvWinFrame[data-tier="big"] .vvWinTierTitle {
+  color: var(--vg-accent);
+}
+
+/* SUPER WIN */
+body[data-vg-skin="VG-02"] .vvWinFrame[data-tier="super"] .vvWinTierTitle {
+  color: var(--vg-secondary);
+  text-shadow:
+    0 0 10px rgba(255, 0, 204, 0.9),
+    0 0 30px rgba(255, 0, 204, 0.5);
+}
+
+/* HUGE WIN */
+body[data-vg-skin="VG-02"] .vvWinFrame[data-tier="huge"] .vvWinTierTitle {
+  background: linear-gradient(90deg, var(--vg-accent), var(--vg-secondary), var(--vg-accent));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: vvNeonTextShift 1.5s linear infinite;
+}
+
+@keyframes vvNeonTextShift {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* EXTRAVAGANT WIN */
+@keyframes vvNeonExtravagantPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px var(--vg-accent),
+      0 0 40px 12px var(--vg-glow),
+      0 0 100px 30px rgba(255, 0, 204, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 0 2px var(--vg-secondary),
+      0 0 60px 20px rgba(255, 0, 204, 0.7),
+      0 0 120px 40px rgba(0, 245, 255, 0.4);
+  }
+}
+
+body[data-vg-skin="VG-02"] .vvWinFrame[data-tier="extravagant"] {
+  animation: vvNeonExtravagantPulse 1.2s ease-in-out infinite;
+}
+
+body[data-vg-skin="VG-02"] .vvWinFrame[data-tier="extravagant"] .vvWinTierTitle {
+  color: var(--vg-secondary);
+  text-shadow:
+    0 0 15px rgba(255, 0, 204, 1),
+    0 0 40px rgba(255, 0, 204, 0.6),
+    0 0 80px rgba(0, 245, 255, 0.4);
+  animation: vvNeonTextShift 0.8s linear infinite;
+}
+
+/* ============================================================
+   9. FEATURE FRAMES — Neon Reskin
+   ============================================================ */
+
+/* Base feature frame */
+body[data-vg-skin="VG-02"] .vvFeatureFrame,
+body[data-vg-skin="VG-02"] #vvFeatureFrame {
+  background: radial-gradient(ellipse at top,
+    rgba(0, 15, 35, 0.98) 0%,
+    rgba(0, 5, 20, 0.99) 100%
+  );
+  border: 1px solid var(--vg-accent);
+  box-shadow:
+    0 0 0 1px var(--vg-accent),
+    0 0 25px 6px var(--vg-glow),
+    0 0 60px 15px rgba(255, 0, 204, 0.15);
+}
+
+/* Feature frame title */
+body[data-vg-skin="VG-02"] .vvFeatureTitle,
+body[data-vg-skin="VG-02"] .vv-feature-title {
+  color: var(--vg-accent);
+  text-shadow: 0 0 12px var(--vg-glow), 0 0 30px rgba(0, 245, 255, 0.4);
+  letter-spacing: 0.18em;
+}
+
+/* Hold & Win locked cells */
+body[data-vg-skin="VG-02"] .symCell.vv-hold-locked {
+  background: rgba(0, 245, 255, 0.08);
+  border: 1px solid var(--vg-accent);
+  box-shadow: inset 0 0 10px rgba(0, 245, 255, 0.2), 0 0 8px var(--vg-glow);
+}
+
+/* Free Spins counter */
+body[data-vg-skin="VG-02"] .vvFreeSpinCount,
+body[data-vg-skin="VG-02"] .vv-free-spin-count {
+  color: var(--vg-secondary);
+  text-shadow: 0 0 10px rgba(255, 0, 204, 0.8);
+}
+
+/* Coin drop particles */
+@keyframes vvNeonCoinDrop {
+  0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  80%  { opacity: 0.8; }
+  100% { transform: translateY(60px) rotate(360deg); opacity: 0; }
+}
+
+body[data-vg-skin="VG-02"] .vv-coin-particle {
+  background: radial-gradient(circle, var(--vg-accent) 0%, rgba(0, 245, 255, 0.3) 70%);
+  border: 1px solid var(--vg-accent);
+  box-shadow: 0 0 6px var(--vg-glow);
+  animation: vvNeonCoinDrop 0.7s ease-in forwards;
+}
+
+/* ============================================================
+   10. MACHINE TITLE BADGE — Neon Syndicate Style
+   ============================================================ */
+body[data-vg-skin="VG-02"] .vvMachineTitle,
+body[data-vg-skin="VG-02"] .vv-machine-title {
+  color: var(--vg-accent);
+  text-shadow: 0 0 10px var(--vg-glow), 0 0 25px rgba(0, 245, 255, 0.3);
+  letter-spacing: 0.15em;
+}
+
+body[data-vg-skin="VG-02"] .vvMachineSubtitle,
+body[data-vg-skin="VG-02"] .vv-machine-subtitle {
+  color: rgba(0, 245, 255, 0.55);
+  letter-spacing: 0.2em;
+  font-size: 0.7em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   11. PAYLINE HIGHLIGHTS — Neon Cyan
+   ============================================================ */
+body[data-vg-skin="VG-02"] .vv-payline-line {
+  stroke: var(--vg-accent);
+  filter: drop-shadow(0 0 4px var(--vg-glow));
+}
+
+/* ============================================================
+   12. Z-INDEX ENFORCEMENT
+   ============================================================ */
+body[data-vg-skin="VG-02"] .symImg          { position: relative; z-index: 10; }
+body[data-vg-skin="VG-02"] .vv-reel-fx      { z-index: 20; }
+body[data-vg-skin="VG-02"] .vvHudPanel      { z-index: 30; }
+body[data-vg-skin="VG-02"] .vvOverlayFrame  { z-index: 40; }
+body[data-vg-skin="VG-02"] .vvWinFrame      { z-index: 1900; }
+body[data-vg-skin="VG-02"] .vvFeatureFrame  { z-index: 1900; }

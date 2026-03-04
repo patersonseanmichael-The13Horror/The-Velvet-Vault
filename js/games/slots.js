@@ -628,6 +628,10 @@
     const isNoirVip = activeVGMachine?.theme?.vfxTheme === "noir"
       || activeVGMachine?.theme?.frameTheme === "noir-vip";
     document.body.classList.toggle("vv-vfx-noir-vip", Boolean(isNoirVip));
+    // VG-02 Midnight Syndicate — neon theme class
+    const isNeonSyndicate = activeVGMachine?.id === "VG-02"
+      || activeVGMachine?.theme?.vfxTheme === "neon";
+    document.body.classList.toggle("vv-vfx-neon-syndicate", Boolean(isNeonSyndicate));
   }
 
   function applySlotLayout(mode = "base", reason = "") {

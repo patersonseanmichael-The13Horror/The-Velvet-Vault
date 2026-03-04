@@ -1,0 +1,94 @@
+{
+  "machineId": "VG-02",
+  "theme": "neon",
+  "accentColor": "#00f5ff",
+  "secondaryColor": "#ff00cc",
+  "glowColor": "rgba(0, 245, 255, 0.7)",
+  "skinClass": "vv-vfx-neon-syndicate",
+  "symbols": [
+    {
+      "key": "crown",
+      "label": "Midnight Crown",
+      "tier": "premium",
+      "path": "images/slots/vg/VG-02/symbols/midnight-crown.png",
+      "glowColor": "#bf00ff"
+    },
+    {
+      "key": "diamond",
+      "label": "Cyber Diamond",
+      "tier": "premium",
+      "path": "images/slots/vg/VG-02/symbols/cyber-diamond.png",
+      "glowColor": "#00f5ff"
+    },
+    {
+      "key": "ring",
+      "label": "Neon Ring",
+      "tier": "premium",
+      "path": "images/slots/vg/VG-02/symbols/neon-ring.png",
+      "glowColor": "#ff00cc"
+    },
+    {
+      "key": "mask",
+      "label": "Syndicate Mask",
+      "tier": "mid",
+      "path": "images/slots/vg/VG-02/symbols/syndicate-mask.png",
+      "glowColor": "#ff00cc"
+    },
+    {
+      "key": "chip",
+      "label": "Neon Chip",
+      "tier": "mid",
+      "path": "images/slots/vg/VG-02/symbols/neon-chip.png",
+      "glowColor": "#00f5ff"
+    },
+    {
+      "key": "rose",
+      "label": "Electric Rose",
+      "tier": "mid",
+      "path": "images/slots/vg/VG-02/symbols/electric-rose.png",
+      "glowColor": "#ff0080"
+    },
+    {
+      "key": "key",
+      "label": "Vault Key",
+      "tier": "mid",
+      "path": "images/slots/vg/VG-02/symbols/vault-key.png",
+      "glowColor": "#7b00ff"
+    },
+    {
+      "key": "A",
+      "label": "Ace",
+      "tier": "low",
+      "path": "images/slots/vg/VG-02/symbols/card-a.png",
+      "glowColor": "#00f5ff"
+    },
+    {
+      "key": "K",
+      "label": "King",
+      "tier": "low",
+      "path": "images/slots/vg/VG-02/symbols/card-k.png",
+      "glowColor": "#ff00cc"
+    },
+    {
+      "key": "Q",
+      "label": "Queen",
+      "tier": "low",
+      "path": "images/slots/vg/VG-02/symbols/card-q.png",
+      "glowColor": "#bf00ff"
+    },
+    {
+      "key": "J",
+      "label": "Jack",
+      "tier": "low",
+      "path": "images/slots/vg/VG-02/symbols/card-j.png",
+      "glowColor": "#00cfff"
+    },
+    {
+      "key": "10",
+      "label": "Ten",
+      "tier": "low",
+      "path": "images/slots/vg/VG-02/symbols/card-10.png",
+      "glowColor": "#00e5cc"
+    }
+  ]
+}

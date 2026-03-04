@@ -4,7 +4,7 @@
       "id": "VG-01",
       "slug": "high-society",
       "title": "High Society",
-      "subtitle": "Noir cabinet. 5×3 base — expands to 6×4 in feature.",
+      "subtitle": "Noir cabinet. 5\u00d73 base \u2014 expands to 6\u00d74 in feature.",
       "machineId": "velvet_noir",
       "layout": {
         "base": {
@@ -42,7 +42,7 @@
       "id": "VG-02",
       "slug": "midnight-syndicate",
       "title": "Midnight Syndicate",
-      "subtitle": "Where deals are sealed after dark.",
+      "subtitle": "Neon deals sealed after dark. The syndicate never sleeps.",
       "machineId": "cyber_sakura",
       "layout": {
         "base": {
@@ -60,9 +60,11 @@
         ]
       },
       "theme": {
-        "vfxTheme": "noir",
-        "frameTheme": "Noir",
-        "soundTheme": "Noir"
+        "vfxTheme": "neon",
+        "frameTheme": "neon-syndicate",
+        "soundTheme": "Neon",
+        "accentColor": "#00f5ff",
+        "secondaryColor": "#ff00cc"
       },
       "tiersCents": {
         "bigMin": 1000,
@@ -73,7 +75,8 @@
       "assets": {
         "cardImage": "images/slots/vg/VG-02/card.png",
         "logoImage": "images/slots/vg/VG-02/logo.png",
-        "symbolPackPath": "images/slots/vg/VG-02/symbols"
+        "symbolPackPath": "images/slots/vg/VG-02/symbols",
+        "symbolsManifest": "packages/vg-machines/VG-02.symbols.json"
       },
       "machineIdAlias": "TODO_MAP_UNIQUE"
     },
@@ -120,7 +123,7 @@
       "id": "VG-04",
       "slug": "vault-heist",
       "title": "Vault Heist",
-      "subtitle": "The score of a lifetime — if you can crack it.",
+      "subtitle": "The score of a lifetime \u2014 if you can crack it.",
       "machineId": "emerald_heist",
       "layout": {
         "base": {
@@ -315,7 +318,7 @@
       "id": "VG-09",
       "slug": "phantom-reserve",
       "title": "Phantom Reserve",
-      "subtitle": "A vault no one can find — until now.",
+      "subtitle": "A vault no one can find \u2014 until now.",
       "machineId": "cyber_sakura",
       "layout": {
         "base": {

@@ -17,7 +17,8 @@
 
 /** Map of VG machine IDs to their symbol skin manifest paths */
 const VG_SKIN_MANIFESTS = {
-  "VG-01": "packages/vg-machines/VG-01.symbols.json"
+  "VG-01": "packages/vg-machines/VG-01.symbols.json",
+  "VG-02": "packages/vg-machines/VG-02.symbols.json"
 };
 
 /** In-memory cache so we only fetch each manifest once per session */
@@ -45,12 +46,48 @@ async function loadSkinManifest(vgId) {
 }
 
 /**
- * Apply the VG-01 symbol skin to the active machine's visual symbolMap.
+ * Resolve a skin entry from a manifest's symbols field.
+ * Supports both the legacy object format (VG-01: { "0": { file, label, tier } })
+ * and the new array format (VG-02+: [{ key, label, tier, path, glowColor }]).
+ *
+ * @param {object|Array} symbols  manifest.symbols
+ * @param {number}       index    positional index of the engine symbol
+ * @returns {{ src: string, label: string, tier: string, glowColor?: string }|null}
+ */
+function resolveSkinEntry(symbols, index, vgId) {
+  if (!symbols) return null;
+
+  // New array format (VG-02+)
+  if (Array.isArray(symbols)) {
+    const entry = symbols[index];
+    if (!entry) return null;
+    return {
+      src: entry.path || null,
+      label: entry.label || null,
+      tier: entry.tier || "low",
+      glowColor: entry.glowColor || null
+    };
+  }
+
+  // Legacy object format (VG-01)
+  const entry = symbols[String(index)] || null;
+  if (!entry) return null;
+  const basePath = `images/slots/vg/${vgId}/symbols/`;
+  return {
+    src: entry.file ? `${basePath}${entry.file}` : null,
+    label: entry.label || null,
+    tier: entry.tier || "low",
+    glowColor: null
+  };
+}
+
+/**
+ * Apply a VG symbol skin to the active machine's visual symbolMap.
  *
  * The function iterates over the engine's existing symbolMap keys and,
- * for each numeric-style key, looks up the corresponding VG skin entry.
- * It replaces only the `src` and `label` fields — tier is preserved or
- * upgraded from the skin manifest. Symbol IDs are never changed.
+ * for each non-special key, looks up the corresponding VG skin entry.
+ * It replaces only the `src`, `label`, and `tier` fields — symbol IDs
+ * and engine logic are never changed.
  *
  * @param {object} machine        The active MACHINES entry (has .visual.symbolMap)
  * @param {object|null} vgMachine The resolved VG registry entry (has .id)
@@ -64,33 +101,44 @@ export async function applyVGSkin(machine, vgMachine) {
   const manifest = await loadSkinManifest(vgId);
   if (!manifest) return false;
 
-  const basePath = manifest.symbolBasePath || `images/slots/vg/${vgId}/symbols/`;
-  const skinSymbols = manifest.symbols || {};
-  const fallbackFile = manifest.fallback || "card-10.png";
+  const skinSymbols = manifest.symbols;
   const symbolMap = machine.visual.symbolMap;
 
-  // Build an ordered list of non-special engine symbol IDs so we can
-  // map them positionally to the skin manifest's numeric keys (0..N-1).
+  // Build an ordered list of non-special engine symbol IDs
   const specialIds = new Set(["SCAT", "COIN", "WILD"]);
   const regularEngineKeys = Object.keys(symbolMap).filter(k => !specialIds.has(k));
 
   regularEngineKeys.forEach((engineKey, index) => {
-    const skinEntry = skinSymbols[String(index)] || null;
-    const file = skinEntry?.file || fallbackFile;
-    const src = `${basePath}${file}`;
+    const skinEntry = resolveSkinEntry(skinSymbols, index, vgId);
+    if (!skinEntry) return;
 
-    // Only override src and label — never touch tier logic used by engine
     symbolMap[engineKey] = {
       ...symbolMap[engineKey],
-      src,
-      label: skinEntry?.label || symbolMap[engineKey]?.label || engineKey,
-      tier: skinEntry?.tier || symbolMap[engineKey]?.tier || "low",
+      ...(skinEntry.src   ? { src: skinEntry.src }     : {}),
+      ...(skinEntry.label ? { label: skinEntry.label } : {}),
+      tier: skinEntry.tier || symbolMap[engineKey]?.tier || "low",
+      ...(skinEntry.glowColor ? { glowColor: skinEntry.glowColor } : {}),
       _vgSkin: vgId   // debug marker — not used by engine
     };
   });
 
+  // Apply theme CSS variables from manifest
+  if (manifest.accentColor) {
+    document.documentElement.style.setProperty("--vg-accent", manifest.accentColor);
+  }
+  if (manifest.secondaryColor) {
+    document.documentElement.style.setProperty("--vg-secondary", manifest.secondaryColor);
+  }
+  if (manifest.glowColor) {
+    document.documentElement.style.setProperty("--vg-glow", manifest.glowColor);
+  }
+
   // Mark the machine visual as skinned for CSS targeting
   document.body.dataset.vgSkin = vgId;
+  if (manifest.skinClass) {
+    document.body.classList.add(manifest.skinClass);
+  }
+
   console.info(`[VG Skins] Applied skin "${vgId}" — ${regularEngineKeys.length} symbols patched`);
   return true;
 }
@@ -100,5 +148,11 @@ export async function applyVGSkin(machine, vgMachine) {
  * Called when switching away from a VG machine.
  */
 export function removeVGSkin() {
+  // Remove all known skin classes
+  document.body.classList.remove("vv-vfx-noir-vip", "vv-vfx-neon-syndicate");
   delete document.body.dataset.vgSkin;
+  // Reset CSS variables to defaults
+  document.documentElement.style.removeProperty("--vg-accent");
+  document.documentElement.style.removeProperty("--vg-secondary");
+  document.documentElement.style.removeProperty("--vg-glow");
 }
