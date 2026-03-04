@@ -1,0 +1,26 @@
+{
+  "_comment": "VG-01 High Society — symbol skin mapping. Maps engine symbol IDs to VG-01 PNG assets. Engine IDs are numeric (0-11) matching the slot-engine symbol index. This mapping is used ONLY by the renderer layer; it does not alter symbol weights, paylines, or outcomes.",
+  "machineId": "VG-01",
+  "title": "High Society",
+  "symbolBasePath": "images/slots/vg/VG-01/symbols/",
+  "symbols": {
+    "0":  { "file": "crown.png",      "label": "Crown",      "tier": "premium",  "value": 5 },
+    "1":  { "file": "diamond.png",    "label": "Diamond",    "tier": "premium",  "value": 4 },
+    "2":  { "file": "vault.png",      "label": "Vault",      "tier": "premium",  "value": 3 },
+    "3":  { "file": "velvet-v.png",   "label": "Velvet V",   "tier": "premium",  "value": 2 },
+    "4":  { "file": "noir-mask.png",  "label": "Noir Mask",  "tier": "mid",      "value": 1 },
+    "5":  { "file": "ring.png",       "label": "Ring",       "tier": "mid",      "value": 1 },
+    "6":  { "file": "champagne.png",  "label": "Champagne",  "tier": "mid",      "value": 1 },
+    "7":  { "file": "card-a.png",     "label": "Ace",        "tier": "low",      "value": 0 },
+    "8":  { "file": "card-k.png",     "label": "King",       "tier": "low",      "value": 0 },
+    "9":  { "file": "card-q.png",     "label": "Queen",      "tier": "low",      "value": 0 },
+    "10": { "file": "card-j.png",     "label": "Jack",       "tier": "low",      "value": 0 },
+    "11": { "file": "card-10.png",    "label": "Ten",        "tier": "low",      "value": 0 }
+  },
+  "fallback": "card-10.png",
+  "_notes": {
+    "safe": "This file is renderer-only. Engine symbol IDs, paylines, weights, and outcomes are untouched.",
+    "fallback": "If a symbol ID is not found in this map, the renderer falls back to the 'fallback' filename.",
+    "sizing": "All PNGs are 2048x2048px square with transparent backgrounds. Rendered at 100% width of the reel cell."
+  }
+}

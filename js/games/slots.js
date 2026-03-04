@@ -699,6 +699,7 @@
       syncMachineParam(machine.key);
       serverFeatureState = null;
       serverFeatureStateMachineId = "";
+      await applyVGSymbolSkin();
       applyMachineSkin();
       syncControls();
       setResult(`Loading ${machine.name} cabinet art...`);
@@ -1955,6 +1956,27 @@
     return String(s).replace(/[&<>"']/g, c=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
   }
 
+  // --- VG Symbol Skin System ---
+  let _vgSkinsModule = null;
+  async function loadVGSkinsModule() {
+    if (_vgSkinsModule) return _vgSkinsModule;
+    try {
+      _vgSkinsModule = await import("../vg/vg-skins.js");
+    } catch (e) {
+      console.warn("[Slots] vg-skins.js not available:", e);
+      _vgSkinsModule = { applyVGSkin: async () => false, removeVGSkin: () => {} };
+    }
+    return _vgSkinsModule;
+  }
+  async function applyVGSymbolSkin() {
+    const mod = await loadVGSkinsModule();
+    if (activeVGMachine) {
+      await mod.applyVGSkin(machine, activeVGMachine);
+    } else {
+      mod.removeVGSkin();
+    }
+  }
+
   function applyMachineSkin(){
     const baseLayout = currentLayoutDefinition("base");
     const featureLayout = currentLayoutDefinition("feature");
@@ -2050,10 +2072,11 @@
   bindWallet();
   syncUI();
   syncControls();
-  applyMachineSkin();
+  applyVGSymbolSkin().then(() => applyMachineSkin());
   Promise.resolve()
     .then(() => preloadVisualAssets(machine))
-    .then(() => {
+    .then(async () => {
+      await applyVGSymbolSkin();
       applyMachineSkin();
       renderGrid();
       syncControls();
