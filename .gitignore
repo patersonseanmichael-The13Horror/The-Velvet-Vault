@@ -33,11 +33,13 @@ output/
 .vscode/
 node_modules (1)/
 output/visual-audit/
-*.json
-
-# Local admin SDK credentials
-server/serviceAccountKey.json
+# Local JSON credentials / secrets
+*serviceAccount*.json
 the-velvet-vault-*.json
+*credentials*.json
+*private_key*.json
+*.local.json
+*.secret.json
 
 # Local slot-engine tuning artifacts
 packages/slot-engine/cluster_sim.csv
