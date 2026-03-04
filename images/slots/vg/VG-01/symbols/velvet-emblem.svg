@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Velvet Emblem</title>
+  <desc id="desc">Abstract velvet emblem placeholder icon.</desc>
+  <defs>
+    <linearGradient id="crest" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f6de9c"/>
+      <stop offset="100%" stop-color="#8a1f3f"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#130d14"/>
+  <path d="M64 20 96 36v26c0 20-14 38-32 46C46 100 32 82 32 62V36z" fill="url(#crest)" stroke="#f8e6b5" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M49 53c5-9 25-9 30 0-5 10-25 10-30 0zm5 2 10 16 10-16" fill="none" stroke="#fff2cf" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

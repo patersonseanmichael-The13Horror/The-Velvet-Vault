@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Crown</title>
+  <desc id="desc">Abstract luxury crown placeholder icon.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f6df9f"/>
+      <stop offset="100%" stop-color="#b8862f"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#110d16"/>
+  <path d="M24 90h80l-8-42-18 18-14-24-14 24-18-18-8 42z" fill="url(#gold)" stroke="#f9e8bd" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M24 90h80v12H24z" fill="#e0b96a"/>
+  <circle cx="32" cy="42" r="6" fill="#f9e8bd"/>
+  <circle cx="64" cy="30" r="7" fill="#f9e8bd"/>
+  <circle cx="96" cy="42" r="6" fill="#f9e8bd"/>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Noir Mask</title>
+  <desc id="desc">Abstract noir mask placeholder icon.</desc>
+  <defs>
+    <linearGradient id="mask" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0e4c4"/>
+      <stop offset="100%" stop-color="#6f5c3b"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#120f16"/>
+  <path d="M28 54c10-18 62-18 72 0-2 22-22 36-36 36S30 76 28 54z" fill="url(#mask)" stroke="#f7ebca" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M42 58c4-5 12-5 16 0M70 58c4-5 12-5 16 0" fill="none" stroke="#2a1f1f" stroke-width="5" stroke-linecap="round"/>
+  <path d="M64 74c4 0 8-2 12-6" fill="none" stroke="#5a1430" stroke-width="4" stroke-linecap="round"/>
+</svg>

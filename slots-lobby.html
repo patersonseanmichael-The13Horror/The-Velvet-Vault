@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/pages/slots.css" />
   <link rel="stylesheet" href="css/pages/slots-lobby.css" />
-  <script src="js/runtime-config.js" defer></script>
 </head>
 <body class="vvTheme">
   <div id="vvBrandGlow" aria-hidden="true"></div>
@@ -35,38 +34,14 @@
           <span>›</span>
           <span>Slots</span>
         </div>
-        <h1 class="vvHeroTitle">Choose Your Machine</h1>
+        <h1 class="vvHeroTitle">Choose Your Velvet Grade</h1>
         <p>
-          Velvet Vault’s front row is open. Choose a cabinet and launch the selected slot client instantly.
+          Velvet Grade cabinets are now registry-driven. Pick any VG machine and launch the mapped slot client instantly.
         </p>
       </section>
 
       <section class="vvLobbyGridWrap">
-        <div class="vv-slots-grid" aria-label="Slot machine tiles">
-          <div class="vv-slot-card" data-slot="velvet-classic">
-            <img src="images/slots/velvet-classic.png" alt="Velvet Classic slot machine poster" loading="lazy">
-            <h3>Velvet Classic</h3>
-            <button class="vv-play-slot" type="button">PLAY</button>
-          </div>
-
-          <div class="vv-slot-card" data-slot="midnight-gold">
-            <img src="images/slots/midnight-gold.png" alt="Midnight Gold slot machine poster" loading="lazy">
-            <h3>Midnight Gold</h3>
-            <button class="vv-play-slot" type="button">PLAY</button>
-          </div>
-
-          <div class="vv-slot-card" data-slot="neon-diamonds">
-            <img src="images/slots/neon-diamonds.png" alt="Neon Diamonds slot machine poster" loading="lazy">
-            <h3>Neon Diamonds</h3>
-            <button class="vv-play-slot" type="button">PLAY</button>
-          </div>
-
-          <div class="vv-slot-card" data-slot="vault-heist">
-            <img src="images/slots/vault-heist.png" alt="Vault Heist slot machine poster" loading="lazy">
-            <h3>Vault Heist</h3>
-            <button class="vv-play-slot" type="button">PLAY</button>
-          </div>
-        </div>
+        <div id="vgGrid" class="vv-slots-grid" aria-label="Velvet Grade machine tiles"></div>
       </section>
     </main>
   </div>
@@ -77,7 +52,9 @@
   <script type="module" src="js/guard.js"></script>
   <script src="js/story-engine.js"></script>
   <script src="js/story-progress.js"></script>
-  <script type="module" src="js/games/slots-lobby.js"></script>
+  <script src="js/runtime-config.js"></script>
+  <script type="module" src="js/vg/vg-registry.js"></script>
+  <script type="module" src="js/vg/vg-lobby.js"></script>
   <script type="module" src="js/ui/footer.js"></script>
   <script src="js/vv-bg-particles.js" defer></script>
 </body>

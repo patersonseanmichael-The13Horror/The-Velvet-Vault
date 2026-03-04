@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Champagne</title>
+  <desc id="desc">Abstract champagne placeholder icon.</desc>
+  <defs>
+    <linearGradient id="glass" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff5d7"/>
+      <stop offset="100%" stop-color="#d7a947"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#0f1016"/>
+  <path d="M44 22h40c0 22-7 34-20 42-13-8-20-20-20-42z" fill="url(#glass)" stroke="#f6e4ba" stroke-width="4"/>
+  <path d="M64 64v24M50 100h28" stroke="#f6e4ba" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="52" cy="20" r="4" fill="#f7e9c9"/>
+  <circle cx="66" cy="14" r="5" fill="#f7e9c9"/>
+  <circle cx="79" cy="24" r="3" fill="#f7e9c9"/>
+</svg>

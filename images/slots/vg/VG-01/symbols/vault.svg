@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Vault</title>
+  <desc id="desc">Abstract vault placeholder icon.</desc>
+  <defs>
+    <linearGradient id="steel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d8dce5"/>
+      <stop offset="100%" stop-color="#6d7786"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#10131a"/>
+  <rect x="24" y="28" width="80" height="72" rx="14" fill="url(#steel)" stroke="#f2f5fb" stroke-width="4"/>
+  <circle cx="64" cy="64" r="18" fill="#161a24" stroke="#f2f5fb" stroke-width="4"/>
+  <path d="M64 46v36M46 64h36M53 53l22 22M75 53 53 75" stroke="#f2f5fb" stroke-width="4" stroke-linecap="round"/>
+</svg>

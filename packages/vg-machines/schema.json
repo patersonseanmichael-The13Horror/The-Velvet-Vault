@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./schema.json",
+  "title": "Velvet Grade Machine Registry",
+  "type": "object",
+  "required": ["version", "machines"],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "machines": {
+      "type": "array",
+      "minItems": 30,
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "slug",
+          "title",
+          "subtitle",
+          "machineId",
+          "layout",
+          "theme",
+          "assets",
+          "tiersCents"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^VG-(0[1-9]|[12][0-9]|30)$"
+          },
+          "slug": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "subtitle": {
+            "type": "string",
+            "minLength": 1
+          },
+          "machineId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "layout": {
+            "type": "object",
+            "required": ["base", "feature", "switchOn"],
+            "properties": {
+              "base": {
+                "$ref": "#/$defs/layoutShape"
+              },
+              "feature": {
+                "$ref": "#/$defs/layoutShape"
+              },
+              "switchOn": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["freespins", "holdandwin", "jackpot"]
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "theme": {
+            "type": "object",
+            "required": ["vfxTheme", "frameTheme", "soundTheme"],
+            "properties": {
+              "vfxTheme": {
+                "type": "string",
+                "enum": ["noir", "neon", "diamond", "crimson", "gold"]
+              },
+              "frameTheme": {
+                "type": "string",
+                "minLength": 1
+              },
+              "soundTheme": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "additionalProperties": false
+          },
+          "assets": {
+            "type": "object",
+            "required": ["cardImage", "logoImage", "symbolPackPath"],
+            "properties": {
+              "cardImage": {
+                "type": "string",
+                "minLength": 1
+              },
+              "logoImage": {
+                "type": "string",
+                "minLength": 1
+              },
+              "symbolPackPath": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "additionalProperties": false
+          },
+          "tiersCents": {
+            "type": "object",
+            "required": ["bigMin", "superMin", "hugeMin", "extravagantMin"],
+            "properties": {
+              "bigMin": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "superMin": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "hugeMin": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "extravagantMin": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "layoutShape": {
+      "type": "object",
+      "required": ["reels", "rows"],
+      "properties": {
+        "reels": {
+          "type": "integer",
+          "enum": [5, 6]
+        },
+        "rows": {
+          "type": "integer",
+          "enum": [3, 4]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
