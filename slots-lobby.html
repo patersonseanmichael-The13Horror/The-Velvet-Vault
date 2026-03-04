@@ -37,40 +37,38 @@
         </div>
         <h1 class="vvHeroTitle">Choose Your Machine</h1>
         <p>
-          Five-star floor, dark-room energy. Pick a machine tile to preview the cabinet, then enter the live slot room with the selected theme loaded.
+          Velvet Vault’s front row is open. Choose a cabinet and launch the selected slot client instantly.
         </p>
       </section>
 
       <section class="vvLobbyGridWrap">
-        <div id="vvLobbyGrid" class="vvLobbyGrid" aria-label="Slot machine tiles"></div>
-      </section>
-    </main>
-  </div>
+        <div class="vv-slots-grid" aria-label="Slot machine tiles">
+          <div class="vv-slot-card" data-slot="velvet-classic">
+            <img src="images/slots/velvet-classic.png" alt="Velvet Classic slot machine poster" loading="lazy">
+            <h3>Velvet Classic</h3>
+            <button class="vv-play-slot" type="button">PLAY</button>
+          </div>
 
-  <div id="vvLobbyModal" class="vvLobbyModal" aria-hidden="true">
-    <div class="vvLobbyModalCard" role="dialog" aria-modal="true" aria-label="Machine preview">
-      <button class="vvSecondary vvLobbyClose" type="button" data-lobby-close="1">Close</button>
-      <div class="vvLobbyModalBody">
-        <div id="vvLobbyModalPreview" class="vvLobbyPreview"></div>
-        <div class="vvLobbyMeta">
-          <div class="vvLobbyBreadcrumb">
-            <span>Members</span>
-            <span>›</span>
-            <span>Slots</span>
+          <div class="vv-slot-card" data-slot="midnight-gold">
+            <img src="images/slots/midnight-gold.png" alt="Midnight Gold slot machine poster" loading="lazy">
+            <h3>Midnight Gold</h3>
+            <button class="vv-play-slot" type="button">PLAY</button>
           </div>
-          <div>
-            <h2 id="vvLobbyModalTitle" class="vvHeroTitle"></h2>
-            <div id="vvLobbyModalSubtitle" class="vvTag"></div>
+
+          <div class="vv-slot-card" data-slot="neon-diamonds">
+            <img src="images/slots/neon-diamonds.png" alt="Neon Diamonds slot machine poster" loading="lazy">
+            <h3>Neon Diamonds</h3>
+            <button class="vv-play-slot" type="button">PLAY</button>
           </div>
-          <p id="vvLobbyModalDesc"></p>
-          <div id="vvLobbyModalPills" class="vvLobbyPills"></div>
-          <div class="vvLobbyActions">
-            <a id="vvLobbyEnter" class="vvPrimary" href="slots.html">Enter</a>
-            <button class="vvSecondary" type="button" data-lobby-close="1">Back</button>
+
+          <div class="vv-slot-card" data-slot="vault-heist">
+            <img src="images/slots/vault-heist.png" alt="Vault Heist slot machine poster" loading="lazy">
+            <h3>Vault Heist</h3>
+            <button class="vv-play-slot" type="button">PLAY</button>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   </div>
 
   <footer id="vv-footer"></footer>

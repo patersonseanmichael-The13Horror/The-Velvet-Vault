@@ -1,18 +1,28 @@
 import { MACHINE_CONFIGS, getMachineConfig } from "./machines.js";
 import { SlotsEngine } from "./slots-engine.js";
 
+const MACHINE_ROUTE_ALIASES = {
+  "velvet-classic": "machine-01",
+  "midnight-gold": "machine-05",
+  "neon-diamonds": "machine-07",
+  "vault-heist": "machine-10"
+};
+
 const params = new URLSearchParams(window.location.search);
 const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
-const requestedMachine = hashParams.get("machine") || params.get("m") || getLastMachine();
+const requestedRouteMachine = hashParams.get("machine") || params.get("machine") || params.get("m") || getLastMachine();
+const requestedMachine = MACHINE_ROUTE_ALIASES[requestedRouteMachine] || requestedRouteMachine;
 const machine = getMachineConfig(requestedMachine);
 const engine = new SlotsEngine(machine);
 
 if (
   requestedMachine !== machine.id ||
-  params.get("m") !== machine.id ||
+  (params.get("machine") ? false : params.get("m") !== machine.id) ||
   hashParams.get("machine") !== machine.id
 ) {
-  params.set("m", machine.id);
+  if (!params.get("machine")) {
+    params.set("m", machine.id);
+  }
   hashParams.set("machine", machine.id);
   const next = `${window.location.pathname}?${params.toString()}#${hashParams.toString()}`;
   window.history.replaceState({}, "", next);
