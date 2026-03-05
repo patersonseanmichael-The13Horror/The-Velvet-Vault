@@ -23,10 +23,6 @@
   border-radius: 28px;
 }
 
-.vvPromoCard h2 {
-  margin-top: 0;
-}
-
 .vvPromoCard ul {
   margin: 0;
   padding-left: 20px;
@@ -38,4 +34,75 @@
   .vvPromoGrid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ── Promo card header row ─────────────────────────────────────────────── */
+.vvPromoCardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.vvPromoCardHead h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── Claim button ──────────────────────────────────────────────────────── */
+.vvPromoClaimBtn {
+  flex-shrink: 0;
+  padding: 8px 20px;
+  border: 1.5px solid var(--vv-gold, #c9a84c);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--vv-gold, #c9a84c);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, opacity 0.18s;
+}
+.vvPromoClaimBtn:hover:not(:disabled) {
+  background: var(--vv-gold, #c9a84c);
+  color: #1a1108;
+}
+.vvPromoClaimBtn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.vvPromoClaimBtn[data-state="claimed"] {
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
+/* ── Promo terms note ──────────────────────────────────────────────────── */
+.vvPromoTerms {
+  margin: 10px 0 0;
+  font-size: 0.78rem;
+  color: var(--vv-text-soft, #a09880);
+  font-style: italic;
+}
+
+/* ── Status message banner ─────────────────────────────────────────────── */
+.vvPromoMsg {
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.vvPromoMsg--ok {
+  background: rgba(76, 175, 80, 0.15);
+  border: 1px solid rgba(76, 175, 80, 0.4);
+  color: #81c784;
+}
+.vvPromoMsg--error {
+  background: rgba(229, 57, 53, 0.12);
+  border: 1px solid rgba(229, 57, 53, 0.35);
+  color: #ef9a9a;
 }
