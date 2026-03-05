@@ -1,0 +1,173 @@
+/* ============================================================
+   css/pages/members-nav.css
+   Hamburger button + slide-in nav drawer for members.html
+   ============================================================ */
+
+/* ── Hamburger button ──────────────────────────────────────── */
+.vvHamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  order: -1;
+  z-index: 200;
+}
+
+.vvHamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(212, 175, 55, 0.85);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.vvHamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.vvHamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.vvHamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Overlay (backdrop) ────────────────────────────────────── */
+.vvNavOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 300;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.vvNavOverlay.vv-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── Drawer panel ──────────────────────────────────────────── */
+.vvNavDrawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: min(300px, 85vw);
+  height: 100%;
+  background: linear-gradient(160deg, #0d0d0d 0%, #1a1208 100%);
+  border-right: 1px solid rgba(212, 175, 55, 0.18);
+  z-index: 400;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.vvNavDrawer.vv-open {
+  transform: translateX(0);
+}
+
+/* ── Drawer header ─────────────────────────────────────────── */
+.vvDrawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.2rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  flex-shrink: 0;
+}
+
+.vvDrawerTitle {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: #d4af37;
+  text-transform: uppercase;
+}
+
+/* ── Drawer list ───────────────────────────────────────────── */
+.vvDrawerList {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  flex: 1;
+}
+
+.vvDrawerItem {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1.4rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.vvDrawerItem:hover,
+.vvDrawerItem:focus-visible {
+  background: rgba(212, 175, 55, 0.1);
+  color: #d4af37;
+  outline: none;
+}
+
+/* ── Divider ───────────────────────────────────────────────── */
+.vvDrawerDivider {
+  height: 1px;
+  background: rgba(212, 175, 55, 0.12);
+  margin: 0.4rem 0;
+}
+
+/* ── Settings submenu ──────────────────────────────────────── */
+.vvDrawerSubmenu {
+  padding: 0.4rem 0 0.2rem;
+}
+
+.vvDrawerSubLabel {
+  display: block;
+  padding: 0.3rem 1.4rem 0.2rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(212, 175, 55, 0.5);
+}
+
+.vvDrawerSub {
+  padding-left: 2rem;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ── Danger item (logout) ──────────────────────────────────── */
+.vvDrawerDanger {
+  color: rgba(255, 80, 80, 0.85);
+}
+
+.vvDrawerDanger:hover,
+.vvDrawerDanger:focus-visible {
+  background: rgba(255, 60, 60, 0.1);
+  color: #ff5050;
+}
+
+/* ── Reduced motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .vvNavDrawer,
+  .vvNavOverlay,
+  .vvHamburger span {
+    transition: none !important;
+  }
+}

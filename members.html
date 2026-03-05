@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/pages/slots.css" />
   <link rel="stylesheet" href="css/pages/members.css" />
+  <link rel="stylesheet" href="css/pages/members-nav.css" />
 
   <script src="js/runtime-config.js" defer></script>
 </head>
@@ -19,6 +20,11 @@
 
   <div id="vvAppShell" class="vvShell">
     <header class="vvTopbar">
+      <!-- Hamburger toggle -->
+      <button id="vvHamburger" class="vvHamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="vvNavDrawer">
+        <span></span><span></span><span></span>
+      </button>
+
       <div class="vvTopbarLeft">
         <a class="vvLogoLink" href="members.html" aria-label="Velvet Vault">
           <span class="vvLogo">VELVET VAULT</span>
@@ -162,7 +168,7 @@
           <div class="vvPayIdTitle">PayID</div>
           <div class="vvPayIdLine">
             <span class="vvPayIdLabel">Send to:</span>
-            <span id="vvPayIdValue" class="vvPayIdValue">YOUR_PAYID_HERE</span>
+            <span id="vvPayIdValue" class="vvPayIdValue">ledgertheivory@gmail.com</span>
             <button id="btnCopyPayId" class="vvMiniBtn" type="button">Copy</button>
           </div>
           <div class="vvPayIdHint">
@@ -237,6 +243,37 @@
       </div>
     </div>
   </div>
+
+  <!-- ── Nav Drawer ── -->
+  <div id="vvNavOverlay" class="vvNavOverlay" aria-hidden="true"></div>
+  <nav id="vvNavDrawer" class="vvNavDrawer" aria-label="Site navigation" aria-hidden="true">
+    <div class="vvDrawerHeader">
+      <span class="vvDrawerTitle">VELVET VAULT</span>
+      <button id="vvDrawerClose" class="vvIconBtn" type="button" aria-label="Close menu">✕</button>
+    </div>
+    <ul class="vvDrawerList">
+      <li><a class="vvDrawerItem" href="members.html">Home</a></li>
+      <li><a class="vvDrawerItem" href="slots-lobby.html">Lobby</a></li>
+      <li><button class="vvDrawerItem vvDrawerBtn" id="drawerWallet" type="button">Wallet</button></li>
+      <li><button class="vvDrawerItem vvDrawerBtn" id="drawerLedger" type="button">Ledger</button></li>
+      <li><a class="vvDrawerItem" href="promotions.html">Promotions</a></li>
+      <li class="vvDrawerDivider"></li>
+      <li><a class="vvDrawerItem" href="terms.html">Terms &amp; Conditions</a></li>
+      <li><a class="vvDrawerItem" href="privacy.html">Privacy Policy</a></li>
+      <li><a class="vvDrawerItem" href="responsible-gambling.html">Responsible Play</a></li>
+      <li><a class="vvDrawerItem" href="about.html">About</a></li>
+      <li><a class="vvDrawerItem" href="contact.html">Contact</a></li>
+      <li class="vvDrawerDivider"></li>
+      <li class="vvDrawerSubmenu">
+        <span class="vvDrawerSubLabel">Settings</span>
+        <button class="vvDrawerItem vvDrawerBtn vvDrawerSub" id="drawerAudioToggle" type="button">Audio: Off</button>
+        <button class="vvDrawerItem vvDrawerBtn vvDrawerSub" id="drawerFullscreen" type="button">Fullscreen</button>
+        <button class="vvDrawerItem vvDrawerBtn vvDrawerSub" id="drawerChangePassword" type="button">Change Password</button>
+      </li>
+      <li class="vvDrawerDivider"></li>
+      <li><button class="vvDrawerItem vvDrawerBtn vvDrawerDanger" id="drawerLogout" type="button">Logout</button></li>
+    </ul>
+  </nav>
 
   <footer id="vv-footer"></footer>
   <script type="module" src="js/firebase-init.js"></script>

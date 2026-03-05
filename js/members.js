@@ -444,6 +444,74 @@ import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/
   btnOpenWallet?.addEventListener("click", showModal);
   btnOpenWallet2?.addEventListener("click", showModal);
   btnCloseWallet?.addEventListener("click", hideModal);
+
+  // ── Hamburger / Nav Drawer ────────────────────────────────
+  const hamburger   = $('vvHamburger');
+  const navDrawer   = $('vvNavDrawer');
+  const navOverlay  = $('vvNavOverlay');
+  const drawerClose = $('vvDrawerClose');
+  let drawerOpen = false;
+
+  function openDrawer() {
+    drawerOpen = true;
+    navDrawer?.classList.add('vv-open');
+    navOverlay?.classList.add('vv-open');
+    navDrawer?.setAttribute('aria-hidden', 'false');
+    navOverlay?.setAttribute('aria-hidden', 'false');
+    hamburger?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    drawerOpen = false;
+    navDrawer?.classList.remove('vv-open');
+    navOverlay?.classList.remove('vv-open');
+    navDrawer?.setAttribute('aria-hidden', 'true');
+    navOverlay?.setAttribute('aria-hidden', 'true');
+    hamburger?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburger?.addEventListener('click', () => drawerOpen ? closeDrawer() : openDrawer());
+  drawerClose?.addEventListener('click', closeDrawer);
+  navOverlay?.addEventListener('click', closeDrawer);
+
+  // Drawer nav items
+  $('drawerWallet')?.addEventListener('click', () => { closeDrawer(); showModal(); });
+  $('drawerLedger')?.addEventListener('click', () => { closeDrawer(); showModal(); showView('history'); historyCursor = null; void loadWalletHistory(); });
+  $('drawerLogout')?.addEventListener('click', async () => {
+    closeDrawer();
+    try { await window.vvAuth?.signOut?.(); } catch {}
+    window.location.href = 'index.html';
+  });
+
+  // Settings
+  let audioOn = false;
+  $('drawerAudioToggle')?.addEventListener('click', () => {
+    const btn = $('drawerAudioToggle');
+    if (btn) btn.textContent = audioOn ? 'Audio: On' : 'Audio: Off';
+  });
+  $('drawerFullscreen')?.addEventListener('click', () => {
+      document.documentElement.requestFullscreen?.().catch(() => {});
+    } else {
+      document.exitFullscreen?.().catch(() => {});
+    }
+    closeDrawer();
+  });
+  $('drawerChangePassword')?.addEventListener('click', () => {
+    closeDrawer();
+    const user = window.vvAuth?.currentUser;
+    window.vvAuth?.sendPasswordResetEmail?.(user.email)
+      .then(() => alert('Password reset email sent to ' + user.email))
+      .catch((e) => alert('Error: ' + e.message));
+  });
+
+  // ESC closes drawer first, then modals
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (drawerOpen) { e.preventDefault(); closeDrawer(); return; }
+    if (modal?.getAttribute('aria-hidden') === 'false') { e.preventDefault(); hideModal(); }
+  });
+
   // ESC key closes wallet modal
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && modal?.getAttribute("aria-hidden") === "false") {

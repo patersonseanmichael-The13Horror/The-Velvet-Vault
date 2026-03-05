@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Velvet Vault — Contact</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/pages/members.css" />
+  <link rel="stylesheet" href="css/pages/members-nav.css" />
+  <script src="js/runtime-config.js" defer></script>
+</head>
+<body class="vvTheme">
+  <div id="vvBrandGlow" aria-hidden="true"></div>
+  <div class="vvShell">
+    <header class="vvTopbar">
+      <div class="vvTopbarLeft">
+        <a class="vvLogoLink" href="members.html" aria-label="Velvet Vault">
+          <span class="vvLogo">VELVET VAULT</span>
+          <span class="vvTag">Contact</span>
+        </a>
+      </div>
+      <nav class="vvNav">
+        <a class="vvNavItem" href="members.html">Members</a>
+        <a class="vvNavItem" href="slots-lobby.html">Slots</a>
+      </nav>
+    </header>
+
+    <main class="vvMembersMain" style="max-width:680px;margin:0 auto;padding:2rem 1rem;">
+      <section class="vvPanel" style="margin-bottom:2rem;">
+        <h1 class="vvPanelTitle" style="margin-bottom:0.5rem;">Contact Us</h1>
+        <p style="color:rgba(255,255,255,0.65);font-size:0.9rem;margin-bottom:1.5rem;">
+          We're here to help. Reach out via any of the channels below and our team will respond promptly.
+        </p>
+
+        <div style="display:grid;gap:1rem;">
+          <div class="vvStatCard">
+            <div class="vvStatLabel">Email Support</div>
+            <div class="vvStatValue" style="font-size:1rem;">
+              <a href="mailto:support@velvetvault.com" style="color:#d4af37;text-decoration:none;">
+                support@velvetvault.com
+              </a>
+            </div>
+          </div>
+          <div class="vvStatCard">
+            <div class="vvStatLabel">Deposit / PayID Queries</div>
+            <div class="vvStatValue" style="font-size:1rem;">
+              <a href="mailto:ledgertheivory@gmail.com" style="color:#d4af37;text-decoration:none;">
+                ledgertheivory@gmail.com
+              </a>
+            </div>
+          </div>
+          <div class="vvStatCard">
+            <div class="vvStatLabel">Response Time</div>
+            <div class="vvStatValue" style="font-size:0.95rem;color:rgba(255,255,255,0.75);">
+              Within 24 hours (business days)
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="vvPanel">
+        <h2 class="vvPanelTitle" style="margin-bottom:1rem;">Send a Message</h2>
+        <form id="contactForm" style="display:grid;gap:1rem;">
+          <div class="vvField">
+            <label for="contactName">Your Name</label>
+            <input id="contactName" type="text" placeholder="Display name or Player ID" autocomplete="name" />
+          </div>
+          <div class="vvField">
+            <label for="contactEmail">Email Address</label>
+            <input id="contactEmail" type="email" placeholder="your@email.com" autocomplete="email" />
+          </div>
+          <div class="vvField">
+            <label for="contactSubject">Subject</label>
+            <select id="contactSubject" style="background:#1a1208;color:rgba(255,255,255,0.85);border:1px solid rgba(212,175,55,0.25);border-radius:4px;padding:0.6rem 0.8rem;width:100%;font-size:0.875rem;">
+              <option value="">Select a topic…</option>
+              <option value="deposit">Deposit / Payment</option>
+              <option value="withdrawal">Withdrawal</option>
+              <option value="account">Account Issue</option>
+              <option value="bonus">Bonus / Promotion</option>
+              <option value="technical">Technical Problem</option>
+              <option value="responsible">Responsible Play</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="vvField">
+            <label for="contactMsg">Message</label>
+            <textarea id="contactMsg" rows="5" placeholder="Describe your issue or question…"
+              style="background:#1a1208;color:rgba(255,255,255,0.85);border:1px solid rgba(212,175,55,0.25);border-radius:4px;padding:0.6rem 0.8rem;width:100%;font-size:0.875rem;resize:vertical;"></textarea>
+          </div>
+          <button id="contactSubmit" class="vvPrimary" type="submit">Send Message</button>
+          <div id="contactMsg2" class="vvMsg" aria-live="polite"></div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <footer id="vv-footer"></footer>
+  <script type="module" src="js/ui/footer.js"></script>
+  <script>
+    document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name    = document.getElementById('contactName').value.trim();
+      const email   = document.getElementById('contactEmail').value.trim();
+      const subject = document.getElementById('contactSubject').value;
+      const msg     = document.getElementById('contactMsg').value.trim();
+      const out     = document.getElementById('contactMsg2');
+      if (!name || !email || !subject || !msg) {
+        out.textContent = 'Please fill in all fields.';
+        out.style.color = '#ff6b6b';
+        return;
+      }
+      // In production this would call a Firebase callable or send to a backend.
+      // For now, open the user's mail client with prefilled content.
+      const body = encodeURIComponent(
+        'Name: ' + name + '\nEmail: ' + email + '\nSubject: ' + subject + '\n\n' + msg
+      );
+      window.location.href = 'mailto:support@velvetvault.com?subject=' +
+        encodeURIComponent('[VV Contact] ' + subject) + '&body=' + body;
+      out.textContent = 'Opening your mail client…';
+      out.style.color = '#d4af37';
+    });
+  </script>
+</body>
+</html>
