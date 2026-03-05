@@ -12,11 +12,11 @@ const app = window.vvApp;
 const fx = app ? getFunctions(app) : null;
 const resolveUidLoginEmail = fx ? httpsCallable(fx, "vvResolveUidLoginEmail") : null;
 const upsertUserProfile = fx ? httpsCallable(fx, "vvUpsertUserProfile") : null;
+const createUserProfile = fx ? httpsCallable(fx, "vvCreateUserProfile") : null;
 
 const signupNameEl = document.getElementById("signupName");
 const signupEmailEl = document.getElementById("signupEmail");
 const signupPhoneEl = document.getElementById("signupPhone");
-const signupDobEl = document.getElementById("signupDob");
 const signupPasswordEl = document.getElementById("signupPassword");
 const signupPasswordConfirmEl = document.getElementById("signupPasswordConfirm");
 const signupBtn = document.getElementById("signupBtn");
@@ -29,15 +29,17 @@ const resendBtn = document.getElementById("resendBtn");
 const msgEl = document.getElementById("message");
 const uidPanelEl = document.getElementById("uidPanel");
 const uidValueEl = document.getElementById("uidValue");
+const uidFirebaseEl = document.getElementById("uidFirebase");
 const copyUidBtn = document.getElementById("copyUidBtn");
 
 function say(text) {
   if (msgEl) msgEl.textContent = text;
 }
 
-function showUid(uid) {
+function showUid(uid, playerId) {
   if (!uidPanelEl || !uidValueEl) return;
-  uidValueEl.textContent = uid || "—";
+  uidValueEl.textContent = playerId || uid || "—";
+  if (uidFirebaseEl) uidFirebaseEl.textContent = uid || "—";
   uidPanelEl.hidden = !uid;
 }
 
@@ -49,14 +51,17 @@ function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
-async function ensureUserProfile({ email, displayName, phone, dob }) {
+
+function normalizePhone(raw) {
+  const stripped = raw.replace(/[\s\-().]/g, '');
+  if (stripped.startsWith('+')) {
+    return '+' + stripped.slice(1).replace(/\D/g, '');
+  }
+  return stripped.replace(/\D/g, '');
+}
+async function ensureUserProfile({ email, displayName, phone }) {
   if (!upsertUserProfile) return;
-  await upsertUserProfile({
-    email,
-    displayName,
-    phone,
-    dob
-  });
+  await upsertUserProfile({ email, displayName, phone });
 }
 
 async function resolveLoginEmail(identifier) {
@@ -81,12 +86,11 @@ signupBtn?.addEventListener("click", async () => {
   const displayName = readValue(signupNameEl);
   const email = readValue(signupEmailEl);
   const phone = readValue(signupPhoneEl);
-  const dob = readValue(signupDobEl);
   const password = signupPasswordEl?.value || "";
   const passwordConfirm = signupPasswordConfirmEl?.value || "";
 
-  if (!displayName || !email || !phone || !dob || !password || !passwordConfirm) {
-    say("Complete every signup field to receive your User ID.");
+  if (!displayName || !email || !phone || !password || !passwordConfirm) {
+    say("Complete every signup field to receive your Player ID.");
     return;
   }
   if (!isEmail(email)) {
@@ -104,16 +108,26 @@ signupBtn?.addEventListener("click", async () => {
 
   try {
     const cred = await createUserWithEmailAndPassword(auth, email, password);
-    await ensureUserProfile({
-      email,
-      displayName,
-      phone,
-      dob
-    });
+    const phoneNormalized = normalizePhone(phone);
+    await ensureUserProfile({ email, displayName, phone: phoneNormalized });
+    let playerId = phoneNormalized;
+    if (createUserProfile) {
+      try {
+        const res = await createUserProfile({ name: displayName, phoneRaw: phone, phoneNormalized });
+        playerId = res?.data?.playerId || phoneNormalized;
+      } catch (profileErr) {
+        if (profileErr?.code === "already-exists" || String(profileErr?.message).includes("PHONE_TAKEN")) {
+          say("That phone number is already registered. Use a different number or log in.");
+          return;
+        }
+        // Non-fatal: profile creation failed but auth succeeded
+        console.warn("vvCreateUserProfile failed:", profileErr);
+      }
+    }
     await sendEmailVerification(cred.user);
-    showUid(cred.user.uid);
+    showUid(cred.user.uid, playerId);
     if (loginIdentifierEl) loginIdentifierEl.value = cred.user.uid;
-    say("Account created. Your User ID is ready above. Verify your email, then log in.");
+    say("Account created! Your Player ID is " + playerId + ". Verify your email, then log in.");
   } catch (error) {
     say(error?.message || String(error));
   }
@@ -132,12 +146,7 @@ signinBtn?.addEventListener("click", async () => {
   try {
     const email = await resolveLoginEmail(identifier);
     const cred = await signInWithEmailAndPassword(auth, email, password);
-    await ensureUserProfile({
-      email,
-      displayName: cred.user.displayName || "",
-      phone: cred.user.phoneNumber || "",
-      dob: ""
-    });
+    await ensureUserProfile({ email, displayName: cred.user.displayName || "", phone: cred.user.phoneNumber || "" });
     if (!cred.user.emailVerified) {
       showUid(cred.user.uid);
       say("Verify your email first. Use Resend Verification if needed.");

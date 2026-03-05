@@ -3,12 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Velvet Vault — Admin</title>
+  <title>Velvet Vault — Admin Console</title>
 
   <meta name="vv-protected" content="true" />
 
   <link rel="stylesheet" href="css/main.css" />
-  <link rel="stylesheet" href="css/pages/slots.css" />
   <link rel="stylesheet" href="css/pages/members.css" />
   <link rel="stylesheet" href="css/pages/admin.css" />
 
@@ -34,27 +33,129 @@
     </header>
 
     <main class="vvAdminMain">
-      <section class="vvPanel vvAdminPanel">
-        <div class="vvAdminHeader">
-          <div>
-            <h1 class="vvPanelTitle">Pending Deposits</h1>
-            <p class="vvAdminSub">Manual approvals only. Cash and bonus authority stays in Functions.</p>
-          </div>
-          <button id="refreshDepositsBtn" class="vvSecondary" type="button">Refresh</button>
-        </div>
-        <div id="adminDepositList" class="vvAdminList" aria-live="polite"></div>
-      </section>
 
-      <section class="vvPanel vvAdminPanel">
-        <div class="vvAdminHeader">
-          <div>
-            <h1 class="vvPanelTitle">Pending Withdrawals</h1>
-            <p class="vvAdminSub">Approval and rejection use admin-only callables.</p>
+      <!-- Tab navigation -->
+      <nav class="vvAdminTabs" role="tablist" aria-label="Admin sections">
+        <button class="vvAdminTab vvAdminTabActive" role="tab" aria-selected="true"  data-tab="requests" type="button">Requests</button>
+        <button class="vvAdminTab" role="tab" aria-selected="false" data-tab="manual"   type="button">Manual Ops</button>
+        <button class="vvAdminTab" role="tab" aria-selected="false" data-tab="sentry"   type="button">Sentry</button>
+        <button class="vvAdminTab" role="tab" aria-selected="false" data-tab="ledger"   type="button">Ledger</button>
+        <button class="vvAdminTab" role="tab" aria-selected="false" data-tab="assist"   type="button">Assist</button>
+      </nav>
+
+      <!-- TAB: REQUESTS -->
+      <div id="tab-requests" class="vvAdminTabPanel" role="tabpanel">
+        <section class="vvPanel vvAdminPanel">
+          <div class="vvAdminHeader">
+            <div>
+              <h2 class="vvPanelTitle">Pending Deposits</h2>
+              <p class="vvAdminSub">Manual approvals only. Cash and bonus authority stays in Functions.</p>
+            </div>
+            <button id="refreshDepositsBtn" class="vvSecondary" type="button">Refresh</button>
           </div>
-          <button id="refreshWithdrawalsBtn" class="vvSecondary" type="button">Refresh</button>
-        </div>
-        <div id="adminWithdrawalList" class="vvAdminList" aria-live="polite"></div>
-      </section>
+          <div id="adminDepositList" class="vvAdminList" aria-live="polite"></div>
+        </section>
+        <section class="vvPanel vvAdminPanel">
+          <div class="vvAdminHeader">
+            <div>
+              <h2 class="vvPanelTitle">Pending Withdrawals</h2>
+              <p class="vvAdminSub">Approval and rejection use admin-only callables.</p>
+            </div>
+            <button id="refreshWithdrawalsBtn" class="vvSecondary" type="button">Refresh</button>
+          </div>
+          <div id="adminWithdrawalList" class="vvAdminList" aria-live="polite"></div>
+        </section>
+      </div>
+
+      <!-- TAB: MANUAL OPS -->
+      <div id="tab-manual" class="vvAdminTabPanel" role="tabpanel" hidden>
+        <section class="vvPanel vvAdminPanel">
+          <h2 class="vvPanelTitle">Manual Balance Operations</h2>
+          <p class="vvAdminSub">All actions are logged in system_logs. Amounts in AUD cents (e.g. 1000 = $10.00).</p>
+          <div class="vvAdminForm">
+            <div class="vvAdminFormRow"><label for="manualUid">Firebase UID</label><input id="manualUid" type="text" placeholder="uid..." autocomplete="off" /></div>
+            <div class="vvAdminFormRow"><label for="manualAmount">Amount (cents)</label><input id="manualAmount" type="number" min="1" placeholder="e.g. 5000" /></div>
+            <div class="vvAdminFormRow"><label for="manualReason">Reason</label><input id="manualReason" type="text" placeholder="e.g. manual_adjustment" /></div>
+            <div class="vvAdminFormRow"><label for="manualNewBalance">New Balance (cents, set-balance only)</label><input id="manualNewBalance" type="number" min="0" placeholder="e.g. 10000" /></div>
+          </div>
+          <div class="vvAdminActions vvAdminActionsRow">
+            <button id="manualCreditBtn"   class="vvPrimary"   type="button">Credit</button>
+            <button id="manualDebitBtn"    class="vvSecondary" type="button">Debit</button>
+            <button id="manualSetBalBtn"   class="vvSecondary" type="button">Set Balance</button>
+            <button id="manualFreezeBtn"   class="vvDanger"    type="button">Freeze</button>
+            <button id="manualUnfreezeBtn" class="vvSecondary" type="button">Unfreeze</button>
+          </div>
+          <div id="manualOpResult" class="vvAdminResult" aria-live="polite"></div>
+        </section>
+      </div>
+
+      <!-- TAB: SENTRY -->
+      <div id="tab-sentry" class="vvAdminTabPanel" role="tabpanel" hidden>
+        <section class="vvPanel vvAdminPanel">
+          <div class="vvAdminHeader">
+            <div>
+              <h2 class="vvPanelTitle">Sentry — Flagged Users</h2>
+              <p class="vvAdminSub">AI-assisted risk scoring. Evaluate a user or view all flagged accounts.</p>
+            </div>
+            <button id="sentryListBtn" class="vvSecondary" type="button">List Flagged</button>
+          </div>
+          <div class="vvAdminForm">
+            <div class="vvAdminFormRow"><label for="sentryUid">Firebase UID to Evaluate</label><input id="sentryUid" type="text" placeholder="uid..." autocomplete="off" /></div>
+          </div>
+          <div class="vvAdminActions">
+            <button id="sentryEvalBtn" class="vvPrimary" type="button">Evaluate User</button>
+          </div>
+          <div id="sentryResult" class="vvAdminResult" aria-live="polite"></div>
+          <div id="sentryFlaggedList" class="vvAdminList" aria-live="polite"></div>
+        </section>
+      </div>
+
+      <!-- TAB: LEDGER -->
+      <div id="tab-ledger" class="vvAdminTabPanel" role="tabpanel" hidden>
+        <section class="vvPanel vvAdminPanel">
+          <div class="vvAdminHeader">
+            <div>
+              <h2 class="vvPanelTitle">User Ledger</h2>
+              <p class="vvAdminSub">View transaction history for any user.</p>
+            </div>
+          </div>
+          <div class="vvAdminForm">
+            <div class="vvAdminFormRow"><label for="ledgerUid">Firebase UID</label><input id="ledgerUid" type="text" placeholder="uid..." autocomplete="off" /></div>
+            <div class="vvAdminFormRow"><label for="ledgerLimit">Limit (default 50)</label><input id="ledgerLimit" type="number" min="1" max="200" value="50" /></div>
+          </div>
+          <div class="vvAdminActions">
+            <button id="ledgerLoadBtn" class="vvPrimary" type="button">Load Ledger</button>
+          </div>
+          <div id="ledgerResult" class="vvAdminList" aria-live="polite"></div>
+        </section>
+      </div>
+
+      <!-- TAB: ASSIST -->
+      <div id="tab-assist" class="vvAdminTabPanel" role="tabpanel" hidden>
+        <section class="vvPanel vvAdminPanel">
+          <h2 class="vvPanelTitle">Deposit Assist</h2>
+          <p class="vvAdminSub">AI-assisted deposit review for a specific request ID.</p>
+          <div class="vvAdminForm">
+            <div class="vvAdminFormRow"><label for="depositAssistId">Deposit Request ID</label><input id="depositAssistId" type="text" placeholder="request id..." autocomplete="off" /></div>
+          </div>
+          <div class="vvAdminActions">
+            <button id="depositAssistBtn" class="vvPrimary" type="button">Run Deposit Assist</button>
+          </div>
+          <div id="depositAssistResult" class="vvAdminResult" aria-live="polite"></div>
+        </section>
+        <section class="vvPanel vvAdminPanel">
+          <h2 class="vvPanelTitle">Withdraw Assist</h2>
+          <p class="vvAdminSub">AI-assisted withdrawal review for a specific request ID.</p>
+          <div class="vvAdminForm">
+            <div class="vvAdminFormRow"><label for="withdrawAssistId">Withdrawal Request ID</label><input id="withdrawAssistId" type="text" placeholder="request id..." autocomplete="off" /></div>
+          </div>
+          <div class="vvAdminActions">
+            <button id="withdrawAssistBtn" class="vvPrimary" type="button">Run Withdraw Assist</button>
+          </div>
+          <div id="withdrawAssistResult" class="vvAdminResult" aria-live="polite"></div>
+        </section>
+      </div>
+
     </main>
   </div>
 

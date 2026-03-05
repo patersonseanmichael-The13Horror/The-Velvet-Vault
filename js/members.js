@@ -579,4 +579,21 @@ import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/
     }
   };
   void refreshWalletUI(true);
+
+  // ── Admin drawer link ──────────────────────────────────────
+  (async () => {
+    try {
+      const user = window.vvAuth?.currentUser;
+      if (user) {
+        const token = await user.getIdTokenResult(false);
+        if (token?.claims?.admin === true) {
+          const adminItem = document.getElementById('drawerAdminItem');
+          if (adminItem) adminItem.style.display = '';
+        }
+      }
+    } catch {
+      // Non-critical: admin link stays hidden
+    }
+  })();
+
 })();

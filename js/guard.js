@@ -3,8 +3,6 @@ import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/
 const auth = window.vvAuth;
 const LOGIN_PATH = "login.html";
 let guardResolved = false;
-const urlParams = new URLSearchParams(window.location.search);
-const demoMode = urlParams.get("demo") === "1";
 
 function goToLogin() {
   if (!location.pathname.endsWith(LOGIN_PATH)) {
@@ -12,21 +10,17 @@ function goToLogin() {
   }
 }
 
-// Determine if this page should be protected (opt-in via meta)
+// Determine if this page should be protected (opt-in via meta tag)
 const isProtected = (() => {
   const meta = document.querySelector('meta[name="vv-protected"]');
   return meta && String(meta.content || "").toLowerCase() === "true";
 })();
 
-// Demo-friendly: if Firebase auth is not available, allow the page to continue (even if protected).
-if (demoMode) {
-  console.info("[VelvetVault] Demo mode enabled via ?demo=1 (auth guard bypass).");
-  guardResolved = true;
-} else if (!auth) {
-  console.info("[VelvetVault] Auth unavailable — running in demo mode (no redirect).");
+if (!auth) {
+  // Firebase auth unavailable — allow page to continue (no redirect possible)
   guardResolved = true;
 } else if (!isProtected) {
-  // Auth exists but page is not protected; just bind logout if present.
+  // Auth exists but page is not protected; just bind logout if present
   guardResolved = true;
 } else {
   (async () => {
@@ -34,9 +28,7 @@ if (demoMode) {
       if (typeof auth.authStateReady === "function") {
         await auth.authStateReady();
       }
-
       guardResolved = true;
-
       if (!auth.currentUser || !auth.currentUser.emailVerified) {
         goToLogin();
       }
@@ -60,7 +52,7 @@ if (demoMode) {
 }
 
 function bindLogoutButton() {
-  const buttons = document.querySelectorAll("#logoutBtn, #btnLogout");
+  const buttons = document.querySelectorAll("#logoutBtn, #btnLogout, #adminLogoutBtn");
   for (const logoutBtn of buttons) {
     if (!logoutBtn || logoutBtn.dataset.vvLogoutBound === "1") continue;
     logoutBtn.dataset.vvLogoutBound = "1";
@@ -70,7 +62,7 @@ function bindLogoutButton() {
         try {
           await signOut(auth);
         } catch (error) {
-          console.warn("[VelvetVault] Sign out failed:", error);
+          // Sign out error is non-critical; redirect anyway
         }
       }
       goToLogin();

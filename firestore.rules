@@ -76,6 +76,23 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // phoneIndex: written only by Admin SDK (callable functions), never by clients
+    match /phoneIndex/{phoneKey} {
+      allow read, write: if false;
+    }
+
+    // sentryFlags: admin read only, written by Admin SDK
+    match /sentryFlags/{uid} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    // system_logs: admin read only, written by Admin SDK
+    match /system_logs/{logId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

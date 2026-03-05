@@ -17,5 +17,4 @@ try {
 
 window.vvApp = app;
 window.vvAuth = auth;
-window.__AUTH = auth;
 window.vvFirebaseInitError = initError;

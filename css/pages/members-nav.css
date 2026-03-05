@@ -171,3 +171,14 @@
     transition: none !important;
   }
 }
+
+/* Admin console link — gold accent, only shown to admins */
+.vvDrawerAdmin {
+  color: #d4a843 !important;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.vvDrawerAdmin:hover {
+  color: #f0c060 !important;
+  background: rgba(212, 168, 67, 0.08);
+}

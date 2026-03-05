@@ -214,3 +214,200 @@
     animation: none !important;
   }
 }
+
+/* ============================================================
+   Spec-aligned .vv-gate alias layer (Option A exact spec)
+   Supports both #vaultGate/.vg-* and .vv-gate/.vv-gate__* markup.
+   ============================================================ */
+:root {
+  --vv-gate-duration: 1800ms;
+  --vv-gate-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vv-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: block;
+  background: #05060a;
+  overflow: hidden;
+}
+.vv-gate[aria-hidden="true"] { display: none; }
+
+.vv-gate__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("../../images/bg/vault-door-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: saturate(1.05) contrast(1.05) brightness(0.92);
+  transform: scale(1.02);
+}
+
+.vv-gate__stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.vv-gate__glow {
+  position: absolute;
+  width: min(1100px, 92vw);
+  height: min(620px, 70vh);
+  border-radius: 999px;
+  background: radial-gradient(closest-side, rgba(180,120,255,0.18), rgba(0,0,0,0));
+  filter: blur(2px);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.vv-gate__doors {
+  position: relative;
+  width: min(980px, 92vw);
+  height: min(560px, 64vh);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.06) inset;
+}
+
+.vv-gate__door {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 50%;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+.vv-gate__door--left {
+  left: 0;
+  background-image: url("../../images/ui/vault-door-left.png");
+  transform: translateX(0);
+}
+.vv-gate__door--right {
+  right: 0;
+  background-image: url("../../images/ui/vault-door-right.png");
+  transform: translateX(0);
+}
+
+.vv-gate__handleWrap {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 160px; height: 160px;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 4;
+}
+.vv-gate__handle {
+  width: 160px; height: 160px;
+  background-image: url("../../images/ui/vault-handle.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotate(0deg);
+  transform-origin: 50% 50%;
+  filter: drop-shadow(0 14px 16px rgba(0,0,0,0.55));
+  will-change: transform;
+}
+.vv-gate__handleShadow {
+  position: absolute;
+  inset: 22px;
+  border-radius: 999px;
+  background: radial-gradient(closest-side, rgba(0,0,0,0.35), rgba(0,0,0,0));
+  filter: blur(6px);
+  opacity: 0.55;
+  z-index: -1;
+}
+
+.vv-gate__ui {
+  position: absolute;
+  bottom: 36px; left: 50%;
+  transform: translateX(-50%);
+  width: min(980px, 92vw);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  z-index: 6;
+  padding: 0 4px;
+}
+.vv-gate__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: rgba(255,255,255,0.92);
+  text-shadow: 0 10px 26px rgba(0,0,0,0.8);
+}
+.vv-gate__title {
+  font-size: clamp(28px, 3.2vw, 44px);
+  letter-spacing: 0.06em;
+  font-weight: 800;
+}
+.vv-gate__subtitle {
+  font-size: clamp(12px, 1.2vw, 14px);
+  opacity: 0.88;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.vv-gate__enter {
+  appearance: none;
+  border: 0;
+  padding: 12px 18px;
+  border-radius: 14px;
+  cursor: pointer;
+  color: rgba(255,255,255,0.95);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, rgba(195,130,255,0.26), rgba(255,255,255,0.08));
+  box-shadow: 0 14px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.14) inset;
+  transition: transform 140ms ease, box-shadow 140ms ease;
+  white-space: nowrap;
+}
+.vv-gate__enter:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 52px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.18) inset;
+}
+.vv-gate__enter:active { transform: translateY(0px) scale(0.99); }
+
+.vv-gate__hint {
+  position: absolute;
+  top: 18px; right: 18px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.72);
+  text-shadow: 0 10px 26px rgba(0,0,0,0.8);
+}
+
+/* Opening animation (.vv-gate variant) */
+.vv-gate.vv-gate-opening .vv-gate__handle {
+  transition: transform 700ms var(--vv-gate-ease);
+  transform: rotate(220deg);
+}
+.vv-gate.vv-gate-opening .vv-gate__door--left {
+  transition: transform var(--vv-gate-duration) var(--vv-gate-ease);
+  transform: translateX(-58vw);
+}
+.vv-gate.vv-gate-opening .vv-gate__door--right {
+  transition: transform var(--vv-gate-duration) var(--vv-gate-ease);
+  transform: translateX(58vw);
+}
+.vv-gate.vv-gate-opening .vv-gate__ui {
+  transition: opacity 520ms ease;
+  opacity: 0;
+}
+
+@media (max-width: 640px) {
+  .vv-gate__ui { flex-direction: column; align-items: stretch; bottom: 18px; }
+  .vv-gate__enter { width: 100%; }
+  .vv-gate__hint { left: 18px; right: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vv-gate__door, .vv-gate__handle, .vv-gate__ui { transition: none !important; animation: none !important; }
+}
+body.vv-reduced-motion .vv-gate__door,
+body.vv-reduced-motion .vv-gate__handle,
+body.vv-reduced-motion .vv-gate__ui { transition: none !important; animation: none !important; }

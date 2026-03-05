@@ -34,7 +34,7 @@
           <div class="sigil" aria-hidden="true"></div>
           <div>
             <h1>Velvet Vault</h1>
-            <small>VIP Access • UID or Email Entry</small>
+            <small>VIP Access • Player ID on Signup</small>
           </div>
         </div>
 
@@ -60,7 +60,7 @@
           <section class="authPanel">
             <div class="formHead">
               <h2>Sign Up</h2>
-              <p>Create your profile and receive your Velvet Vault User ID.</p>
+              <p>Create your profile. Your phone number becomes your Player ID.</p>
             </div>
 
             <div class="field">
@@ -72,12 +72,8 @@
               <input id="signupEmail" type="email" autocomplete="email" />
             </div>
             <div class="field">
-              <label for="signupPhone">Number</label>
-              <input id="signupPhone" type="tel" autocomplete="tel" />
-            </div>
-            <div class="field">
-              <label for="signupDob">DOB</label>
-              <input id="signupDob" type="date" autocomplete="bday" />
+              <label for="signupPhone">Phone (Player ID)</label>
+              <input id="signupPhone" type="tel" autocomplete="tel" placeholder="e.g. +61400000000" />
             </div>
             <div class="field">
               <label for="signupPassword">Password</label>
@@ -116,12 +112,13 @@
         <section class="uidPanel" id="uidPanel" hidden aria-live="polite">
           <div class="uidPanelHead">
             <div>
-              <h2>Your User ID</h2>
-              <p>Copy this UID and keep it safe for fast member login.</p>
+              <h2>Your Player ID</h2>
+              <p>This is your unique Player ID (phone number). Use it for deposits and withdrawals.</p>
             </div>
-            <button class="btn ghost uidCopyBtn" id="copyUidBtn" type="button">Copy UID</button>
+            <button class="btn ghost uidCopyBtn" id="copyUidBtn" type="button">Copy</button>
           </div>
           <div class="uidValue" id="uidValue">—</div>
+          <div style="margin-top:0.5rem;font-size:0.75rem;color:rgba(255,255,255,0.5);letter-spacing:0.05em;">Firebase UID: <span id="uidFirebase" style="word-break:break-all;">—</span></div>
         </section>
 
         <div class="msg" id="message" aria-live="polite">Sign up to receive your UID, then verify your email before entering the members lounge.</div>
